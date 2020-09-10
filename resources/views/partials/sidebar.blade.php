@@ -3,7 +3,9 @@
     <div class="main-sidebar-head">
     <div class="main-sidebar-head-username">
         <span>Bienvenido</span>
-        María Pepita de los Rios
+        @if(\Auth::check())
+            {{  Auth::user()->name }} {{ Auth::user()->lastname }}
+        @endif
     </div>
     <div class="main-sidebar-head-amount">
         <span>$30.000</span>
