@@ -1,0 +1,233 @@
+.main-admin {
+  display: flex;
+  height: 100vh;
+  padding-left: 0;
+  transition: all 0.5s ease;
+}
+
+.main-sidebar {
+  background-color: $lightgray;
+  padding: 30px;
+  transition: all 0.5s ease;
+  position: fixed;
+  width: 20%;
+  height: 100%;
+  left: 0;
+  z-index: 1000;
+
+  &-logo {
+    width: 150px;
+    margin-bottom: 10%;
+  }
+
+  &-head-username {
+    font-size: 15px;
+    font-weight: $medium;
+    color: $black;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      color: $primary;
+    }
+  }
+
+  &-head-amount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10% 0;
+
+    span {
+      font-size: 15px;
+      font-weight: $medium;
+      color: $black;
+    }
+
+    a {
+      margin-top: 20px;
+    }
+  }
+
+  &-menu {
+    border-top: 1px solid #dee2e6;
+    padding: 5% 0;
+
+    ul {
+      padding-left: 0;
+    }
+
+    li {
+      list-style: none;
+      margin: 10px 0;
+    }
+
+    li a {
+      font-size: 15px;
+      font-weight: $medium;
+      color: $black;
+    }
+  }
+
+  &-footer {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .logout-link {
+      color: $gray;
+      font-size: 15px;
+      font-weight: $medium;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.main-wrapper {
+  width: 80%;
+  height: 100%;
+  margin-left: 20%;
+
+  &-header {
+    width: 100%;
+    padding: 15px 35px;
+    background-color: $secondary;
+
+    h2 {
+      font-size: 20px;
+      color: $white;
+      font-weight: $bold;
+      margin-bottom: 0;
+    }
+  }
+
+  &-content {
+    padding: 60px 40px;
+    position: relative;
+
+    &::before {
+      @include pseudo();
+      @include size(88px, 100px);
+      @include bg(cover, no-repeat, center);
+      background-image: url(../img/points-box-2.png);
+      right: 0;
+      top: 90px;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: $bold;
+      color: $black;
+    }
+
+    &-username {
+      color: $gray;
+      font-size: 18px;
+      font-weight: $medium;
+      margin-bottom: 20px;
+    }
+
+    &-text {
+      color: $gray;
+      font-size: 17px;
+      font-weight: $regular;
+    }
+  }
+}
+
+.dashboard-floating-button {
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  width: 144px;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.main-wrapper-cards {
+  padding: 20px 0;
+
+  h5 {
+    font-size: 15px;
+    font-weight: $medium;
+    color: $black;
+    margin-bottom: 25px;
+  }
+}
+
+.main-wrapper-cards-grid {
+  display: grid;
+  grid-template-columns: calc(50% - 35px) calc(50% - 35px);
+  gap: 70px;
+
+  .custom-card {
+    padding: 21px 28px;
+
+    h4 {
+      color: $primary;
+      font-size: 20px;
+      font-weight: $bold;
+
+      &.secondary {
+        color: $secondary;
+      }
+    }
+
+    .price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        font-size: 30px;
+        font-weight: $bold;
+        color: $black;
+      }
+
+      img {
+        width: 50px;
+      }
+    }
+
+    span.news-text {
+      font-size: 15px;
+      color: $black;
+      font-weight: $medium;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+}
+
+.main-wrapper-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #dee2e6;
+  padding-top: 20px;
+  margin-top: 15px;
+
+  span {
+    font-size: 13px;
+    font-weight: $bold;
+    color: $gray;
+  }
+}
+
+.main-wrapper-buttons {
+  text-align: center;
+  padding: 35px 0;
+
+  .btn-custom {
+    width: 200px;
+
+    &:nth-last-child(1) {
+      margin-left: 70px;
+    }
+  }
+}

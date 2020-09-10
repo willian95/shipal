@@ -1,0 +1,66 @@
+.page-section {
+  p {
+    font-size: 20px;
+    color: $gray;
+    font-weight: $regular;
+    margin-bottom: 20px;
+
+    @include respond-to(xs) {
+      font-size: 16px;
+    }
+
+    @include respond-to(sm) {
+      font-size: 16px;
+    }
+  }
+
+  p strong {
+    font-size: 30px;
+    font-weight: $bold;
+    color: $black;
+
+    @include respond-to(xs) {
+      font-size: 26px;
+    }
+
+    @include respond-to(sm) {
+      font-size: 26px;
+    }
+  }
+
+  blockquote {
+    position: relative;
+    background-color: $lightgray;
+    padding: 50px 50px 50px 60px;
+
+    @include respond-to(xs) {
+      padding: 60px 20px 20px 20px;
+    }
+
+    @include respond-to(sm) {
+      padding: 60px 20px 20px 20px;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    &::before {
+      position: absolute;
+      content: "\f10d";
+      font-family: "FontAwesome";
+      font-size: 35px;
+      left: 18px;
+      color: #9d3399;
+      top: 40px;
+
+      @include respond-to(xs) {
+        top: 8px;
+      }
+
+      @include respond-to(sm) {
+        top: 8px;
+      }
+    }
+  }
+}

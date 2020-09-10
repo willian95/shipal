@@ -1,0 +1,109 @@
+/*INPUTS*/
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+input[type="number"],select, textarea {
+  border: 1px solid #dee2e6;
+  color: #aeb5bd;
+  font-family: "Roboto",sans-serif;
+  font-size: 13px;
+  border-radius: 3px;
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  margin-bottom:1.5rem;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,select:focus,textarea:focus {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #ff5202;
+}
+textarea {
+    height: 100px;
+    resize:none;
+}
+label,.frm_primary_label{
+  font-size: 13px;
+    font-weight: 500;
+    color: #000;
+}
+#form_contact-form .frm_form_field.frm6,#form_contact-form  .frm_submit.frm6,#form_contact-form  .frm_form_field.frm_left_half, #form_contact-form .frm_form_field.frm_right_half,#form_contact-form  .frm_form_field.frm_first_half, .frm_form_field.frm_last_half, #form_contact-form .frm_form_field.frm_half, #form_contact-form .frm_submit.frm_half {
+    width: 48%;
+}
+#form_contact-form  #frm_field_6_container,#form_contact-form  #frm_field_7_container,#form_contact-form  #frm_field_1_container{
+  margin-left:0px;
+}
+.frm_form_field.frm2, .frm_submit.frm2, .frm_form_field.frm3, .frm_submit.frm3, .frm_form_field.frm4, .frm_submit.frm4, .frm_form_field.frm6, .frm_submit.frm6, .frm_form_field.frm8, .frm_submit.frm8, .frm_form_field.frm9, .frm_submit.frm9, .frm_form_field.frm10, .frm_submit.frm10, .frm_form_field.frm_right_half, .frm_form_field.frm_right_third, .frm_form_field.frm_right_two_thirds, .frm_form_field.frm_right_fourth, .frm_form_field.frm_right_fifth, .frm_form_field.frm_right_inline, .frm_form_field.frm_last_half, .frm_form_field.frm_last_third, .frm_form_field.frm_last_two_thirds, .frm_form_field.frm_last_fourth, .frm_form_field.frm_last_fifth, .frm_form_field.frm_last_sixth, .frm_form_field.frm_last_seventh, .frm_form_field.frm_last_eighth, .frm_form_field.frm_last_inline, .frm_form_field.frm_last, .frm_form_field.frm_half, .frm_submit.frm_half, .frm_form_field.frm_third, .frm_submit.frm_third, .frm_form_field.frm_two_thirds, .frm_form_field.frm_fourth, .frm_submit.frm_fourth, .frm_form_field.frm_three_fourths, .frm_form_field.frm_fifth, .frm_submit.frm_fifth, .frm_form_field.frm_two_fifths, .frm_form_field.frm_three_fifths, .frm_form_field.frm_four_fifths, .frm_form_field.frm_sixth, .frm_submit.frm_sixth, .frm_form_field.frm_seventh, .frm_submit.frm_seventh, .frm_form_field.frm_eighth, .frm_submit.frm_eighth, .frm_form_field.frm_inline, .frm_submit.frm_inline{
+  margin-left: 3.5%;
+}
+
+/*formulario de soporte*/
+
+.frm_form_field.frm6, .frm_submit.frm6, .frm_form_field.frm_left_half, .frm_form_field.frm_right_half, .frm_form_field.frm_first_half, .frm_form_field.frm_last_half, .frm_form_field.frm_half, .frm_submit.frm_half {
+    width: 46%;
+}
+/*upload*/
+.frm_dropzone.dz-clickable.frm_single_upload {
+    max-width: 100%;
+}
+.frm_dropzone .dz-message {
+    border: 1px solid #ced4da;
+    background: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px; 
+    padding: 9px;
+    font-family: "Roboto",sans-serif;
+}
+.frm_upload_text{
+  cursor: pointer;
+    font-weight: 500;
+    font-size: 10px;
+    color: #aeb5bd;
+    width: 100%;
+    text-align: center;
+}
+.frm_icon_font.frm_upload_icon, .frm_small_text{
+  display:none;
+}
+
+
+.descripcion-input{
+  color: #aeb5bd !important;
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+#frm_field_17_container{
+  margin-left:4.5% !important;
+}
+.frm_dropzone.dz-clickable {
+    min-height: 95px;
+    margin-top: 5px;
+    line-height: 1.42857143;
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  #form_contact-form .frm_form_field.frm6,#form_contact-form  .frm_submit.frm6,#form_contact-form  .frm_form_field.frm_left_half, #form_contact-form .frm_form_field.frm_right_half,#form_contact-form  .frm_form_field.frm_first_half, .frm_form_field.frm_last_half, #form_contact-form .frm_form_field.frm_half, #form_contact-form .frm_submit.frm_half {
+      width: 100%;
+  }
+  .frm_form_field.frm6, .frm_submit.frm6, .frm_form_field.frm_left_half, .frm_form_field.frm_right_half, .frm_form_field.frm_first_half, .frm_form_field.frm_last_half, .frm_form_field.frm_half, .frm_submit.frm_half {
+      width: 100%;
+  }
+}
