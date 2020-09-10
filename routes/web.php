@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
-Route::get('/login', "LoginController@index");
+Route::get('/', "LoginController@index");
+Route::post("/login", "LoginController@login");
+
 Route::get('/register', "RegisterController@index");
-Route::get('/dashboard', "DashboardController@index");
+Route::post("/register", "RegisterController@register");
+Route::get("/register/validate/{registerHash}", "RegisterController@verify");
+
+Route::get('/dashboard', "DashboardController@index")->middleware("auth");

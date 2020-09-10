@@ -18,10 +18,10 @@
               <label>Contraseña</label>
               <a href="{{ url('/forgot-password') }}" class="link-custom">¿Olvidaste tu contraseña?</a>
             </div>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" v-model="password">
           </div>
           <div class="form-group">
-            <input type="submit" class="btn-custom no-shadow small" value="Enviar">
+            <input type="button" class="btn-custom no-shadow small" value="Enviar" @click="login()">
           </div>
         </form>
         <div class="session-form-footer">
@@ -53,17 +53,55 @@
 
 @push("scripts")
 
+  @if(session('alert'))
+      <script>
+          swal({
+              title:"Excelente",
+              text:"{{ session('alert') }}",
+              icon:"success"
+          })
+      </script>
+  @endif
+
     <script>
-        
+    
         const app = new Vue({
             el: '#login-area',
             data(){
                 return{
-                    email:""
+                    email:"",
+                    password:""
                 }
             },
             methods:{
-  
+              
+              login(){
+
+                axios.post("{{ url('/login') }}", {email: this.email, password: this.password}).then(res => {
+
+                  if(res.data.success == true){
+                    swal({
+                      "icon": "success",
+                      "text": res.data.msg
+                    }).then(res => {
+                      window.location.href="{{ url('/dashboard') }}"
+                    })
+                  }else{
+                    swal({
+                      "icon": "error",
+                      "text": res.data.msg
+                    })
+                  }
+
+                })
+                .catch(err => {
+
+                  $.each(err.response.data.errors, function(key, value) {
+                      alert(value[0])
+                  });
+                })
+
+              }
   
             },
             mounted(){
