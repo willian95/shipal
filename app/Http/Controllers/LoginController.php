@@ -11,7 +11,17 @@ class LoginController extends Controller
 {
     
     function index(){
-        return view("login");
+
+        if(Auth::check()){
+            return redirect()->to("dashboard");
+        }else{
+            return view("login");
+        }
+    }
+
+    function logout(){
+        Auth::logout();
+        return redirect()->to('/');
     }
 
     function login(LoginRequest $request){
