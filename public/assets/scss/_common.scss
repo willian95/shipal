@@ -3,6 +3,9 @@
 
 body {
   font-family: $font;
+  &.sidebar-fixed{
+    overflow-y: hidden;
+  }
 }
 
 a.link-custom {
@@ -215,6 +218,7 @@ a.link-custom {
   padding: 12px 24px;
   box-shadow: 0px 8px 10px 0px rgba($primary, 0.3);
   transition: all ease-in-out 0.3s;
+  border:none;
 
   &[type="submit"] {
     border: 0;
