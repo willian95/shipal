@@ -1,5 +1,5 @@
 <div class="main-sidebar">
-    <img class="main-sidebar-logo" src="assets/img/logos/logo1.svg" alt="">
+    <img class="main-sidebar-logo" src="{{ asset('assets/img/logos/logo1.svg') }}" alt="">
     <div class="main-sidebar-head">
     <div class="main-sidebar-head-username">
         <span>Bienvenido</span>
