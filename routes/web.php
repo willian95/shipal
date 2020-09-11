@@ -28,3 +28,4 @@ Route::get("/register/validate/{registerHash}", "RegisterController@verify");
 Route::get('/dashboard', "DashboardController@index")->middleware("auth");
 
 Route::get("/internacional", function(){ return view('international'); });
+Route::get("/nacional", function(){ return view('national'); });

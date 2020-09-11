@@ -3,7 +3,7 @@
 @section("content")
   <div class="main-wrapper-boxheader">
     <div class="main-wrapper-header main-wrapper-header-transparent">
-      <h2>Internacional</h2>
+      <h2>Nacional</h2>
     </div>
     <button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="offcanvas" type="button">
       <span class="hamburger-box">
@@ -59,24 +59,14 @@
           <div class="session-form-two-columns">
             <div class="form-group">
               <label>Ciudad</label>
-              <input type="text" class="form-control" placeholder="California">
+              <input type="text" class="form-control" placeholder="Medellín">
             </div>
             <div class="form-group">
-              <label>Estado</label>
-              <input type="text" class="form-control" placeholder="California">
+              <label>Departamento</label>
+              <input type="text" class="form-control" placeholder="Antioquia">
             </div>
           </div>
-          <div class="session-form-two-columns">
-            <div class="form-group">
-              <label>Código postal</label>
-              <input type="number" class="form-control" placeholder="1234">
-            </div>
-            <div class="form-group">
-              <label>País</label>
-              <input type="text" class="form-control" placeholder="Estados Unidos">
-            </div>
-          </div>
-      
+        
         </form>
       </div>
       <div class="main-wrapper-forms">
@@ -125,23 +115,16 @@
           <div class="session-form-two-columns">
             <div class="form-group">
               <label>Ciudad</label>
-              <input type="text" class="form-control" placeholder="California">
+              <input type="text" class="form-control" placeholder="Medellín">
             </div>
             <div class="form-group">
-              <label>Estado</label>
-              <input type="text" class="form-control" placeholder="California">
+              <label>Departamento</label>
+              <input type="text" class="form-control" placeholder="Antioquia">
             </div>
           </div>
-          <div class="session-form-two-columns">
-            <div class="form-group">
-              <label>Código postal</label>
-              <input type="number" class="form-control" placeholder="1234">
-            </div>
-            <div class="form-group">
-              <label>País</label>
-              <input type="text" class="form-control" placeholder="Estados Unidos">
-            </div>
-          </div>
+        
+        
+      
         </form>
       </div>
       <div class="btn-formtwo">
