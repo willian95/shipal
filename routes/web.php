@@ -26,3 +26,5 @@ Route::post("/register", "RegisterController@register");
 Route::get("/register/validate/{registerHash}", "RegisterController@verify");
 
 Route::get('/dashboard', "DashboardController@index")->middleware("auth");
+
+Route::get("/internacional", function(){ return view('international'); });
