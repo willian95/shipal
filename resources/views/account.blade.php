@@ -79,10 +79,35 @@
           <div class="navtabs-header">
             <h3>Método de pago</h3>
           </div>
+
+
         </div>
 
         <!-- PLAN -->
-        <div class="tab-pane fade" id="nav-plan" role="tabpanel" aria-labelledby="nav-plan-tab">...</div>
+        <div class="tab-pane fade" id="nav-plan" role="tabpanel" aria-labelledby="nav-plan-tab">
+          <div class="navtabs-plan">
+            <div class="navtabs-plan-card">
+              <div class="navtabs-plan-cardheader">
+                <p class="navtabs-plan-cardtitle">Su Plan</p>
+                <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#CustomsInformation">Ajustar plan</a>
+              </div>
+              <div class="navtabs-plan-cardcontent">
+                <div class="navtabs-plan-cardimg">
+                  <img src="assets/img/icons/graphic.png" alt="">
+                </div>
+                <div class="navtabs-plan-cardtext">
+                  <p><strong>Paga a medida que avanzas</strong></p>
+                  <p>Libre</p>
+                  <p>Número de asientos: <span>0</span></p>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="navtabs-btn">
+              <a href="#" class="custom-links">Cerrar cuenta</a>
+            </div>
+          </div>
+        </div>
 
         <!-- COMPANY-->
         <div class="tab-pane fade" id="nav-company" role="tabpanel" aria-labelledby="nav-company-tab">...</div>

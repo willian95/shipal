@@ -80,3 +80,44 @@
   }
 
 }
+
+.navtabs-plan{
+  &-card{
+    border: 1px solid $shadowColor;
+    border-radius: 10px;
+    margin-top: 2rem;
+  }
+  &-cardheader{
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 2rem;
+    align-items: center;
+    border-bottom: 1px solid $shadowColor;
+  }
+  &-cardtitle{
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-bottom: 0;
+
+  }
+  &-cardcontent{
+    padding:  2rem;
+    display: grid;
+    grid-template-columns: 15% 85%;
+  }
+  &-cardtext{
+    p{
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+  }
+}
+
+.navtabs-btn{
+  margin: 1rem 0;
+}
