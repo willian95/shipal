@@ -278,6 +278,10 @@ a.link-custom {
   &.small {
     font-size: 13px;
   }
+  &.extrasmall{
+    font-size: 12px;
+    padding: 6px 15px;
+  }
 
   &.no-shadow {
     box-shadow: none;

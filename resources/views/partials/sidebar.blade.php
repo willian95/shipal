@@ -23,10 +23,10 @@
     </ul>
     </div>
     <div class="main-sidebar-footer">
-    <a href="#" class="logout-link">
+    <a href="{{ url('/logout') }}" class="logout-link">
         <img src="assets/img/icons/logout.png">
         Cerrar sesión
     </a>
-    <a href="#" class="btn-custom no-shadow small">Soporte</a>
+    <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#ConnectStore">Soporte</a>
     </div>
 </div>
