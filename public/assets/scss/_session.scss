@@ -216,7 +216,23 @@
 .session-form {
   .form-group {
     margin-bottom: 18px;
+
+    .form-group-flexrow{
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      span{
+        margin-left:1rem;
+        color:#aeb5bd;
+        font-size: 12px;
+      }
+    }
+    label.input-group-text{
+      margin-bottom: 0;
+      background-color: #dee2e6;
+    }
   }
+
 
   .form-control {
     margin-bottom: 0;
@@ -243,6 +259,11 @@
   grid-template-columns: 1fr 1fr;
   gap: 0 13px;
 }
+.session-form-three-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 13px;
+}
 
 .accept-terms label {
   font-size: 11px;
@@ -250,4 +271,15 @@
   a.link-custom {
     font-size: 11px;
   }
+}
+
+.accept-packaging label {
+  font-size: 11px;
+  color: #474747;
+  font-weight: $medium;
+}
+
+
+.custom-select{
+  background: #fff url(../img/icons/arrowDown.png) no-repeat right .75rem center;
 }

@@ -27,6 +27,6 @@
         <img src="assets/img/icons/logout.png">
         Cerrar sesión
     </a>
-    <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#ConnectStore">Soporte</a>
+    <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#CustomsInformation">Soporte</a>
     </div>
 </div>

@@ -1,6 +1,70 @@
+<!-- Modal Customs Information -->
+<div class="modal fade" id="CustomsInformation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-paddings">
+      <div class="modal-header modal-header-start">
+        <h5 class="modal-title pb-3" id="exampleModalLabel">Agregar más información</h5>
+        <button type="button" class=" modal-close close" data-dismiss="modal" aria-label="Close">
+          <img src="assets/img/icons/close.png" alt="">
+        </button>
+      </div>
+      <div class="modal-body modal-body-not-paddings">
+        <div class="modal-form">
+          <form class="custom-form session-form w-100">
+            <div class="session-form-two-columns">
+              <div class="form-group">
+                <label>Descripción*</label>
+                <input type="text" class="form-control" placeholder="Descripción">
+              </div>
+              <div class="form-group">
+                <label>Cantidad*</label>
+                <input type="number" class="form-control" placeholder="Cantidad">
+              </div>
+            </div>
+            <div class="session-form-two-columns">
+              <div class="form-group">
+                <label>Valor total*</label>
+                <input type="number" class="form-control" placeholder="Valor total">
+              </div>
+              <div class="form-group">
+                <label>País de origen*</label>
+                <input type="text" class="form-control" placeholder="País">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer-center">
+        <a href="#" class="btn-custom small no-shadow outline mr-2">Cancelar</a>
+        <a href="#" class="btn-custom no-shadow small">Guardar información</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal Package Information -->
+<div class="modal fade" id="PackageInformation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal-info text-center">
+          <img src="assets/img/icons/info.png" alt="">
+          <h5 class="modal-title modal-title-pb  ">¡Es importante saber!</h5>
+          <p class="modal-info-p">La información de medidas y peso suministrada sea exacta para evitar retrasos, cancelación o sobrecargos en en envío.</p>
+          <p class="modal-info-p">En caso de no estar seguro de esta información por favor corroborarla antes de crear la guía.</p>
+        </div>
+      </div>
+      <div class="modal-footer-center">
+        <a href="#" class="btn-custom no-shadow small">Entendido</a>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Modal Create User-->
 <div class="modal fade" id="CreateUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Nuevo usuario</h5>
@@ -34,7 +98,7 @@
 
 <!-- Modal Connect store-->
 <div class="modal fade" id="ConnectStore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header-column">
         <h5 class="modal-title" id="exampleModalLabel">Conectar con mi tienda</h5>
@@ -68,7 +132,7 @@
 
 <!-- Modal Connect Conveyors-->
 <div class="modal fade" id="ConnectConveyors" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header-column">
         <h5 class="modal-title" id="exampleModalLabel">Conectar Transportadoras</h5>
@@ -114,9 +178,82 @@
   </div>
 </div>
 
+<!-- Modal NewPackaging-->
+<div class="modal fade" id="NewPackaging" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva plantilla de empaque</h5>
+      </div>
+      <div class="modal-body">
+        <div class="modal-form">
+          <form class="custom-form session-form w-100">
+            <div class="form-group">
+            <label for="">Dimesiones personalizadas</label>
+              <div class="input-group ">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">
+                    <img src="assets/img/expand.png" alt="">
+                  </label>
+                </div>
+                <select class="custom-select form-control" id="inputGroupSelect01">
+                  <option selected>Dimensiones personalizadas</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group mb-0">
+              <label>Dimesiones </label> 
+              <div class="session-form-three-columns">
+                <div class="form-group form-group-flexrow">
+                  <input type="text" class="form-control" placeholder="Longitud">
+                  <span>x</span>
+                </div>
+                <div class="form-group form-group-flexrow">
+                  <input type="text" class="form-control" placeholder="Ancho">
+                  <span>x</span>
+                </div>
+                <div class="form-group form-group-flexrow">
+                  <input type="text" class="form-control" placeholder="Altura">
+                  <span>cm</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-0">
+              <label>Peso (opcional) </label> 
+              <div class="session-form-three-columns">
+                <div class="form-group form-group-flexrow">
+                  <input type="text" class="form-control" placeholder="Peso">
+                  <span>Kgs</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Nombre del paquete</label>
+              <input type="text" class="form-control" placeholder="DHL FLYER">
+            </div>
+            <div class="form-check accept-packaging">
+              <input type="checkbox" class="form-check-input" id="acceptPackaging">
+              <label class="form-check-label" for="acceptPackaging">Establecer como plantilla de paquete predeterminada para la compra de etiquetas</label>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer modal-footer-border">
+        <a href="#" class="btn-custom small no-shadow outline">Cancelar</a>
+        <a href="#" class="btn-custom no-shadow small">Aplicar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal New Address-->
 <div class="modal fade" id="NewAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header modal-header-border ">
         <h5 class="modal-title" id="exampleModalLabel">Nueva Dirección</h5>
@@ -185,3 +322,4 @@
     </div>
   </div>
 </div>
+
