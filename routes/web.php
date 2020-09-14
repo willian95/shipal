@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
-Route::get('/', "LoginController@index")->name("/");
+Route::get('/', "LoginController@index")->name("/")->middleware('guest');
 Route::get("/logout", "LoginController@logout");
 Route::post("/login", "LoginController@login");
 
