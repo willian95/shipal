@@ -66,7 +66,7 @@
                     <label>Confirmar nueva contraseña</label>
                     <input type="password" placeholder="************">
                   </div>
-                  <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#CustomsInformation">Guardar</a>
+                  <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#">Guardar</a>
                 </form>
               </div>
             </div>
@@ -79,7 +79,7 @@
           <div class="navtabs-header">
             <h3>Método de pago</h3>
           </div>
-
+          
 
         </div>
 

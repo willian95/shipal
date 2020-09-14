@@ -31,3 +31,4 @@ Route::get("/internacional", function(){ return view('international'); });
 Route::get("/nacional", function(){ return view('national'); });
 
 Route::get("/cuenta", function(){ return view('account'); });
+Route::get("/plan", function(){ return view('plan'); });
