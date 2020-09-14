@@ -33,5 +33,7 @@ Route::get("/nacional", "RecipientController@national");
 Route::post('/recipients', "RecipientController@recipients")->name("recipients");
 Route::get('/countries', "CountryController@countries")->name("countries");
 
-Route::get("/cuenta", function(){ return view('account'); });
+Route::get("/cuenta", "AccountController@index");
+Route::post("/cuenta/actualizar", "AccountController@update");
+
 Route::get("/plan", function(){ return view('plan'); });

@@ -43,12 +43,12 @@
                 <form class="custom-form custom-forms  w-100">
                   <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" placeholder="Peranito Jesús">
+                    <input type="text" class="form-control" placeholder="Peranito Jesús" v-model="name">
                   </div>
                  
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Peranitojesus@shipal.com">
+                    <input type="email" class="form-control" placeholder="Peranitojesus@shipal.com" v-model="email">
                   </div>
                   <div class="form-group">
                     <label>Rol</label>
@@ -56,17 +56,17 @@
                   </div>
                   <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="password" placeholder="************">
+                    <input type="password" placeholder="************" v-model="current_password">
                   </div>
                   <div class="form-group">
                     <label>Nueva contraseña</label>
-                    <input type="password" placeholder="************">
+                    <input type="password" placeholder="************" v-model="new_password">
                   </div>
                   <div class="form-group">
                     <label>Confirmar nueva contraseña</label>
-                    <input type="password" placeholder="************">
+                    <input type="password" placeholder="************" v-model="new_password_confirmation">
                   </div>
-                  <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#">Guardar</a>
+                  <a href="#" class="btn-custom no-shadow small" data-target="#" @click="update()">Guardar</a>
                 </form>
               </div>
             </div>
@@ -117,3 +117,63 @@
 
   </div>
 @endsection
+
+@push("scripts")
+
+    <script>
+    
+        const app = new Vue({
+            el: '#nav-profile',
+            data(){
+                return{
+                  name:"{{ \Auth::user()->name }}",
+                  email:"{{ \Auth::user()->email }}",
+                  current_password:"",
+                  new_password:"",
+                  new_password_confirmation:""
+                }
+            },
+            methods:{
+              
+              update(){
+
+                axios.post("{{ url('/cuenta/actualizar') }}", {name: this.name, email: this.email, password: this.current_password, new_password: this.new_password, new_password_confirmation: this.new_password_confirmation}).then(res => {
+
+                  if(res.data.success == true){
+
+                    swal({
+                      icon:"success",
+                      title:"¡Genial!",
+                      text: res.data.msg
+                    })
+
+                  }else{
+                    swal({
+                      icon:"error",
+                      title:"Lo sentimos!",
+                      text: res.data.msg
+                    })
+                  }
+
+                })
+                .catch(err => {
+
+                  $.each(err.response.data.errors, function(key, value) {
+                      alert(value[0])
+                  });
+                })
+
+              }
+  
+            },
+            mounted(){
+                
+              
+  
+            }
+  
+        })
+    
+    </script>
+
+@endpush
