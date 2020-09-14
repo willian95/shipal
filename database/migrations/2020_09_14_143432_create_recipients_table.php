@@ -26,7 +26,7 @@ class CreateRecipientsTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('postcode',10)->nullable();
-            $table->boolean('is_international');//(true si es internacional, false si es nacional)
+            $table->boolean('is_international');//(true para internacional, false para nacional)
             $table->timestamps();
             //relations
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
