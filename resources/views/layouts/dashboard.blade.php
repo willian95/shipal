@@ -74,6 +74,6 @@
     <script src="{{ url('js/app.js') }}"></script>
 
     @stack('scripts')
-
+    @include('partials.modals')
 </body>
 </html>

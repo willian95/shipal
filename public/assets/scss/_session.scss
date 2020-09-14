@@ -216,7 +216,23 @@
 .session-form {
   .form-group {
     margin-bottom: 18px;
+
+    .form-group-flexrow{
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      span{
+        margin-left:1rem;
+        color:#aeb5bd;
+        font-size: 12px;
+      }
+    }
+    label.input-group-text{
+      margin-bottom: 0;
+      background-color: #dee2e6;
+    }
   }
+
 
   .form-control {
     margin-bottom: 0;
@@ -243,6 +259,11 @@
   grid-template-columns: 1fr 1fr;
   gap: 0 13px;
 }
+.session-form-three-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 13px;
+}
 
 .accept-terms label {
   font-size: 11px;
@@ -250,4 +271,101 @@
   a.link-custom {
     font-size: 11px;
   }
+}
+
+.accept-packaging label {
+  font-size: 11px;
+  color: $gray;
+  font-weight: $medium;
+}
+
+
+.custom-select{
+  background: $white url(../img/icons/arrowDown.png) no-repeat right .75rem center;
+}
+
+.custom-links{
+  font-size: 16px;
+  font-weight: $bold;
+  color: $primary;
+  margin: 2rem 0;
+  &.underline{
+    text-decoration: underline;
+  }
+}
+
+.section-grid{
+  &.section-gridtwo{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    gap: 2rem;
+    @include respond-to(xs){
+      grid-template-columns: 1fr;
+    }
+    @include respond-to(sm){
+      grid-template-columns: 1fr;
+    }
+    @include respond-to(md){
+      grid-template-columns: 1fr;
+    }
+  }
+}
+.card-general{
+  border-radius: 10px;
+  border: 1px solid $shadowColor;
+  padding: 1.5rem;
+  &-img{
+    display: flex;
+    justify-content: center;
+    img{
+      width: 50%;
+    }
+  }
+  &-description{
+    p{
+      font-size: 14px;
+      color: $gray;
+      font-family: $font;
+      &:nth-child(2){
+        font-weight: $medium;
+      }
+    }
+  }
+}
+.section-quetions{
+  margin-top: 2rem;
+  p{
+    font-size: 12px;
+    line-height: 0.92;
+    color: $gray;
+    font-family: $font;
+    strong  {
+      color: $black;
+    }
+  }
+}
+
+.section-grid-setting{
+  padding: 0 2rem;
+  @include respond-to(xs){
+    padding: 0;
+  }
+  @include respond-to(sm){
+    padding: 0;
+  }
+  @include respond-to(md){
+    padding: 0;
+  }
+}
+.text-bold-general{
+  font-family: $font;
+  font-size: 17px;
+  font-weight: $bold;
+  color: $black;
+}
+.text-light-general{
+  font-family: $font;
+  font-size: 15px;
+  font-weight:$regular;
+  color: $gray;
 }

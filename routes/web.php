@@ -27,8 +27,11 @@ Route::get("/register/validate/{registerHash}", "RegisterController@verify");
 
 Route::get('/dashboard', "DashboardController@index")->middleware("auth");
 
-Route::get("/internacional", function(){ return view('international'); });
-Route::get("/nacional", function(){ return view('national'); });
+Route::get("/internacional",  "RecipientController@international");
+Route::get("/nacional", "RecipientController@national");
 
 Route::post('/recipients', "RecipientController@recipients")->name("recipients");
-Route::get('/countries', "RecipientController@countries")->name("countries");
+Route::get('/countries', "CountryController@countries")->name("countries");
+
+Route::get("/cuenta", function(){ return view('account'); });
+Route::get("/plan", function(){ return view('plan'); });

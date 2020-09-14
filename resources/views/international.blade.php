@@ -21,7 +21,7 @@
         <form class="custom-form custom-forms  w-100">
           <div class="form-group">
             <label>Apodo</label>
-            <select class="form-control">
+            <select class="form-control custom-select">
               <option value="1">Otro Apodo</option>
               <option value="2">Opcion 2</option>
               <option value="3">Opcion 3</option>
@@ -73,7 +73,11 @@
             </div>
             <div class="form-group">
               <label>País</label>
-              <input type="text" class="form-control" placeholder="Estados Unidos">
+              <select class="form-control custom-select">
+                <option value="1">País</option>
+                <option value="2">Opcion 2</option>
+                <option value="3">Opcion 3</option>
+              </select>
             </div>
           </div>
       
@@ -87,7 +91,7 @@
         <form class="custom-form custom-forms  w-100">
           <div class="form-group">
             <label>Apodo</label>
-            <select class="form-control">
+            <select class="form-control custom-select">
               <option value="1">Otro Apodo</option>
               <option value="2">Opcion 2</option>
               <option value="3">Opcion 3</option>
@@ -139,7 +143,11 @@
             </div>
             <div class="form-group">
               <label>País</label>
-              <input type="text" class="form-control" placeholder="Estados Unidos">
+              <select class="form-control custom-select">
+                <option value="1">País</option>
+                <option value="2">Opcion 2</option>
+                <option value="3">Opcion 3</option>
+              </select>
             </div>
           </div>
         </form>

@@ -21,7 +21,7 @@
         <form class="custom-form custom-forms  w-100">
           <div class="form-group">
             <label>Apodo</label>
-            <select class="form-control">
+            <select class="form-control custom-select">
               <option value="1">Otro Apodo</option>
               <option value="2">Opcion 2</option>
               <option value="3">Opcion 3</option>
@@ -59,7 +59,11 @@
           <div class="session-form-two-columns">
             <div class="form-group">
               <label>Ciudad</label>
-              <input type="text" class="form-control" placeholder="Medellín">
+              <select class="form-control custom-select">
+                <option value="1">Ciudad</option>
+                <option value="2">Opcion 2</option>
+                <option value="3">Opcion 3</option>
+              </select>
             </div>
             <div class="form-group">
               <label>Departamento</label>
@@ -77,7 +81,7 @@
         <form class="custom-form custom-forms  w-100">
           <div class="form-group">
             <label>Apodo</label>
-            <select class="form-control">
+            <select class="form-control custom-select">
               <option value="1">Otro Apodo</option>
               <option value="2">Opcion 2</option>
               <option value="3">Opcion 3</option>
@@ -115,7 +119,11 @@
           <div class="session-form-two-columns">
             <div class="form-group">
               <label>Ciudad</label>
-              <input type="text" class="form-control" placeholder="Medellín">
+              <select class="form-control custom-select">
+                <option value="1">Ciudad</option>
+                <option value="2">Opcion 2</option>
+                <option value="3">Opcion 3</option>
+              </select>
             </div>
             <div class="form-group">
               <label>Departamento</label>
