@@ -4,18 +4,32 @@
 
   
   <div class="main-wrapper-header">
-    <h2>Facturas pendientes </h2>
+    <div class="main-wrapper-boxheader">
+      <div class="main-wrapper-header">
+        <h2>Facturas pendientes </h2>
+      </div>
+      <button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="offcanvas" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+    </div>
   </div>
   <div class="main-wrapper-content">
     <a href="#" class="btn-custom dashboard-floating-button">Cotizar</a>
     <h1>Bienvenido a Shipal</h1>
-    <div class="main-wrapper-content-username">Señor (a) Daniela Urrego López</div>
+    
+    <div class="main-wrapper-content-username">Señor (a) 
+      @if(\Auth::check())
+          {{  Auth::user()->name }} {{ Auth::user()->lastname }}
+      @endif
+    </div>
     <div class="main-wrapper-content-text">
       ¿Que quieres enviar el día de hoy?<br><br>
       Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
     </div>
     <div class="main-wrapper-buttons">
-      <a href="#" class="btn-custom large no-shadow outline">Nacional</a>
+      <a href="{{ url('/nacional') }}" class="btn-custom large no-shadow outline">Nacional</a>
       <a href="#" class="btn-custom large secondary no-shadow outline-secondary">Internacional</a>
     </div>
     <div class="main-wrapper-cards">

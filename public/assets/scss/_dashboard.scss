@@ -1,4 +1,5 @@
 .main-admin {
+  width: 100%;
   display: flex;
   height: 100vh;
   padding-left: 0;
@@ -13,11 +14,39 @@
   width: 20%;
   height: 100%;
   left: 0;
-  z-index: 1000;
+  z-index:999;
+  &.sidebar-active{
+    left: 0;
+    visibility: visible;
+  }
+
+  @include respond-to(md) {
+    width: 30%;
+    padding: 10px 15px 15px 15px;
+  }
+  @include respond-to(sm){
+    left: -100%;
+    width: 100%;
+    padding: 0 20px 20px 20px;
+  }
+  @include respond-to(xs){
+    left: -100%;
+    width: 100%;
+    padding: 0 20px 20px 20px;
+  }
 
   &-logo {
     width: 150px;
     margin-bottom: 10%;
+    @include respond-to(md){
+      margin-bottom: 5%;
+    }
+    @include respond-to(sm){
+      margin-bottom: 2%;
+    }
+    @include respond-to(xs){
+      margin-bottom: 2%;
+    }
   }
 
   &-head-username {
@@ -39,6 +68,16 @@
     justify-content: center;
     padding: 10% 0;
 
+    @include respond-to(xs){
+      padding: 0% 0% 5% 0%;
+    }
+    @include respond-to(sm){
+      padding: 2% 0% 3% 0%;
+    }
+    @include respond-to(md){
+      padding: 2% 0 6% 0%;
+    }
+
     span {
       font-size: 15px;
       font-weight: $medium;
@@ -47,12 +86,21 @@
 
     a {
       margin-top: 20px;
+      @include respond-to(xs){
+        margin-top: 10px;
+      }
     }
   }
 
   &-menu {
     border-top: 1px solid #dee2e6;
     padding: 5% 0;
+    @include respond-to(xs){
+      padding: 3% 0;
+    }
+    @include respond-to(sm){
+      padding: 0% 0;
+    }
 
     ul {
       padding-left: 0;
@@ -77,6 +125,16 @@
     flex-direction: column;
     align-items: flex-start;
 
+    @include respond-to(xs){
+      bottom: 15px;
+    }
+    @include respond-to(sm){
+      bottom: 15px;
+    }
+    @include respond-to(md){
+      bottom: 15px;
+    }
+
     .logout-link {
       color: $gray;
       font-size: 15px;
@@ -90,23 +148,126 @@
   width: 80%;
   height: 100%;
   margin-left: 20%;
+  @include respond-to(md){
+    width: 70%;
+    margin-left: 30%;
+  }
+  @include respond-to(sm){
+    width: 100%;
+    margin-left: 0%;
+  }
+  @include respond-to(xs){
+    width: 100%;
+    margin-left: 0%;
+  }
+  &-boxheader{
+    @include respond-to(xs){
+      display: grid;
+      grid-template-columns: 80% 20%;
+    }
 
+    button{
+      display: none;
+
+      &:focus{
+        outline: none;
+      }
+      @include respond-to(sm){
+        display: block;
+        position: absolute;
+        z-index: 99999;
+        right: 10px;
+        top: 5px;
+      }
+      @include respond-to(xs){
+        display: block;
+        position: absolute;
+        z-index: 99999;
+        right: 10px;
+        top: 5px;
+      }
+    }
+  }
   &-header {
     width: 100%;
-    padding: 15px 35px;
+    padding: 15px 20px;
     background-color: $secondary;
+
+    @include respond-to(xs){
+      padding: 10px;
+      background-color: $white;
+    }
+    
+    @include respond-to(sm){
+      padding: 10px;
+      background-color: $white;
+    }
+
+    @include respond-to(md){
+      padding: 5px 15px;
+    }
 
     h2 {
       font-size: 20px;
       color: $white;
       font-weight: $bold;
       margin-bottom: 0;
+      @include respond-to(xs){
+        color: $black;
+      }
+      @include respond-to(sm){
+        color: $black;
+      }
+    }
+    &-transparent{
+      background-color: $white;
+      
+      @include respond-to(md){
+        padding: 1rem 0 0 2rem;
+      }
+      @include respond-to(sm){
+        padding: 1rem 0 0 1.5rem;
+      }
+      @include respond-to(xs){
+        padding: 1rem 0 0 1.5rem;
+      }
+
+      h2{
+        color: $black;
+        font-size: 30px;
+      }
     }
   }
 
   &-content {
     padding: 60px 40px;
     position: relative;
+    @include respond-to(md){
+      padding: 80px 35px 40px 35px;
+    }
+    &.main-wrapper-content-none{
+      padding: 35px 40px;
+      &:before{
+        display: none;
+      }
+
+      @include respond-to(md){
+        padding: 30px 35px 40px 35px;
+      }
+      @include respond-to(sm){
+        padding: 30px 20px 40px 20px;
+      }
+      @include respond-to(xs){
+        padding: 30px 20px 40px 20px;
+      }
+    }
+
+    @include respond-to(xs){
+      padding: 120px 20px 40px 20px;
+    }
+    @include respond-to(sm){
+      padding: 80px 20px 40px 20px;
+    }
 
     &::before {
       @include pseudo();
@@ -115,6 +276,9 @@
       background-image: url(../img/points-box-2.png);
       right: 0;
       top: 90px;
+      @include respond-to(xs){
+        display: none;
+      }
     }
 
     h1 {
@@ -136,6 +300,7 @@
       font-weight: $regular;
     }
   }
+  
 }
 
 .dashboard-floating-button {
@@ -145,6 +310,10 @@
   width: 144px;
   text-align: center;
   padding: 8px 0;
+  @include respond-to(xs){
+    left: 20px;
+    top: 35px;
+  }
 }
 
 .main-wrapper-cards {
@@ -162,6 +331,18 @@
   display: grid;
   grid-template-columns: calc(50% - 35px) calc(50% - 35px);
   gap: 70px;
+
+  @include respond-to(md){
+    grid-template-columns: 1fr;
+  }
+  @include respond-to(sm){
+    grid-template-columns: 50% 50%;
+    gap: 1rem;
+  }
+  @include respond-to(xs){
+    grid-template-columns: 100%;
+    gap: 1rem;
+  }
 
   .custom-card {
     padding: 21px 28px;
@@ -211,6 +392,10 @@
   border-top: 1px solid #dee2e6;
   padding-top: 20px;
   margin-top: 15px;
+  @include respond-to(xs){
+    flex-direction: column;
+    align-items: flex-end;
+  }
 
   span {
     font-size: 13px;
@@ -228,6 +413,75 @@
 
     &:nth-last-child(1) {
       margin-left: 70px;
+      @include respond-to(md){
+        margin-left: 35px;
+      }
+      @include respond-to(xs){
+        margin-left: 0;
+        margin-top: 1rem;
+      }
     }
+  }
+}
+
+
+.main-wrapper-formstwo{
+  display: flex;
+  flex-wrap: wrap;
+  .main-wrapper-forms{
+    border: solid 1px #dee2e6;
+    border-radius: 10px;
+    width: 48%;
+    &:nth-child(1){
+      margin-right: 1%;
+      @include respond-to(sm){
+        margin-bottom: 1rem;
+      }
+      @include respond-to(xs){
+        margin-bottom: 2rem;
+      }
+    }
+    &:nth-child(2){
+      margin-left: 1%;
+    }
+    @include respond-to(md){
+      width: 100%;
+    }
+    @include respond-to(sm){
+      width: 100%;
+    }
+    @include respond-to(xs){
+      width: 100%;
+    }
+  
+    .main-wrapper-headerforms{
+      background-color: #f8f8f8;
+      padding: .5rem 1rem;
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      align-items: center;
+      p{
+        margin-bottom: 0;
+        font-weight: $medium;
+      }
+      img{
+        margin-left: 0.5rem;
+      }
+    }
+    form{
+      padding: 1rem;
+      .form-group{
+        margin-bottom: 0;
+        input, select{
+          margin-bottom: .5rem;
+        }
+      }
+    }
+  }
+  .btn-formtwo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
   }
 }

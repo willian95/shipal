@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
-Route::get('/', "LoginController@index")->name("/");
+Route::get('/', "LoginController@index")->name("/")->middleware('guest');
 Route::get("/logout", "LoginController@logout");
 Route::post("/login", "LoginController@login");
 
@@ -26,3 +26,24 @@ Route::post("/register", "RegisterController@register");
 Route::get("/register/validate/{registerHash}", "RegisterController@verify");
 
 Route::get('/dashboard', "DashboardController@index")->middleware("auth");
+
+Route::get("/internacional",  "RecipientController@international");
+Route::get("/nacional", "RecipientController@national");
+
+Route::post('/recipients', "RecipientController@recipients")->name("recipients");
+Route::post('/createOrUpdateRecipients', "RecipientController@createOrUpdateRecipients")->name("createOrUpdateRecipients");
+Route::post('/getRecipients', "RecipientController@getRecipients")->name("getRecipients");
+
+Route::get('/countries', "CountryController@countries")->name("countries");
+
+Route::get("/cuenta", "AccountController@index");
+Route::post("/cuenta/actualizar", "AccountController@update");
+
+Route::get("/plan", function(){ return view('plan'); });
+
+Route::get("/forgot-password", "ForgotPasswordController@index")->name("forgot-password");
+Route::post("/forgotPasswordReset", "ForgotPasswordController@forgotPasswordReset")->name("forgotPasswordReset");
+Route::get("/forgot-password/reset/{forgotPasswordHash}", "ForgotPasswordController@reset");
+Route::post("/reset-password", "ForgotPasswordController@save")->name("reset-password");;
+
+Route::get("/informacion-de-paquete", function(){ return view('packageInfomation'); });
