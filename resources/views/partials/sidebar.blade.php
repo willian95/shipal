@@ -1,5 +1,7 @@
 <div class="main-sidebar">
-    <img class="main-sidebar-logo" src="{{ asset('assets/img/logos/logo1.svg') }}" alt="">
+    <a href="{{ url('/dashboard') }}">
+        <img class="main-sidebar-logo" src="{{ asset('assets/img/logos/logo1.svg') }}" alt="">
+    </a>
     <div class="main-sidebar-head">
     <div class="main-sidebar-head-username">
         <span>Bienvenido</span>

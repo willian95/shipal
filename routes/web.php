@@ -42,3 +42,4 @@ Route::post("/cuenta/actualizar", "AccountController@update");
 Route::get("/plan", function(){ return view('plan'); });
 
 Route::get("/forgot-password", "ForgotPasswordController@index")->name("forgot-password");
+Route::get("/informacion-de-paquete", function(){ return view('packageInfomation'); });

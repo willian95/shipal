@@ -12,6 +12,14 @@
    </button>
 </div>
 <div class="main-wrapper-content main-wrapper-content-none" id="nacional">
+
+      <div class="main-loader" v-if="loading == true">
+         <div class="fulfilling-bouncing-circle-spinner">
+            <div class="circle"></div>
+            <div class="orbit"></div>
+         </div>
+      </div>
+
    <div class="main-wrapper-formstwo">
       <div class="main-wrapper-forms">
          <div class="main-wrapper-headerforms">
@@ -179,7 +187,8 @@
           country_id:49,
           state:'',
           is_international:0,
-        }
+        },
+        loading:false
        },
        methods: {
          getRecipients(){
@@ -230,12 +239,13 @@
          },//clear()
          createOrUpdateRecipients(){
             let self = this;
-            
+            this.loading = true
             axios.post('{{ url("createOrUpdateRecipients") }}', {
             sender:self.sender,
             receiver:self.receiver,
             opt:0,
             }).then(function (response) {
+               this.loading = false
                if(response.data.success==true){
                   self.recipients=response.data.recipients;
                   self.clear();
@@ -250,6 +260,7 @@
                   iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
                }//else if(response.data.success==false)
             }).catch(err => {
+               this.loading = false
                this.errors = err.response.data.errors
                if(this.errors){
                   iziToast.error({title: 'Error',position:'topRight',message: "Hay algunos campos que debes revisar"});  

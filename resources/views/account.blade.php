@@ -26,6 +26,12 @@
       <div class="tab-content" id="nav-tabContent">
         <!-- PROFILE -->
         <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="main-loader" v-if="loading == true">
+            <div class="fulfilling-bouncing-circle-spinner">
+              <div class="circle"></div>
+              <div class="orbit"></div>
+            </div>
+          </div>
           <div class="navtabs-header">
             <h3>Perfil</h3>
           </div>
@@ -134,7 +140,8 @@
                   image:"",
                   current_password:"",
                   new_password:"",
-                  new_password_confirmation:""
+                  new_password_confirmation:"",
+                  loading:true
                 }
             },
             methods:{
@@ -162,9 +169,9 @@
                 $("#profile-image-input").click()
               },
               update(){
-
+                this.loading = true
                 axios.post("{{ url('/cuenta/actualizar') }}", {name: this.name, email: this.email, password: this.current_password, new_password: this.new_password, new_password_confirmation: this.new_password_confirmation, image: this.image}).then(res => {
-
+                  this.loading = false
                   if(res.data.success == true){
 
                     swal({
@@ -185,7 +192,7 @@
 
                 })
                 .catch(err => {
-
+                  this.loading = false
                   $.each(err.response.data.errors, function(key, value) {
                       alert(value[0])
                   });
