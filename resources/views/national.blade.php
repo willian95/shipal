@@ -21,7 +21,7 @@
          <form class="custom-form custom-forms  w-100">
             <div class="form-group">
                <label>Apodo</label>
-               <select class="form-control" v-model="sender.id" v-bind:class="{ 'is-invalid': senderIdRequired }" @change="getRecipient(1)">
+               <select class="form-control custom-select" v-model="sender.id" v-bind:class="{ 'is-invalid': senderIdRequired }" @change="getRecipient(1)">
                   <option value="null">Seleccione</option>
                   <option v-for="option in recipients" v-bind:value="option.id">
                      @{{ option.name }}
@@ -41,11 +41,11 @@
             <div class="session-form-two-columns">
                <div class="form-group">
                   <label>Email*</label>
-                  <input type="email" class="form-control" placeholder="pepitamaria@shipal.com" v-model="sender.email" v-bind:class="{ 'is-invalid': senderEmailRequired }">
+                  <input type="email" class="form-control" placeholder="pepitamaria@shipal.com" v-model="sender.email" v-bind:class="{ 'is-invalid': senderEmailRequired }" :disabled="sender.id!=null">
                </div>
                <div class="form-group">
                   <label>Teléfono*</label>
-                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="sender.phone" v-bind:class="{ 'is-invalid': senderPhoneRequired }">
+                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="sender.phone" v-bind:class="{ 'is-invalid': senderPhoneRequired }" onKeyPress="return soloNumeros(event)">
                </div>
             </div>
             <label class="label-gray">De</label>
@@ -77,7 +77,7 @@
          <form class="custom-form custom-forms  w-100">
             <div class="form-group">
                <label>Apodo</label>
-               <select class="form-control" v-model="receiver.id" v-bind:class="{ 'is-invalid': receiverIdRequired }" @change="getRecipient(2)">
+               <select class="form-control custom-select" v-model="receiver.id" v-bind:class="{ 'is-invalid': receiverIdRequired }" @change="getRecipient(2)">
                   <option value="null">Seleccione</option>
                   <option v-for="option in recipients" v-bind:value="option.id">
                      @{{ option.name }}
@@ -97,11 +97,11 @@
             <div class="session-form-two-columns">
                <div class="form-group">
                   <label>Email*</label>
-                  <input type="email" class="form-control" placeholder="pepitamaria@shipal.com" v-model="receiver.email" v-bind:class="{ 'is-invalid': receiverEmailRequired }">
+                  <input type="email" class="form-control" placeholder="pepitamaria@shipal.com" v-model="receiver.email" v-bind:class="{ 'is-invalid': receiverEmailRequired }" :disabled="receiver.id!=null">
                </div>
                <div class="form-group">
                   <label>Teléfono*</label>
-                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="receiver.phone" v-bind:class="{ 'is-invalid': receiverPhoneRequired }">
+                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="receiver.phone" v-bind:class="{ 'is-invalid': receiverPhoneRequired }" onKeyPress="return soloNumeros(event)">
                </div>
             </div>
             <label class="label-gray">Para</label>
@@ -136,7 +136,7 @@
    const app = new Vue({
        el: '#nacional',
        data: {
-        recipients:'',
+        recipients:{!! $recipients ? $recipients : "''"!!},
         sender:{
           id:null,
           name:'',
@@ -181,7 +181,6 @@
         receiverStateRequired:false,
        },
        mounted(){
-          this.getRecipients();
        },
        methods: {
          getRecipients(){
@@ -303,11 +302,16 @@
             axios.post('{{ url("createOrUpdateRecipients") }}', {
               sender:self.sender,
               receiver:self.receiver,
+              opt:0,
             }).then(function (response) {
                if(response.data.success==true){
                   self.recipients=response.data.recipients;
-                  self.clear;
-                  iziToast.success({title: 'Mensaje',position:'topRight',message: 'Registro Satisfactorio.',});
+                  self.clear();
+                  swal({
+                        title: "Información",
+                        text: "Registro Satisfactorio",
+                        icon: "success",
+                  });
                }//if(response.data.success==true)
                else if(response.data.success==false){                     
                   $.each(response.data.mensaje, function( key, value ) {
@@ -323,14 +327,13 @@
          getRecipient(opt){
             let self = this;
             let id=0;
-            console.log(opt);
 
             if(opt==1 && (self.sender.id!="null" && self.sender.id!=null)){
                id=self.sender.id;
             }else if(opt==2 && (self.receiver.id!="null" && self.receiver.id!=null)){
                id=self.receiver.id;
             }//else if(opt==2 && (self.receiver.id!="null" && self.receiver.id!=null)) 
-            
+
             if(id!=0){
             axios.post('{{ url("getRecipients") }}', {
               id:id,
@@ -351,8 +354,35 @@
                iziToast.error({title: 'Mensaje',position:'topRight',message: 'Por favor comuniquese con el administrador del sistema',});
                console.log(error);
             }); 
+            }else{
+               if(opt==1){
+                     this.sender={
+                        id:null,
+                        name:'',
+                        business_name:'',
+                        email:'',
+                        phone:'',
+                        address:'',
+                        address2:'',
+                        city:'',
+                        state:'',
+                        is_international:0,
+                      };
+               }else{
+                     this.receiver={
+                        id:null,
+                        name:'',
+                        business_name:'',
+                        email:'',
+                        phone:'',
+                        address:'',
+                        address2:'',
+                        city:'',
+                        state:'',
+                        is_international:0,
+                      }; 
+               }//else
             }//else
-
          },//getRecipient(opt)
        },//methods
    }); //const app= new Vue

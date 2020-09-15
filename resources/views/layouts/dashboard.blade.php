@@ -73,6 +73,8 @@
     <script src="{{ asset('assets/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ url('assets/js/main.js') }}"></script>
     <script src="{{ url('js/app.js') }}"></script>
+    <script src="{{ url('assets/js/vamzfe.js') }}"></script>
+
 
     @stack('scripts')
 
