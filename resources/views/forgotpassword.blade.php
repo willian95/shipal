@@ -20,7 +20,7 @@
           </div>
         </form>
         <div class="session-form-footer">
-          <p>¿No tienes una cuenta? <a href="register.html" class="link-custom">¡Empieza ahora!</a></p>
+          <p>¿No tienes una cuenta? <a href="{{ url('/register') }}" class="link-custom">¡Empieza ahora!</a></p>
         </div>
       </div>
       <div class="session-info">
