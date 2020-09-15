@@ -57,7 +57,7 @@ class AccountController extends Controller
                         $user->name = $request->name;
                         $user->password = bcrypt($request->new_password);
                         if($request->get('image') != null){
-                            $user->image = url('/').'/images/users'.$fileName;
+                            $user->image = url('/').'/images/users/'.$fileName;
                         }
                         $user->update();
     
@@ -72,7 +72,7 @@ class AccountController extends Controller
                     $user->email = $request->email;
                     $user->name = $request->name;
                     if($request->get('image') != null){
-                        $user->image = url('/').'/images/users'.$fileName;
+                        $user->image = url('/').'/images/users/'.$fileName;
                     }
                     $user->update();
 
