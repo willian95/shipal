@@ -144,9 +144,15 @@
                 <li>Sigma</li>
                 <li>65467 Calle 60 #78-145</li>
                 <li>Medellín </li>
-                <li>Colombia</li>
-                <li>pepita.maria@sigma3ds.com</li>
-                <li>24357667889</li>
+                <li>
+                  <img src="assets/img/icons/colombia.png" alt="">
+                  Colombia</li>
+                <li>
+                  <img src="assets/img/icons/email.png" alt="">
+                  pepita.maria@sigma3ds.com</li>
+                <li>
+                  <img src="assets/img/icons/phone.png" alt="">
+                  24357667889</li>
              </ul>
 
          
@@ -166,10 +172,18 @@
              <p><strong>Chila Bags SAS</strong></p>
              <ul class="section-card-list">
                 <li>65467 Calle 60 #78-145</li>
-                <li>Bogotá </li>
-                <li>Colombia</li>
-                <li>pepita.maria@sigma3ds.com</li>
-                <li>24357667889</li>
+                <li>
+                  Bogotá 
+                </li>
+                <li>
+                  <img src="assets/img/icons/colombia.png" alt="">
+                  Colombia</li>
+                <li>
+                  <img src="assets/img/icons/email.png" alt="">
+                  pepita.maria@sigma3ds.com</li>
+                <li>
+                  <img src="assets/img/icons/phone.png" alt="">
+                  24357667889</li>
              </ul>
            </div>
          </div>
