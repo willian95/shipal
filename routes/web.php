@@ -40,3 +40,5 @@ Route::get("/cuenta", "AccountController@index");
 Route::post("/cuenta/actualizar", "AccountController@update");
 
 Route::get("/plan", function(){ return view('plan'); });
+
+Route::get("/forgot-password", "ForgotPasswordController@index")->name("forgot-password");
