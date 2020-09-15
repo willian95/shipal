@@ -28,6 +28,7 @@ class RecipientController extends Controller
     function national(){
 
         $recipients=Recipient::orderBy('name','asc')->where('is_international',0)->get();
+        
         return view('national')->with(['recipients'=>json_encode($recipients)]);
 
     }
@@ -35,7 +36,10 @@ class RecipientController extends Controller
     function international(){
 
         $recipients=Recipient::orderBy('name','asc')->where('is_international',1)->get();
-        return view('international')->with(['recipients'=>json_encode($recipients)]);
+                            
+        $countries=Country::orderBy('name','asc')->get();
+
+        return view('international')->with(['recipients'=>json_encode($recipients),'countries'=>json_encode($countries)]);
 
     }
 
@@ -142,7 +146,7 @@ class RecipientController extends Controller
             }//else
 
 
-            $recipients=Recipient::orderBy('name','asc')->where('is_international',0)->get();
+            $recipients=Recipient::orderBy('name','asc')->where('is_international',$request->opt)->get();
 
             return response()->json(["success" => true, "msg" => "Obtención de datos exitosa!","recipients"=>$recipients]);
 

@@ -21,7 +21,7 @@
          <form class="custom-form custom-forms  w-100">
             <div class="form-group">
                <label>Apodo</label>
-               <select class="form-control" v-model="sender.id" v-bind:class="{ 'is-invalid': senderIdRequired }" @change="getRecipient(1)">
+               <select class="form-control custom-select" v-model="sender.id" v-bind:class="{ 'is-invalid': senderIdRequired }" @change="getRecipient(1)">
                   <option value="null">Seleccione</option>
                   <option v-for="option in recipients" v-bind:value="option.id">
                      @{{ option.name }}
@@ -77,7 +77,7 @@
          <form class="custom-form custom-forms  w-100">
             <div class="form-group">
                <label>Apodo</label>
-               <select class="form-control" v-model="receiver.id" v-bind:class="{ 'is-invalid': receiverIdRequired }" @change="getRecipient(2)">
+               <select class="form-control custom-select" v-model="receiver.id" v-bind:class="{ 'is-invalid': receiverIdRequired }" @change="getRecipient(2)">
                   <option value="null">Seleccione</option>
                   <option v-for="option in recipients" v-bind:value="option.id">
                      @{{ option.name }}
@@ -302,6 +302,7 @@
             axios.post('{{ url("createOrUpdateRecipients") }}', {
               sender:self.sender,
               receiver:self.receiver,
+              opt:0,
             }).then(function (response) {
                if(response.data.success==true){
                   self.recipients=response.data.recipients;
@@ -382,7 +383,6 @@
                       }; 
                }//else
             }//else
-
          },//getRecipient(opt)
        },//methods
    }); //const app= new Vue
