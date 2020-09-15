@@ -14,7 +14,7 @@
     </div>
     <div class="main-sidebar-menu">
     <ul>
-        <li><a href="#">Cuenta</a></li>
+        <li><a href="{{ url('/cuenta') }}">Cuenta</a></li>
         <li><a href="#">Envíos</a></li>
         <li><a href="#">Mis ordenes</a></li>
         <li><a href="#">Mi billetera</a></li>

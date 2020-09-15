@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
-Route::get('/', "LoginController@index")->name("/");
+Route::get('/', "LoginController@index")->name("/")->middleware('guest');
 Route::get("/logout", "LoginController@logout");
 Route::post("/login", "LoginController@login");
 
@@ -36,5 +36,7 @@ Route::post('/getRecipients', "RecipientController@getRecipients")->name("getRec
 
 Route::get('/countries', "CountryController@countries")->name("countries");
 
-Route::get("/cuenta", function(){ return view('account'); });
+Route::get("/cuenta", "AccountController@index");
+Route::post("/cuenta/actualizar", "AccountController@update");
+
 Route::get("/plan", function(){ return view('plan'); });
