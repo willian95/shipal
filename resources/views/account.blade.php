@@ -26,6 +26,12 @@
       <div class="tab-content" id="nav-tabContent">
         <!-- PROFILE -->
         <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="main-loader" v-if="loading == true">
+            <div class="fulfilling-bouncing-circle-spinner">
+              <div class="circle"></div>
+              <div class="orbit"></div>
+            </div>
+          </div>
           <div class="navtabs-header">
             <h3>Perfil</h3>
           </div>
@@ -33,10 +39,12 @@
             <div class="navtabs-profile-gridtwo">
               <div class="navtabs-profile-img">
                 <div class="navtabs-profile-imgbox">
-                  <img src="assets/img/icons/user.png" alt="imagen usuario">
-                  <div class="navtabs-profile-imgbox-edit">
+                  <img :src="previewImage" alt="imagen usuario">
+                  <a href="#" class="navtabs-profile-imgbox-edit" @click="clickInput()">
                     <img src="assets/img/icons/edit.png" alt="">
-                  </div>
+                    
+                  </a>
+                  <input type="file" style="display:none" id="profile-image-input" accept="image/*" @change="onImageChange">
                 </div>
               </div>
               <div class="navtabs-profile-form">
@@ -89,7 +97,7 @@
             <div class="navtabs-plan-card">
               <div class="navtabs-plan-cardheader">
                 <p class="navtabs-plan-cardtitle">Su Plan</p>
-                <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#CustomsInformation">Ajustar plan</a>
+                <a href="{{ url('/plan') }}" class="btn-custom no-shadow small" >Ajustar plan</a>
               </div>
               <div class="navtabs-plan-cardcontent">
                 <div class="navtabs-plan-cardimg">
@@ -128,23 +136,50 @@
                 return{
                   name:"{{ \Auth::user()->name }}",
                   email:"{{ \Auth::user()->email }}",
+                  previewImage:"{{ \Auth::user()->image ? \Auth::user()->image : asset('assets/img/icons/user.png') }}",
+                  image:"",
                   current_password:"",
                   new_password:"",
-                  new_password_confirmation:""
+                  new_password_confirmation:"",
+                  loading:true
                 }
             },
             methods:{
+
+              onImageChange(e){
+                  this.image = e.target.files[0];
+
+                  this.previewImage = URL.createObjectURL(this.image);
+                  let files = e.target.files || e.dataTransfer.files;
+                  if (!files.length)
+                      return;
               
+                  this.createImage(files[0]);
+              },
+              createImage(file) {
+                  let reader = new FileReader();
+                  let vm = this;
+                  reader.onload = (e) => {
+                      vm.image = e.target.result;
+                  };
+                  reader.readAsDataURL(file);
+              },
+              clickInput(){
+            
+                $("#profile-image-input").click()
+              },
               update(){
-
-                axios.post("{{ url('/cuenta/actualizar') }}", {name: this.name, email: this.email, password: this.current_password, new_password: this.new_password, new_password_confirmation: this.new_password_confirmation}).then(res => {
-
+                this.loading = true
+                axios.post("{{ url('/cuenta/actualizar') }}", {name: this.name, email: this.email, password: this.current_password, new_password: this.new_password, new_password_confirmation: this.new_password_confirmation, image: this.image}).then(res => {
+                  this.loading = false
                   if(res.data.success == true){
 
                     swal({
                       icon:"success",
                       title:"¡Genial!",
                       text: res.data.msg
+                    }).then(() => {
+                      window.location.reload()
                     })
 
                   }else{
@@ -157,7 +192,7 @@
 
                 })
                 .catch(err => {
-
+                  this.loading = false
                   $.each(err.response.data.errors, function(key, value) {
                       alert(value[0])
                   });

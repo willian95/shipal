@@ -273,10 +273,22 @@
   }
 }
 
-.accept-packaging label {
-  font-size: 11px;
-  color: $gray;
+.accept-packaging  {
+  label{
+    font-size: 11px;
+    color: $gray;
+    font-weight: $medium;
+    &.font-13{
+      font-size: 13px;
+    }
+  }
+}
+
+label.color-gray{
+  font-family: $font;
+  font-size: 12px;
   font-weight: $medium;
+  color: #aeb5bd;
 }
 
 
@@ -295,8 +307,8 @@
 }
 
 .section-grid{
+  display: grid;
   &.section-gridtwo{
-    display: grid;
     grid-template-columns: 25% 75%;
     gap: 2rem;
     @include respond-to(xs){
@@ -307,6 +319,9 @@
     }
     @include respond-to(md){
       grid-template-columns: 1fr;
+    }
+    &.grid-60{
+      grid-template-columns: 60% 40%;
     }
   }
 }
@@ -368,4 +383,49 @@
   font-size: 15px;
   font-weight:$regular;
   color: $gray;
+}
+
+.section-card{
+  &-item{
+    border: 1px solid $shadowColor;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+  }
+  &-paddings{
+    padding-right: 2rem;
+  }
+  &-header{
+    background-color:$lightgray ;
+    border-radius: 10px 10px 0 0;
+    padding: .5rem 1rem;
+    p{
+      margin-bottom: 0;
+    }
+  }
+  &-links{
+    font-size: 16px;
+    font-weight: 700;
+    color: #9d3399;
+  }
+  &-content{
+    border-radius: 0px 0px 10px 10px;
+    padding: .5rem 1rem;
+    p{
+      font-size: 12px;
+      font-family: $font;
+      color: $gray;
+      letter-spacing: 0.35px;
+      font-weight: $medium;
+    }
+  }
+  &-list{
+    list-style: none;
+    padding-left: 0;
+    li{
+      font-size: 12px;
+      font-family: $font;
+      color: $gray;
+      letter-spacing: 0.35px;
+    }
+  }
 }

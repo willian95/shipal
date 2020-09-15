@@ -1,14 +1,16 @@
 @extends("layouts.auth")
 
 @section("content")
-  <div class="main-loader">
+
+  <section class="main-session" id="login-area">
+
+  <div class="main-loader" v-if="loading == true">
     <div class="fulfilling-bouncing-circle-spinner">
       <div class="circle"></div>
       <div class="orbit"></div>
     </div>
   </div>
 
-  <section class="main-session" id="login-area">
     <div class="session-grid">
       <div class="session-form-div">
         <img src="{{ asset('assets/img/logos/logo1.svg') }}" alt="Shipal Logo">
@@ -76,15 +78,16 @@
             data(){
                 return{
                     email:"",
-                    password:""
+                    password:"",
+                    loading:false
                 }
             },
             methods:{
               
               login(){
-
+                this.loading = true
                 axios.post("{{ url('/login') }}", {email: this.email, password: this.password}).then(res => {
-
+                  this.loading = false
                   if(res.data.success == true){
                     swal({
                       "icon": "success",
@@ -101,7 +104,7 @@
 
                 })
                 .catch(err => {
-
+                  this.loading = false
                   $.each(err.response.data.errors, function(key, value) {
                       alert(value[0])
                   });
