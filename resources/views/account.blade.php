@@ -141,7 +141,7 @@
                   current_password:"",
                   new_password:"",
                   new_password_confirmation:"",
-                  loading:true
+                  loading:false
                 }
             },
             methods:{
