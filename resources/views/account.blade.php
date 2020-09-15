@@ -33,10 +33,12 @@
             <div class="navtabs-profile-gridtwo">
               <div class="navtabs-profile-img">
                 <div class="navtabs-profile-imgbox">
-                  <img src="assets/img/icons/user.png" alt="imagen usuario">
-                  <a href="" class="navtabs-profile-imgbox-edit">
+                  <img :src="previewImage" alt="imagen usuario">
+                  <a href="#" class="navtabs-profile-imgbox-edit" @click="clickInput()">
                     <img src="assets/img/icons/edit.png" alt="">
+                    
                   </a>
+                  <input type="file" style="display:none" id="profile-image-input" accept="image/*" @change="onImageChange">
                 </div>
               </div>
               <div class="navtabs-profile-form">
@@ -128,16 +130,40 @@
                 return{
                   name:"{{ \Auth::user()->name }}",
                   email:"{{ \Auth::user()->email }}",
+                  previewImage:"{{ \Auth::user()->image ? \Auth::user()->image : asset('assets/img/icons/user.png') }}",
+                  image:"",
                   current_password:"",
                   new_password:"",
                   new_password_confirmation:""
                 }
             },
             methods:{
+
+              onImageChange(e){
+                  this.image = e.target.files[0];
+
+                  this.previewImage = URL.createObjectURL(this.image);
+                  let files = e.target.files || e.dataTransfer.files;
+                  if (!files.length)
+                      return;
               
+                  this.createImage(files[0]);
+              },
+              createImage(file) {
+                  let reader = new FileReader();
+                  let vm = this;
+                  reader.onload = (e) => {
+                      vm.image = e.target.result;
+                  };
+                  reader.readAsDataURL(file);
+              },
+              clickInput(){
+            
+                $("#profile-image-input").click()
+              },
               update(){
 
-                axios.post("{{ url('/cuenta/actualizar') }}", {name: this.name, email: this.email, password: this.current_password, new_password: this.new_password, new_password_confirmation: this.new_password_confirmation}).then(res => {
+                axios.post("{{ url('/cuenta/actualizar') }}", {name: this.name, email: this.email, password: this.current_password, new_password: this.new_password, new_password_confirmation: this.new_password_confirmation, image: this.image}).then(res => {
 
                   if(res.data.success == true){
 
