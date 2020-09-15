@@ -109,18 +109,14 @@
                </div>
                <div class="form-group ">
                 <label class="color-gray">Fecha de recolección</label>
-                <div class="button-group-pills text-center" data-toggle="buttons">
-                  <label class="btn btn-default active">
-                    <input type="radio" name="options" checked="">
-                    <div>Mañana</div>
-                  </label>
-                  <label class="btn btn-default">
-                    <input type="radio" name="options">
-                    <div>Noche</div>
-                  </label>
+                <div class="d-flex align-items-center">
+                <label class="btn btn-default active">
+                  <input type="radio" name="options" checked="">
+                  <div>Word</div>
+                </label>
                 
                 </div>
-              </div>
+               </div>
              </div>
           </div>
 
