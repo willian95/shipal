@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\RecipientCreateOrUpdateRequest;
 use App\User;
 
 use App\Recipient;
@@ -70,56 +70,18 @@ class RecipientController extends Controller
 
     }//public function recipients(Request $request)
 
-    public function createOrUpdateRecipients(Request $request){
+    public function createOrUpdateRecipients(RecipientCreateOrUpdateRequest $request){
         try{
-            $validator=Validator::make($request->all(), [
-                'sender.name'=>'required',
-                'sender.business_name'=>'required',
-                'sender.email'=>'required|email',
-                'sender.phone'=>'required',
-                'sender.address'=>'required',
-                'sender.city'=>'required',
-                'sender.state'=>'required',
-                'sender.is_international'=>'required|boolean',
-                'receiver.name'=>'required',
-                'receiver.business_name'=>'required',
-                'receiver.email'=>'required|email',
-                'receiver.phone'=>'required',
-                'receiver.address'=>'required',
-                'receiver.city'=>'required',
-                'receiver.state'=>'required',
-                'receiver.is_international'=>'required|boolean',
-            ],[
-                'sender.name.required'=>'El campo nombre del remitente es requerido',
-                'sender.business_name.required'=>'El campo compañia del remitente es requerido',
-                'sender.email.required'=>'El campo email del remitente es requerido',
-                'sender.email.email'=>'El campo email del remitente es invalido',
-                'sender.phone.required'=>'El campo teléfono del remitente es requerido',
-                'sender.address.required'=>'El campo dirección del remitente es requerido',
-                'sender.city.required'=>'El campo ciudad del remitente es requerido',
-                'sender.state.required'=>'El campo apartamento del remitente es requerido',
-                'sender.is_international.required'=>'Se requiere se indique el campo is_international',
-                'sender.is_international.boolean'=>'El campo  is_international debe ser de tipo boolean',
-                'receiver.name.required'=>'El campo nombre del receptor es requerido',
-                'receiver.business_name.required'=>'El campo compañia del receptor es requerido',
-                'receiver.email.required'=>'El campo email del receptor es requerido',
-                'receiver.email.email'=>'El campo email del receptor es invalido',
-                'receiver.phone.required'=>'El campo teléfono del receptor es requerido',
-                'receiver.address.required'=>'El campo dirección del receptor es requerido',
-                'receiver.city.required'=>'El campo ciudad del receptor es requerido',
-                'receiver.state.required'=>'El campo apartamento del receptor es requerido',
-                'receiver.is_international.required'=>'Se requiere se indique el campo is_international',
-                'receiver.is_international.boolean'=>'El campo  is_international debe ser de tipo boolean',
-            ]);
-            if ($validator->fails()) {
-                return response()->json(["success" => false, "msg" => $validator->errors()]);
-            }//if ($validator->fails())
-
+            
             $sender=$request->sender;
             $sender = array_merge($sender, ['user_id'=>auth()->id()]);
 
             $receiver=$request->receiver;
             $receiver = array_merge($receiver, ['user_id'=>auth()->id()]);
+
+            if($sender["email"] == $receiver["email"]){
+                return response()->json(["success" => false, "msg" => "El correo de remitente y receptor no pueden ser iguales"]);
+            }
 
             //sender
             if($sender['id']!=null){
@@ -130,7 +92,16 @@ class RecipientController extends Controller
                     $senderResult=Recipient::create($sender);
                 }//else
             }else{
-                $senderResult=Recipient::create($sender);
+                
+                if(Recipient::where("email", $sender['email'])->first()){
+
+                    $update=Recipient::where("email", $sender['email'])->first();
+                    $update->fill($sender)->save();
+
+                }else{
+                    $senderResult=Recipient::create($sender);
+                }
+
             }//else
 
             //receiver
@@ -142,7 +113,16 @@ class RecipientController extends Controller
                     $receiverResult=Recipient::create($receiver);
                 }//else
             }else{
-                $receiverResult=Recipient::create($receiver);
+
+                if(Recipient::where("email", $receiver['email'])->first()){
+
+                    $update=Recipient::where("email", $receiver['email'])->first();
+                    $update->fill($receiver)->save();
+
+                }else{
+                    $receiverResult=Recipient::create($receiver);
+                }
+
             }//else
 
 

@@ -25,7 +25,7 @@
       Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
     </div>
     <div class="main-wrapper-buttons">
-      <a href="#" class="btn-custom large no-shadow outline">Nacional</a>
+      <a href="{{ url('/nacional') }}" class="btn-custom large no-shadow outline">Nacional</a>
       <a href="#" class="btn-custom large secondary no-shadow outline-secondary">Internacional</a>
     </div>
     <div class="main-wrapper-cards">

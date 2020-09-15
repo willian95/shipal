@@ -21,7 +21,7 @@
          <form class="custom-form custom-forms  w-100">
             <div class="form-group">
                <label>Apodo</label>
-               <select class="form-control custom-select" v-model="sender.id" v-bind:class="{ 'is-invalid': senderIdRequired }" @change="getRecipient(1)">
+               <select class="form-control custom-select" v-model="sender.id" @change="getRecipient(1)">
                   <option value="null">Seleccione</option>
                   <option v-for="option in recipients" v-bind:value="option.id">
                      @{{ option.name }}
@@ -31,40 +31,48 @@
             <div class="session-form-two-columns">
                <div class="form-group">
                   <label>Nombre*</label>
-                  <input type="text" class="form-control" placeholder="Pepita Maria" v-model="sender.name" v-bind:class="{ 'is-invalid': senderNameRequired }">
+                  <input type="text" class="form-control" placeholder="Pepita Maria" v-model="sender.name" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('sender.name') }">
+                  <small v-if="errors.hasOwnProperty('sender.name')">@{{ errors['sender.name'][0] }}</small>
                </div>
                <div class="form-group">
                   <label>Compañía*</label>
-                  <input type="text" class="form-control" v-model="sender.business_name" v-bind:class="{ 'is-invalid': senderBusiness_nameRequired }">
+                  <input type="text" class="form-control" v-model="sender.business_name" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('sender.business_name') }">
+                  <small v-if="errors.hasOwnProperty('sender.business_name')">@{{ errors['sender.business_name'][0] }}</small>
                </div>
             </div>
             <div class="session-form-two-columns">
                <div class="form-group">
                   <label>Email*</label>
-                  <input type="email" class="form-control" placeholder="pepitamaria@shipal.com" v-model="sender.email" v-bind:class="{ 'is-invalid': senderEmailRequired }" :disabled="sender.id!=null">
+                  <input type="email" class="form-control" placeholder="pepitamaria@shipal.com" v-model="sender.email" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('sender.email') }" :disabled="sender.id!=null">
+                  <small v-if="errors.hasOwnProperty('sender.email')">@{{ errors['sender.email'][0] }}</small>
                </div>
                <div class="form-group">
                   <label>Teléfono*</label>
-                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="sender.phone" v-bind:class="{ 'is-invalid': senderPhoneRequired }" onKeyPress="return soloNumeros(event)">
+                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="sender.phone" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('sender.phone') }" onKeyPress="return soloNumeros(event)">
+                  <small v-if="errors.hasOwnProperty('sender.phone')">@{{ errors['sender.phone'][0] }}</small>
                </div>
             </div>
             <label class="label-gray">De</label>
             <div class="form-group">
                <label>Dirección*</label>
-               <input type="text" class="form-control" placeholder="Carrera 50 A # 56-245 Oficina 305" v-model="sender.address" v-bind:class="{ 'is-invalid': senderAddressRequired }">
+               <input type="text" class="form-control" placeholder="Carrera 50 A # 56-245 Oficina 305" v-model="sender.address" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('sender.address') }">
+               <small v-if="errors.hasOwnProperty('sender.address')">@{{ errors['sender.address'][0] }}</small>
             </div>
             <div class="form-group">
                <label>Dirección (opcional)</label>
-               <input type="text" class="form-control" placeholder="Carrera 50 A # 56-245 Oficina 305" v-model="sender.address2" v-bind:class="{ 'is-invalid': senderAddress2Required }">
+               <input type="text" class="form-control" placeholder="Carrera 50 A # 56-245 Oficina 305" v-model="sender.address2" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('sender.address2') }">
+               <small v-if="errors.hasOwnProperty('sender.address2')">@{{ errors['sender.address2'][0] }}</small>
             </div>
             <div class="session-form-two-columns">
                <div class="form-group">
                   <label>Ciudad</label>
-                  <input type="text" class="form-control" placeholder="Medellín" v-model="sender.city" v-bind:class="{ 'is-invalid': senderCityRequired }">
+                  <input type="text" class="form-control" placeholder="Medellín" v-model="sender.city" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('sender.city') }">
+                  <small v-if="errors.hasOwnProperty('sender.city')">@{{ errors['sender.city'][0] }}</small>
                </div>
                <div class="form-group">
                   <label>Departamento</label>
-                  <input type="text" class="form-control" placeholder="Antioquia" v-model="sender.state" v-bind:class="{ 'is-invalid': senderStateRequired }">
+                  <input type="text" class="form-control" placeholder="Antioquia" v-model="sender.state" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('sender.state') }">
+                  <small v-if="errors.hasOwnProperty('sender.state')">@{{ errors['sender.state'][0] }}</small>
                </div>
             </div>
          </form>
@@ -77,7 +85,7 @@
          <form class="custom-form custom-forms  w-100">
             <div class="form-group">
                <label>Apodo</label>
-               <select class="form-control custom-select" v-model="receiver.id" v-bind:class="{ 'is-invalid': receiverIdRequired }" @change="getRecipient(2)">
+               <select class="form-control custom-select" v-model="receiver.id" @change="getRecipient(2)">
                   <option value="null">Seleccione</option>
                   <option v-for="option in recipients" v-bind:value="option.id">
                      @{{ option.name }}
@@ -87,40 +95,48 @@
             <div class="session-form-two-columns">
                <div class="form-group">
                   <label>Nombre*</label>
-                  <input type="text" class="form-control" placeholder="Pepita Maria" v-model="receiver.name" v-bind:class="{ 'is-invalid': receiverNameRequired }">
+                  <input type="text" class="form-control" placeholder="Pepita Maria" v-model="receiver.name" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('receiver.name') }">
+                  <small v-if="errors.hasOwnProperty('receiver.name')">@{{ errors['receiver.name'][0] }}</small>
                </div>
                <div class="form-group">
                   <label>Compañía*</label>
-                  <input type="text" class="form-control" v-model="receiver.business_name" v-bind:class="{ 'is-invalid': receiverBusiness_nameRequired }">
+                  <input type="text" class="form-control" v-model="receiver.business_name" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('receiver.business_name') }">
+                  <small v-if="errors.hasOwnProperty('receiver.business_name')">@{{ errors['receiver.business_name'][0] }}</small>
                </div>
             </div>
             <div class="session-form-two-columns">
                <div class="form-group">
                   <label>Email*</label>
-                  <input type="email" class="form-control" placeholder="pepitamaria@shipal.com" v-model="receiver.email" v-bind:class="{ 'is-invalid': receiverEmailRequired }" :disabled="receiver.id!=null">
+                  <input type="email" class="form-control" placeholder="pepitamaria@shipal.com" v-model="receiver.email" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('receiver.email') }" :disabled="receiver.id!=null">
+                  <small v-if="errors.hasOwnProperty('receiver.email')">@{{ errors['receiver.email'][0] }}</small>
                </div>
                <div class="form-group">
                   <label>Teléfono*</label>
-                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="receiver.phone" v-bind:class="{ 'is-invalid': receiverPhoneRequired }" onKeyPress="return soloNumeros(event)">
+                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="receiver.phone" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('receiver.phone') }" onKeyPress="return soloNumeros(event)">
+                  <small v-if="errors.hasOwnProperty('receiver.phone')">@{{ errors['receiver.phone'][0] }}</small>
                </div>
             </div>
             <label class="label-gray">Para</label>
             <div class="form-group">
                <label>Dirección*</label>
-               <input type="text" class="form-control" placeholder="Carrera 50 A # 56-245 Oficina 305" v-model="receiver.address" v-bind:class="{ 'is-invalid': receiverAddressRequired }">
+               <input type="text" class="form-control" placeholder="Carrera 50 A # 56-245 Oficina 305" v-model="receiver.address" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('receiver.address') }">
+               <small v-if="errors.hasOwnProperty('receiver.address')">@{{ errors['receiver.address'][0] }}</small>
             </div>
             <div class="form-group">
                <label>Dirección (opcional)</label>
-               <input type="text" class="form-control" placeholder="Carrera 50 A # 56-245 Oficina 305" v-model="receiver.address2" v-bind:class="{ 'is-invalid': receiverAddress2Required }">
+               <input type="text" class="form-control" placeholder="Carrera 50 A # 56-245 Oficina 305" v-model="receiver.address2" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('receiver.address2') }">
+               <small v-if="errors.hasOwnProperty('receiver.address2')">@{{ errors['receiver.address2'][0] }}</small>
             </div>
             <div class="session-form-two-columns">
                <div class="form-group">
                   <label>Ciudad</label>
-                  <input type="text" class="form-control" placeholder="Medellín" v-model="receiver.city" v-bind:class="{ 'is-invalid': receiverCityRequired }">
+                  <input type="text" class="form-control" placeholder="Medellín" v-model="receiver.city" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('receiver.city') }">
+                  <small v-if="errors.hasOwnProperty('receiver.city')">@{{ errors['receiver.city'][0] }}</small>
                </div>
                <div class="form-group">
                   <label>Departamento</label>
-                  <input type="text" class="form-control" placeholder="Antioquia" v-model="receiver.state" v-bind:class="{ 'is-invalid': receiverStateRequired }">
+                  <input type="text" class="form-control" placeholder="Antioquia" v-model="receiver.state" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('receiver.state') }">
+                  <small v-if="errors.hasOwnProperty('receiver.state')">@{{ errors['receiver.state'][0] }}</small>
                </div>
             </div>
          </form>
@@ -137,6 +153,7 @@
        el: '#nacional',
        data: {
         recipients:{!! $recipients ? $recipients : "''"!!},
+        errors:[],
         sender:{
           id:null,
           name:'',
@@ -147,17 +164,9 @@
           address2:'',
           city:'',
           state:'',
+          country_id:49,
           is_international:0,
         },
-        senderIdRequired:false,
-        senderNameRequired:false,
-        senderBusiness_nameRequired:false,
-        senderEmailRequired:false,
-        senderPhoneRequired:false,
-        senderAddressRequired:false,
-        senderAddress2Required:false,
-        senderCityRequired:false,
-        senderStateRequired:false,
         receiver:{
           id:null,
           name:'',
@@ -167,20 +176,10 @@
           address:'',
           address2:'',
           city:'',
+          country_id:49,
           state:'',
           is_international:0,
-        },
-        receiverIdRequired:false,
-        receiverNameRequired:false,
-        receiverBusiness_nameRequired:false,
-        receiverEmailRequired:false,
-        receiverPhoneRequired:false,
-        receiverAddressRequired:false,
-        receiverAddress2Required:false,
-        receiverCityRequired:false,
-        receiverStateRequired:false,
-       },
-       mounted(){
+        }
        },
        methods: {
          getRecipients(){
@@ -203,28 +202,7 @@
                console.log(error);
             });  
          },//getRecipients()
-         errorValidate(){
-          this.senderIdRequired=false;
-          this.senderNameRequired=false;
-          this.senderBusiness_nameRequired=false;
-          this.senderEmailRequired=false;
-          this.senderPhoneRequired=false;
-          this.senderAddressRequired=false;
-          this.senderAddress2Required=false;
-          this.senderCityRequired=false;
-          this.senderStateRequired=false;
-          this.receiverIdRequired=false;
-          this.receiverNameRequired=false;
-          this.receiverBusiness_nameRequired=false;
-          this.receiverEmailRequired=false;
-          this.receiverPhoneRequired=false;
-          this.receiverAddressRequired=false;
-          this.receiverAddress2Required=false;
-          this.receiverCityRequired=false;
-          this.receiverStateRequired=false;
-         },//errorValidate()
          clear(){
-          this.errorValidate();
           this.sender={
                         id:null,
                         name:'',
@@ -252,77 +230,37 @@
          },//clear()
          createOrUpdateRecipients(){
             let self = this;
-            this.errorValidate();
-            if(this.sender.name==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo nombre del remitente es requerido',});
-               this.senderNameRequired=true;
-            }else if(this.sender.business_name==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo compañia del remitente es requerido',});
-               this.senderBusiness_nameRequired=false;
-            }else if(this.sender.email==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo email del remitente es requerido',});
-               this.senderEmailRequired=false;
-            }else if(this.sender.phone==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo teléfono del remitente es requerido',});
-               this.senderPhoneRequired=false;
-            }else if(this.sender.address==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo dirección del remitente es requerido',});
-               this.senderAddressRequired=false;
-            }else if(this.sender.city==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo ciudad del remitente es requerido',});
-               this.senderCityRequired=false;
-            }else if(this.sender.state==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo departamento del remitente es requerido',});
-               this.senderStateRequired=false;
-            }else if(this.receiver.name==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo nombre del receptor es requerido',});
-               this.receiverNameRequired=true;
-            }else if(this.receiver.business_name==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo compañia del receptor es requerido',});
-               this.receiverBusiness_nameRequired=false;
-            }else if(this.receiver.email==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo email del receptor es requerido',});
-               this.receiverEmailRequired=false;
-            }else if(this.receiver.phone==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo teléfono del receptor es requerido',});
-               this.receiverPhoneRequired=false;
-            }else if(this.receiver.address==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo dirección del receptor es requerido',});
-               this.receiverAddressRequired=false;
-            }else if(this.receiver.city==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo ciudad del receptor es requerido',});
-               this.receiverCityRequired=false;
-            }else if(this.receiver.state==""){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El campo departamento del receptor es requerido',});
-               this.receiverStateRequired=false;
-            }else if (this.sender.email==this.receiver.email){
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'El remitente y el receptor no pueden ser la misma persona',});
-               this.receiverStateRequired=false;
-            }else{
+            
             axios.post('{{ url("createOrUpdateRecipients") }}', {
-              sender:self.sender,
-              receiver:self.receiver,
-              opt:0,
+            sender:self.sender,
+            receiver:self.receiver,
+            opt:0,
             }).then(function (response) {
                if(response.data.success==true){
                   self.recipients=response.data.recipients;
                   self.clear();
+                  this.errors = []
                   swal({
                         title: "Información",
                         text: "Registro Satisfactorio",
                         icon: "success",
                   });
                }//if(response.data.success==true)
-               else if(response.data.success==false){                     
-                  $.each(response.data.mensaje, function( key, value ) {
-                     iziToast.error({title: 'Mensaje',position:'topRight',message: value,});
-                  });
+               else{                     
+                  iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
                }//else if(response.data.success==false)
-            }).catch(function (error) {
-               iziToast.error({title: 'Mensaje',position:'topRight',message: 'Por favor comuniquese con el administrador del sistema',});
-               console.log(error);
+            }).catch(err => {
+               this.errors = err.response.data.errors
+               if(this.errors){
+                  iziToast.error({title: 'Error',position:'topRight',message: "Hay algunos campos que debes revisar"});  
+               }else{
+                  iziToast.error({title: 'Error',position:'topRight',message: "Ha ocurrido un problema"});  
+               }
+               
             });  
-            }//else
+
+         
+            
          },//createOrUpdateRecipients()
          getRecipient(opt){
             let self = this;

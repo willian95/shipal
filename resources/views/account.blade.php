@@ -145,6 +145,8 @@
                       icon:"success",
                       title:"¡Genial!",
                       text: res.data.msg
+                    }).then(() => {
+                      window.location.reload()
                     })
 
                   }else{
