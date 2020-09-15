@@ -45,7 +45,7 @@
                </div>
                <div class="form-group">
                   <label>Teléfono*</label>
-                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="sender.phone" v-bind:class="{ 'is-invalid': senderPhoneRequired }">
+                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="sender.phone" v-bind:class="{ 'is-invalid': senderPhoneRequired }" onKeyPress="return soloNumeros(event)">
                </div>
             </div>
             <label class="label-gray">De</label>
@@ -101,7 +101,7 @@
                </div>
                <div class="form-group">
                   <label>Teléfono*</label>
-                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="receiver.phone" v-bind:class="{ 'is-invalid': receiverPhoneRequired }">
+                  <input type="tel" class="form-control" placeholder="320 567 2356" v-model="receiver.phone" v-bind:class="{ 'is-invalid': receiverPhoneRequired }" onKeyPress="return soloNumeros(event)">
                </div>
             </div>
             <label class="label-gray">Para</label>
@@ -306,7 +306,7 @@
             }).then(function (response) {
                if(response.data.success==true){
                   self.recipients=response.data.recipients;
-                  self.clear;
+                  self.clear();
                   iziToast.success({title: 'Mensaje',position:'topRight',message: 'Registro Satisfactorio.',});
                }//if(response.data.success==true)
                else if(response.data.success==false){                     
