@@ -26,7 +26,7 @@ class AccountController extends Controller
                         $user = User::where("id", \Auth::user()->id)->first();
                         $user->email = $request->email;
                         $user->name = $request->name;
-                        $user->password = bcrypt($request->password);
+                        $user->password = bcrypt($request->new_password);
                         $user->update();
     
                         return response()->json(["success" => true, "msg" => "Has actualizado tu cuenta"]);
