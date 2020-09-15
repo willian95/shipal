@@ -34,9 +34,9 @@
               <div class="navtabs-profile-img">
                 <div class="navtabs-profile-imgbox">
                   <img src="assets/img/icons/user.png" alt="imagen usuario">
-                  <div class="navtabs-profile-imgbox-edit">
+                  <a href="" class="navtabs-profile-imgbox-edit">
                     <img src="assets/img/icons/edit.png" alt="">
-                  </div>
+                  </a>
                 </div>
               </div>
               <div class="navtabs-profile-form">
@@ -89,7 +89,7 @@
             <div class="navtabs-plan-card">
               <div class="navtabs-plan-cardheader">
                 <p class="navtabs-plan-cardtitle">Su Plan</p>
-                <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#CustomsInformation">Ajustar plan</a>
+                <a href="{{ url('/plan') }}" class="btn-custom no-shadow small" >Ajustar plan</a>
               </div>
               <div class="navtabs-plan-cardcontent">
                 <div class="navtabs-plan-cardimg">
