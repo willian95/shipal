@@ -40,3 +40,4 @@ Route::get("/cuenta", "AccountController@index");
 Route::post("/cuenta/actualizar", "AccountController@update");
 
 Route::get("/plan", function(){ return view('plan'); });
+Route::get("/informacion-de-paquete", function(){ return view('packageInfomation'); });

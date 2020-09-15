@@ -1,0 +1,17 @@
+.main-steps{
+  &-header{
+    display: flex;
+  }
+  &-text{
+    font-family: $font;
+    font-weight: $medium;
+    color: $gray;
+    margin-bottom: 0;
+  }
+  &-active{
+    display: flex;
+    img{
+      margin: 0 .5rem;
+    }
+  }
+}
