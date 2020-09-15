@@ -35,9 +35,8 @@ class ForgotPasswordController extends Controller
                 }else{
 
                     $PasswordReset=PasswordReset::create([
-                       ' email'=>$request->email,
+                        'email'=>$request->email,
                         'token'=>$forgotPasswordHash,
-                        'created_at'=>Carbon::now(), 
                     ]);
 
                 }//else
