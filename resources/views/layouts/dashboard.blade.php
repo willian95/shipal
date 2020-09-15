@@ -42,6 +42,7 @@
   <link href="{{ url('assets/css/offcanvas.css') }}" rel='stylesheet'>
   <link href="{{ url('assets/css/main.css') }}" rel='stylesheet'>
   <link href="{{ url('assets/css/forms.css') }}" rel='stylesheet'>
+  <link href="{{ url('assets/izitoast/css/iziToast.min.css') }}" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ url('assets/img/favicon-32x32.png') }}">
   <style>
     html {margin-top: 0!important;}
@@ -69,11 +70,11 @@
     <script src="{{ url('assets/js/wow.min.js') }}"></script>
     <script src="{{ url('assets/js/slick.min.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <script src="{{ asset('assets/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ url('assets/js/main.js') }}"></script>
     <script src="{{ url('js/app.js') }}"></script>
 
     @stack('scripts')
-    @include('partials.modals')
+
 </body>
 </html>
