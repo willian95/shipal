@@ -2,21 +2,22 @@
 
 @section("content")
 
-<section class="main-session" id="forgotpassword">
+<section class="main-session" id="resetPassword">
     <div class="session-grid">
       <div class="session-form-div">
         <img src="assets/img/logos/logo1.svg" alt="Shipal Logo">
-        <h4 class="mb-4">¿Se te olvidó tu contraseña?</h4>
-        <p class="forgot-password-description mb-5"><strong>¡Sucede!</strong> Simplemente danos la dirección de correo electrónico que utilizaste para registrarte en Shipal, y te enviaremos una solución por correo electrónico de inmediato.</p>
+        <h4 class="mb-4">¿Resetear Contraseña?</h4>
+        <p class="forgot-password-description mb-5"><strong>¡Sucede!</strong> Simplemente coloca tu nueva contraseña y guarda.</p>
         <form class="custom-form session-form w-100">
           <div class="form-group">
             <div class="label-group">
-              <label>Correo electrónico</label>
+              <label>Establece tu nueva contraseña</label>
             </div>
-            <input type="email" class="form-control" v-model="email">
+            <input type="password" class="form-control" v-model="password">
+            <p class="descripcion-input">De 6 o más carácteres</p>
           </div>
           <div class="form-group">
-            <input type="button" class="btn-custom no-shadow small" value="Restablecer" @click="forgotPassword">
+            <input type="button" class="btn-custom no-shadow small" value="Guardar" @change="save">
           </div>
         </form>
         <div class="session-form-footer">
@@ -48,45 +49,61 @@
 @push('scripts')
 <script>
    const app = new Vue({
-       el: '#forgotpassword',
+       el: '#resetPassword',
        data: {
-         email:'',
+         email:{!! $email ? $email : "''"!!},
+         password:'',
        },
        methods: {
 
-         async forgotPassword(){
-
+          save(){
+            
             let self = this;
 
-            if(self.email!=""){
+            if(self.password==""){
+              
+              swal({
+                  "icon": "error",
+                  "text": "El campo contraseña es requerido"
+                });
 
-                axios.post('{{ url("forgotPasswordReset") }}', {
-                  email:self.email,
-                }).then(function (response) {
+            }else{
 
-                   if(response.data.success==true){
+            axios.post('{{ url("reset-password") }}', {
+              
+              password:self.password,
+              email:self.email;
+              
+            }).then(function (response) {
+               if(response.data.success==true){
 
-                      swal({
+                  swal({
                         title: "Información",
-                        text: "Por favor revisa tu correo para resetear tu contraseña",
+                        text: "Cambio de clave exitoso!",
                         icon: "success",
-                      });
-                      
-                    }//if(response.data.success==true)
-                    else if(response.data.success==false){     
+                  });
 
-                            swal({
-                              "icon": "error",
-                              "text":response.data.msg
-                            })
-
-                    }//else if(response.data.success==false)
-
-                }).catch(function (error) {
-
+               }//if(response.data.success==true)
+               else if(response.data.success==false){                     
+                  swal({
+                        title: "Información",
+                        text: response.data.msg,
+                        icon: "success",
+                  });
+               }//else if(response.data.success==false)
+            }).catch(function (error) {
                        if (error.response.status == 422) {
 
                           $.each(error.response.data.errors.email, function( key, value ) {
+
+                            swal({
+                              "icon": "error",
+                              "text": value
+                            })
+
+                          });
+
+                          $.each(error.response.data.errors.password, function( key, value ) {
 
                             swal({
                               "icon": "error",
@@ -104,18 +121,11 @@
                               });
 
                        }//else
-
-                });
-
-            }else{
-              swal({
-                  "icon": "error",
-                  "text": "El campo email es requerido"
-              });
+            });
 
             }//else
 
-          }//forgotPassword()
+          }//save()
 
        },//methods
    }); //const app= new Vue
