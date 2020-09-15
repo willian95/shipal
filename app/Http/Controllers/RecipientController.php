@@ -26,11 +26,17 @@ class RecipientController extends Controller
     }
 
     function national(){
-        return view('national');
+
+        $recipients=Recipient::orderBy('name','asc')->where('is_international',0)->get();
+        return view('national')->with(['recipients'=>json_encode($recipients)]);
+
     }
 
     function international(){
-        return view('international');
+
+        $recipients=Recipient::orderBy('name','asc')->where('is_international',1)->get();
+        return view('international')->with(['recipients'=>json_encode($recipients)]);
+
     }
 
     public function recipients(Request $request){
@@ -111,8 +117,30 @@ class RecipientController extends Controller
             $receiver=$request->receiver;
             $receiver = array_merge($receiver, ['user_id'=>auth()->id()]);
 
-            $senderResult=Recipient::updateOrCreate($sender);
-            $receiverResult=Recipient::updateOrCreate($receiver);
+            //sender
+            if($sender['id']!=null){
+                $update=Recipient::find($sender['id']);
+                if (!empty($update)) {
+                    $update->fill($sender)->save();
+                }else{
+                    $senderResult=Recipient::create($sender);
+                }//else
+            }else{
+                $senderResult=Recipient::create($sender);
+            }//else
+
+            //receiver
+            if($receiver['id']!=null){
+                $update=Recipient::find($receiver['id']);
+                if (!empty($update)) {
+                    $update->fill($receiver)->save();
+                }else{
+                    $receiverResult=Recipient::create($receiver);
+                }//else
+            }else{
+                $receiverResult=Recipient::create($receiver);
+            }//else
+
 
             $recipients=Recipient::orderBy('name','asc')->where('is_international',0)->get();
 
