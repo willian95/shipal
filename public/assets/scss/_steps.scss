@@ -1,17 +1,35 @@
 .main-steps{
   &-header{
     display: flex;
+    @include respond-to(xs){
+      flex-direction: column;
+      margin-top: 2rem;
+    }
+    @include respond-to(sm){
+      margin-top: 2rem;
+    }
+    @include respond-to(md){
+      margin-top: 2rem;
+    }
   }
   &-text{
     font-family: $font;
     font-weight: $medium;
     color: $gray;
     margin-bottom: 0;
+    font-size: 15px;
+
+    @include respond-to(xs){
+      font-size: 15px;
+    }
   }
   &-active{
     display: flex;
     img{
       margin: 0 .5rem;
+      @include respond-to(xs){
+        margin: 0 .5rem 0 0;
+      }
     }
   }
 }

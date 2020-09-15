@@ -258,11 +258,17 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 13px;
+  @include respond-to(xs){
+    grid-template-columns: 1fr;
+  }
 }
 .session-form-three-columns {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0 13px;
+  @include respond-to(xs){
+    grid-template-columns: 1fr;
+  }
 }
 
 .accept-terms label {
@@ -322,6 +328,15 @@ label.color-gray{
     }
     &.grid-60{
       grid-template-columns: 60% 40%;
+      @include respond-to(xs){
+        grid-template-columns: 1fr;
+      }
+      @include respond-to(sm){
+        grid-template-columns: 1fr;
+      }
+      @include respond-to(md){
+        grid-template-columns: 1fr;
+      }
     }
   }
 }
@@ -386,6 +401,7 @@ label.color-gray{
 }
 
 .section-card{
+  
   &-item{
     border: 1px solid $shadowColor;
     border-radius: 10px;
@@ -393,13 +409,27 @@ label.color-gray{
   }
   &-paddings{
     padding-right: 2rem;
+    @include respond-to(xs){
+      padding-right: 0;
+    }
+    @include respond-to(sm){
+      padding-right: 0;
+    }
+    @include respond-to(md){
+      padding-right: 0;
+    }
   }
   &-header{
     background-color:$lightgray ;
     border-radius: 10px 10px 0 0;
     padding: .5rem 1rem;
+    font-size: 15px;
+  
     p{
       margin-bottom: 0;
+      @include respond-to(xs){
+        font-size: 12px;
+      }
     }
   }
   &-links{

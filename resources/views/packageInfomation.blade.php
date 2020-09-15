@@ -110,11 +110,8 @@
                <div class="form-group ">
                 <label class="color-gray">Fecha de recolección</label>
                 <div class="d-flex align-items-center">
-                <label class="btn btn-default active">
-                  <input type="radio" name="options" checked="">
-                  <div>Word</div>
-                </label>
-                
+                  <a href="#" class="btn-custom no-shadow extrasmall outline-light mr-2">Mañana</a>
+                  <a href="#" class="btn-custom no-shadow extrasmall outline-light">Noche</a>
                 </div>
                </div>
              </div>
