@@ -6,7 +6,11 @@
   align-items: center;
   width: 100%;
   z-index: 99999;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(256, 256, 256, 1);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 .fulfilling-bouncing-circle-spinner, .fulfilling-bouncing-circle-spinner * {
   box-sizing: border-box;
