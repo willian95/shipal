@@ -17,7 +17,7 @@
             <p class="descripcion-input">De 6 o más carácteres</p>
           </div>
           <div class="form-group">
-            <input type="button" class="btn-custom no-shadow small" value="Guardar" @change="save">
+            <input type="button" class="btn-custom no-shadow small" value="Guardar" @click="save">
           </div>
         </form>
         <div class="session-form-footer">
@@ -51,13 +51,15 @@
    const app = new Vue({
        el: '#resetPassword',
        data: {
-         email:{!! $email ? $email : "''"!!},
+         email:'',
          password:'',
        },
        methods: {
 
           save(){
-            
+            let email = window.location;
+            email =email.toString().split("-");
+
             let self = this;
 
             if(self.password==""){
@@ -72,7 +74,7 @@
             axios.post('{{ url("reset-password") }}', {
               
               password:self.password,
-              email:self.email;
+              email:email[1],
               
             }).then(function (response) {
                if(response.data.success==true){
@@ -82,13 +84,13 @@
                         text: "Cambio de clave exitoso!",
                         icon: "success",
                   });
-
+                 window.location.href="{{ url('/') }}";
                }//if(response.data.success==true)
                else if(response.data.success==false){                     
                   swal({
                         title: "Información",
                         text: response.data.msg,
-                        icon: "success",
+                        icon: "error",
                   });
                }//else if(response.data.success==false)
             }).catch(function (error) {
@@ -108,24 +110,24 @@
                             swal({
                               "icon": "error",
                               "text": value
-                            })
+                            });
 
                           });
 
-                       }//if (error.response.status ==422)
-                       else{
+                      }//if (error.response.status ==422)
+                      else{
 
                               swal({
                                 "icon": "error",
                                 "text": "Ha ocurrido un problema"
                               });
 
-                       }//else
+                      }//else
             });
 
             }//else
 
-          }//save()
+          },//save()
 
        },//methods
    }); //const app= new Vue

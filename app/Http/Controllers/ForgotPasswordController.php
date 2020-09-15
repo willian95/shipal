@@ -73,14 +73,14 @@ class ForgotPasswordController extends Controller
         try{
 
             $validation=explode("-", $forgotPasswordHash);
-
-            $PasswordReset = PasswordReset::where("email", $validation[0])->where("token", $validation[1])->firstOrFail();
+            
+            $PasswordReset = PasswordReset::where("email", $validation[1])->where("token", $validation[2])->firstOrFail();
 
             if(!empty($PasswordReset)){
 
-                $PasswordReset->delete();
+                //$PasswordReset->delete();
                 
-                return view('reset_password')->with(['email'=>$validation[0]]);
+                return view('reset_password')->with(['email'=>$validation[1]]);
 
             }else{
 

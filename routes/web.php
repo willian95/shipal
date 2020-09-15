@@ -43,7 +43,7 @@ Route::get("/plan", function(){ return view('plan'); });
 
 Route::get("/forgot-password", "ForgotPasswordController@index")->name("forgot-password");
 Route::post("/forgotPasswordReset", "ForgotPasswordController@forgotPasswordReset")->name("forgotPasswordReset");
-Route::get("/forgot-password/reset/{forgotPasswordHash}", "ForgotPasswordController@reset");
-Route::post("/reset-password", "ForgotPasswordController@save")->name("reset-password");;
+Route::get("/forgotPassword/reset/{forgotPasswordHash}", "ForgotPasswordController@reset");
+Route::post("/reset-password", "ForgotPasswordController@resetPassword")->name("reset-password");;
 
 Route::get("/informacion-de-paquete", function(){ return view('packageInfomation'); });
