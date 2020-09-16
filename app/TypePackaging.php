@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PackageInformation extends Model
+class TypePackaging extends Model
 {
     public $table='types_packaging';
 
