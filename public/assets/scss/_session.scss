@@ -355,6 +355,18 @@ label.color-gray{
         grid-template-columns: 1fr;
       }
     }
+    &.grid-50{
+      grid-template-columns: 50% 50%;
+      @include respond-to(xs){
+        grid-template-columns: 1fr;
+      }
+      @include respond-to(sm){
+        grid-template-columns: 1fr;
+      }
+      @include respond-to(md){
+        grid-template-columns: 1fr;
+      }
+    }
   }
 }
 .card-general{
