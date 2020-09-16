@@ -89,6 +89,7 @@ class ForgotPasswordController extends Controller
             }//else
 
         }catch(\Exception $e){
+            dd($e->getMessage());
             abort(403);
         }
 

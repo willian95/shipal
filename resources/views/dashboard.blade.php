@@ -29,8 +29,8 @@
       Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.
     </div>
     <div class="main-wrapper-buttons">
-      <a href="{{ url('/nacional') }}" class="btn-custom large no-shadow outline">Nacional</a>
-      <a href="#" class="btn-custom large secondary no-shadow outline-secondary">Internacional</a>
+      <a href="{{ route('nacional') }}" class="btn-custom large no-shadow outline">Nacional</a>
+      <a href="{{ route('internacional') }}" class="btn-custom large secondary no-shadow outline-secondary">Internacional</a>
     </div>
     <div class="main-wrapper-cards">
       <h5>Creemos que esta información te puede interesar</h5>
@@ -39,7 +39,7 @@
           <h4>Analiticos</h4>
           <div class="price">
             <span>$400.000</span>
-            <img src="assets/img/icons/chart.png" alt="">
+            <img src="{{ asset('assets/img/icons/chart.png') }}" alt="">
           </div>
           <div class="main-wrapper-card-footer">
             <span>2 ordenes en total</span>

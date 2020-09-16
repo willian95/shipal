@@ -27,8 +27,8 @@ Route::get("/register/validate/{registerHash}", "RegisterController@verify");
 
 Route::get('/dashboard', "DashboardController@index")->middleware("auth");
 
-Route::get("/internacional",  "RecipientController@international");
-Route::get("/nacional", "RecipientController@national");
+Route::get("/internacional",  "RecipientController@international")->name("internacional");
+Route::get("/nacional", "RecipientController@national")->name("nacional");
 
 Route::post('/recipients', "RecipientController@recipients")->name("recipients");
 Route::post('/createOrUpdateRecipients', "RecipientController@createOrUpdateRecipients")->name("createOrUpdateRecipients");
