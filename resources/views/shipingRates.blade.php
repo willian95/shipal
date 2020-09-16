@@ -42,38 +42,38 @@
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
               <div class="section-table-content section-table-tabscontent table-responsive pt-0">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="section-table-img">
-                            <img src="assets/img/logos/fedex.png" alt="">
-                          </div>
-                        </td>
-                        <td>Fedex Express documento lorem ipsum</td>
-                        <td>3 días</td>
-                        <td>$320.000</td>
-                        <td>
-                          <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="section-table-img">
-                            <img src="assets/img/logos/fedex.png" alt="">
-                          </div>
-                        </td>
-                        <td>Fedex Express documento lorem ipsum</td>
-                        <td>3 días</td>
-                        <td>$320.000</td>
-                        <td>
-                          <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
-                        </td>
-                      </tr>
-                  
-                    </tbody>
-                  </table>
-                </div>
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="section-table-img">
+                          <img src="assets/img/logos/fedex.png" alt="">
+                        </div>
+                      </td>
+                      <td>Fedex Express documento lorem ipsum</td>
+                      <td>3 días</td>
+                      <td>$320.000</td>
+                      <td>
+                        <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="section-table-img">
+                          <img src="assets/img/logos/fedex.png" alt="">
+                        </div>
+                      </td>
+                      <td>Fedex Express documento lorem ipsum</td>
+                      <td>3 días</td>
+                      <td>$320.000</td>
+                      <td>
+                        <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
+                      </td>
+                    </tr>
+                
+                  </tbody>
+                </table>
+              </div>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
           </div>

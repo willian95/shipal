@@ -58,3 +58,5 @@ Route::get("/plan-pro", function(){ return view('planPro'); });
 Route::get("/plan-standar", function(){ return view('planStandar'); });
 Route::get("/mi-libreta", function(){ return view('myNotebook'); });
 Route::get("/notificaciones", function(){ return view('notifications'); });
+Route::get("/mi-billetera", function(){ return view('myWallet'); });
+Route::get("/empaque", function(){ return view('packaging'); });

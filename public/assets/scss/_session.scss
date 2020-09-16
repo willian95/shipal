@@ -462,6 +462,7 @@ label.color-gray{
       }
     }
   }
+ 
   &-paddings{
     padding-right: 2rem;
     @include respond-to(xs){
@@ -482,6 +483,8 @@ label.color-gray{
   
     p{
       margin-bottom: 0;
+      display: flex;
+      align-items: center;
       @include respond-to(xs){
         font-size: 12px;
       }
@@ -502,16 +505,27 @@ label.color-gray{
     font-size: 16px;
     font-weight: 700;
     color: #9d3399;
+    &.underline{
+      text-decoration: underline;;
+    }
   }
   &-content{
     border-radius: 0px 0px 10px 10px;
     padding: .5rem 1rem;
+    &-nopadd{
+      padding: 0;
+    }
     p{
       font-size: 12px;
       font-family: $font;
       color: $gray;
       letter-spacing: 0.35px;
       font-weight: $medium;
+    }
+    a{
+      &:hover{
+        text-decoration: none;
+      }
     }
     span{
       font-size: 14px;
@@ -527,7 +541,19 @@ label.color-gray{
         strong{
           font-size: 15px;
         }
+        p{
+          &:nth-last-child(1){
+            margin-bottom: 0;
+          }
+        }
+        &.main-text-sub{
+          p{
+            color: $primary;
+            margin-bottom: 0;
+          }
+        }
       }
+      
     }
   }
   &-list{
@@ -582,6 +608,9 @@ label.color-gray{
       }
       td{
         text-align: center;
+        span{
+          color: $gray;
+        }
       }
     }
     &.section-table-tabscontent{
@@ -624,6 +653,38 @@ label.color-gray{
       }
       td{
         text-align: left;
+      }
+    }
+
+    &.section-table-contentcard{
+      
+      td{
+        text-align: center;
+        color: $black;
+        &:nth-child(1), &:nth-child(2){
+          text-align: left;
+        }
+        
+      }
+      img{
+        width: 8%;
+        margin-left: 2rem;
+        @include respond-to(xs){
+          width: 80%;
+          margin-left: 0rem;
+        }
+        @include respond-to(sm){
+          width: 20%;
+          margin-left: 1rem;
+        }
+        @include respond-to(md){
+          width: 30%;
+          margin-left: 1rem;
+        }
+        @include respond-to(lg){
+          width: 20%;
+          margin-left: 1rem;
+        }
       }
     }
   }
