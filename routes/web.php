@@ -27,11 +27,12 @@ Route::get("/register/validate/{registerHash}", "RegisterController@verify");
 
 Route::get('/dashboard', "DashboardController@index")->middleware("auth");
 
-Route::get("/internacional",  "RecipientController@international");
-Route::get("/nacional", "RecipientController@national");
+Route::get("/internacional",  "RecipientController@international")->name("internacional");
+Route::get("/nacional", "RecipientController@national")->name("nacional");
 
 Route::post('/recipients', "RecipientController@recipients")->name("recipients");
 Route::post('/createOrUpdateRecipients', "RecipientController@createOrUpdateRecipients")->name("createOrUpdateRecipients");
+Route::post('/createOrUpdateRecipientsInternational', "RecipientController@createOrUpdateRecipientsInternational")->name("createOrUpdateRecipientsInternational");
 Route::post('/getRecipients', "RecipientController@getRecipients")->name("getRecipients");
 
 Route::get('/countries', "CountryController@countries")->name("countries");
@@ -43,8 +44,8 @@ Route::get("/plan", function(){ return view('plan'); });
 
 Route::get("/forgot-password", "ForgotPasswordController@index")->name("forgot-password");
 Route::post("/forgotPasswordReset", "ForgotPasswordController@forgotPasswordReset")->name("forgotPasswordReset");
-Route::get("/forgot-password/reset/{forgotPasswordHash}", "ForgotPasswordController@reset");
-Route::post("/reset-password", "ForgotPasswordController@save")->name("reset-password");;
+Route::get("/forgotPassword/reset/{forgotPasswordHash}", "ForgotPasswordController@reset");
+Route::post("/reset-password", "ForgotPasswordController@resetPassword")->name("reset-password");;
 
 Route::get("/informacion-de-paquete", function(){ return view('packageInfomation'); });
 Route::get("/tarifas-de-envios", function(){ return view('shipingRates'); });

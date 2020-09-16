@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RecipientCreateOrUpdateRequest;
+use App\Http\Requests\RecipientCreateOrUpdateRequestInternational;
 use App\User;
 
 use App\Recipient;
@@ -135,6 +136,70 @@ class RecipientController extends Controller
         }//catch(\Exception $e)
     }//public function createOrUpdateRecipients(Request $request)
 
+    public function createOrUpdateRecipientsInternational(RecipientCreateOrUpdateRequestInternational $request){
+        try{
+            
+            $sender=$request->sender;
+            $sender = array_merge($sender, ['user_id'=>auth()->id()]);
+
+            $receiver=$request->receiver;
+            $receiver = array_merge($receiver, ['user_id'=>auth()->id()]);
+
+            if($sender["email"] == $receiver["email"]){
+                return response()->json(["success" => false, "msg" => "El correo de remitente y receptor no pueden ser iguales"]);
+            }
+
+            //sender
+            if($sender['id']!=null){
+                $update=Recipient::find($sender['id']);
+                if (!empty($update)) {
+                    $update->fill($sender)->save();
+                }else{
+                    $senderResult=Recipient::create($sender);
+                }//else
+            }else{
+                
+                if(Recipient::where("email", $sender['email'])->first()){
+
+                    $update=Recipient::where("email", $sender['email'])->first();
+                    $update->fill($sender)->save();
+
+                }else{
+                    $senderResult=Recipient::create($sender);
+                }
+
+            }//else
+
+            //receiver
+            if($receiver['id']!=null){
+                $update=Recipient::find($receiver['id']);
+                if (!empty($update)) {
+                    $update->fill($receiver)->save();
+                }else{
+                    $receiverResult=Recipient::create($receiver);
+                }//else
+            }else{
+
+                if(Recipient::where("email", $receiver['email'])->first()){
+
+                    $update=Recipient::where("email", $receiver['email'])->first();
+                    $update->fill($receiver)->save();
+
+                }else{
+                    $receiverResult=Recipient::create($receiver);
+                }
+
+            }//else
+
+
+            $recipients=Recipient::orderBy('name','asc')->where('is_international',$request->opt)->get();
+
+            return response()->json(["success" => true, "msg" => "Obtención de datos exitosa!","recipients"=>$recipients]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }//catch(\Exception $e)
+    }//public function createOrUpdateRecipients(Request $request)
 
     public function getRecipients(Request $request){
         try{

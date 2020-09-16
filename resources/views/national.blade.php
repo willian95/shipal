@@ -239,17 +239,17 @@
          },//clear()
          createOrUpdateRecipients(){
             let self = this;
-            this.loading = true
+            self.loading = true
             axios.post('{{ url("createOrUpdateRecipients") }}', {
             sender:self.sender,
             receiver:self.receiver,
             opt:0,
             }).then(function (response) {
-               this.loading = false
+               self.loading = false
                if(response.data.success==true){
                   self.recipients=response.data.recipients;
                   self.clear();
-                  this.errors = []
+                  self.errors = []
                   swal({
                         title: "Información",
                         text: "Registro Satisfactorio",
@@ -260,9 +260,9 @@
                   iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
                }//else if(response.data.success==false)
             }).catch(err => {
-               this.loading = false
-               this.errors = err.response.data.errors
-               if(this.errors){
+               self.loading = false
+               self.errors = err.response.data.errors
+               if(self.errors){
                   iziToast.error({title: 'Error',position:'topRight',message: "Hay algunos campos que debes revisar"});  
                }else{
                   iziToast.error({title: 'Error',position:'topRight',message: "Ha ocurrido un problema"});  
