@@ -28,44 +28,54 @@
               <input type="checkbox" class="form-check-input">
               <label class="form-check-label font-13" for="acceptPackaging">Certifico la validez de toda la información</label>
             </div>
-    
+          
            <hr>
             <div class="section-table">
               <div class="section-table-header">
                 <h4>Ingrese la siguiente información de la Aduana</h4>
               </div>
-              <div class="section-table-content">
-                <table>
-                  <tr>
-                    <th>Descripción</th>
-                    <th>Cantidad</th>
-                    <th>Total de valor</th>
-                    <th>Original</th>
-                  </tr>
-                  <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-                  </tr>
+              <div class="section-table-content table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Descripción</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Total de valor</th>
+                      <th scope="col">Original</th>
+                      <th scope="col">Editar</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Paquete</td>
+                      <td>2</td>
+                      <td>80.000</td>
+                      <td>CO</td>
+                      <td>
+                        <a href="#" class="btn-custom outline-gray extrasmall">Editar</a>
+                      </td>
+                    </tr>
                 
+                  </tbody>
                 </table>
+                
               </div>
             </div>
            
-            <div class="section-btns">
-              <a href="#" class="section-btns-items btn-custom no-shadow small mt-4">
+            <div class="section-btns mb-4">
+              <a href="#" class="section-btns-items btn-custom no-shadow small mt-4" data-toggle="modal" data-target="#CustomsInformation">
                 Seguir agregando</a>
               <a href="#" class="section-btns-items btn-custom small no-shadow outline">Remover</a>
               <a href="#" class="section-btns-items btn-custom small no-shadow outline">Editar</a>
             </div>
-           <p class="text-light-general">
+           <p class="text-light-general font-14">
               <img src="assets/img/icons/info-2.png" alt="">
               Para más información sobre los posibles cobros de aduanas por Países por favor dar 
            </p>
-           <p class="text-light-general">
+           <p class="text-light-general font-14">
               Para más información sobre los posibles cobros de aduanas por Países por favor dar 
-              <a href="#" class="custom-links underline">click aquí</a>
+              <a href="#" class="custom-links underline font-14">click aquí</a>
             </p>
            <div class="form-check accept-packaging">
               <input type="checkbox" class="form-check-input">
@@ -74,7 +84,7 @@
            <center>
             <a href="#" class="btn-custom no-shadow medium mt-4">Seleccionar servicio de envío</a>
            </center>
-         </form>
+         
        </div>
        <div class="section-card section-card-paddings">
          <div class="section-card-item">
@@ -137,4 +147,5 @@
      </div>
    </div>
 </div>
+@include('partials.modals')
 @endsection

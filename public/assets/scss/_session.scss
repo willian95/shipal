@@ -310,6 +310,9 @@ label.color-gray{
   &.underline{
     text-decoration: underline;
   }
+  &.font-14{
+    font-size: 14px;
+  }
 }
 
 .section-grid{
@@ -398,8 +401,16 @@ label.color-gray{
   font-size: 15px;
   font-weight:$regular;
   color: $gray;
+  &.font-14{
+    font-size: 14px;
+  }
 }
 
+.section-form{
+  @include respond-to(xs){
+    overflow: hidden;
+  }
+}
 .section-card{
   
   &-item{
@@ -461,7 +472,63 @@ label.color-gray{
 }
 
 .section-btns{
+  @include respond-to(xs){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   &-items{
     margin-right: 1rem;
+    @include respond-to(xs){
+      margin-bottom: 1rem;
+    
+    }
+  }
+}
+
+.section-table{
+  padding: 3rem 0 0 0;
+  &-nopadd{
+    padding: 0;
+  }
+  &-content{
+    padding: 1rem 0 0 0;
+    table{
+      width: 100%;
+      margin-bottom: 0;
+      th, td{
+        font-family: $font;
+        font-weight: $medium;
+        color: $gray;
+        font-size: 15px;
+        text-align: center;
+      }
+      th{
+        border-top: 1px solid $shadowColor;
+        border-bottom: 1px solid $shadowColor;
+      }
+      td{
+        text-align: center;
+      }
+    }
+    &.section-table-contentbg{
+      padding: 0;
+      border-radius: 10px;
+      border: 1px solid $shadowColor;
+      thead{
+        background-color:$lightgray ;
+      }
+      th{
+        border-top: 1px solid $white;
+        border-bottom: 1px solid $lightgray;
+        &:nth-child(1){
+          border-top-left-radius: 10px;
+        }
+        &:nth-last-child(1){
+          border-top-right-radius: 10px;
+        }
+      }
+      
+    }
   }
 }
