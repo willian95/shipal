@@ -4,7 +4,22 @@
 <div class="main-wrapper-boxheader">
    <div class="main-wrapper-header main-wrapper-header-transparent">
       <h2>Nacional</h2>
-    
+      <div class="main-steps-header">
+        <p class="main-steps-text">
+          Paso 
+          <span>2</span>
+          de 
+          <span>3</span>
+        </p>
+        <div class="main-steps-active">
+          <div class="main-steps-icon">
+            <img src="assets/img/icons/arrow-up.png" alt="">
+          </div>
+          <p>
+            <strong>Información del paquete</strong>
+          </p>
+        </div>
+      </div>
    </div>
    <button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="offcanvas" type="button">
    <span class="hamburger-box">
@@ -12,82 +27,56 @@
    </span>
    </button>
 </div>
-<div class="main-wrapper-content main-wrapper-content-none">
+<div class="main-wrapper-content main-wrapper-content-none pt-0">
    <div class="main-packageinformation">
      <div class="section-grid section-gridtwo grid-70">
-        <div class="section-form">
-  
-          <div class="section-table section-table-nopadd">
-            <div class="section-table-content section-table-contentbg table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Transportadora</th>
-                    <th scope="col">Origen</th>
-                    <th scope="col">Destino</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Valor del envío</th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="section-table-img">
-                        <img src="assets/img/logos/fedex.png" alt="">
-                      </div>
-                    </td>
-                    <td>Jackie Risher, Empresa pepito <br> x Orden #56879</td>
-                    <td>Merce Risher, Empresa <br> pepita Orden #56879</td>
-                    <td>80 kgs</td>
-                    <td>$80.000</td>
-                  </tr>
-              
-                </tbody>
-              </table>
-              
-            </div>
-          </div>
-
-          <div class="section-card section-card-paddings">
-            <p class="mt-4"><strong>Pagos</strong></p>
-            <div class="section-card-item ">
-              <p class="section-card-textprimary text-center">Nacional</p>
-              <div class="d-flex justify-content-center flex-column flex-sm-row flex-md-row flex-lg-row flex-xl-row align-items-center">
-                <div class="card-w25 section-card-item ">
-                  <div class="section-card-content">
-                    <div class="text-center">
-                      <img src="assets/img/logos/bitmap.png" alt="">
-                      <form action="" class="mt-2">
-                        <div class="form-check accept-packaging">
-                          <input type="checkbox" class="form-check-input">
-                          <label class="form-check-label font-13" for="acceptPackaging"><strong>Pse</strong> </label>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-w25 section-card-item">
+       <div class="section-form">
+          <ul class="nav nav-tabs nav-tabs-nopadd" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Shipal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Otra (en caso de que esté integrado)</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="section-table-content section-table-tabscontent table-responsive pt-0">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="section-table-img">
+                            <img src="assets/img/logos/fedex.png" alt="">
+                          </div>
+                        </td>
+                        <td>Fedex Express documento lorem ipsum</td>
+                        <td>3 días</td>
+                        <td>$320.000</td>
+                        <td>
+                          <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="section-table-img">
+                            <img src="assets/img/logos/fedex.png" alt="">
+                          </div>
+                        </td>
+                        <td>Fedex Express documento lorem ipsum</td>
+                        <td>3 días</td>
+                        <td>$320.000</td>
+                        <td>
+                          <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
+                        </td>
+                      </tr>
                   
-                  <div class="section-card-content">
-                    <div class="text-center">
-                      <img src="assets/img/logos/wallet.png" alt="">
-                      <form action="" class="mt-2">
-                        <div class="form-check accept-packaging">
-                          <input type="checkbox" class="form-check-input">
-                          <label class="form-check-label font-13" for="acceptPackaging"><strong>Usar saldo de mi billetera Shipal</strong> </label>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
+                    </tbody>
+                  </table>
                 </div>
-              </div>
             </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
           </div>
-          <center>
-          <a href="#" class="btn-custom no-shadow medium mt-4">Pagar</a>
-          </center>
-        
        </div>
        <div class="section-card section-card-paddings">
          <div class="section-card-item">
@@ -182,10 +171,8 @@
              </ul>
            </div>
          </div>
-         
        </div>
      </div>
    </div>
 </div>
-@include('partials.modals')
 @endsection

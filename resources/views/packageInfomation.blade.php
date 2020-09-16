@@ -27,9 +27,9 @@
    </span>
    </button>
 </div>
-<div class="main-wrapper-content main-wrapper-content-none">
+<div class="main-wrapper-content main-wrapper-content-none pt-0">
    <div class="main-packageinformation">
-     <div class="section-grid section-gridtwo grid-60">
+     <div class="section-grid section-gridtwo grid-70">
        <div class="section-form">
          <form class="custom-form session-form w-100">
            <div class="session-form-two-columns">

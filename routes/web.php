@@ -47,6 +47,7 @@ Route::get("/forgot-password/reset/{forgotPasswordHash}", "ForgotPasswordControl
 Route::post("/reset-password", "ForgotPasswordController@save")->name("reset-password");;
 
 Route::get("/informacion-de-paquete", function(){ return view('packageInfomation'); });
+Route::get("/tarifas-de-envios", function(){ return view('shipingRates'); });
 Route::get("/descargas", function(){ return view('download'); });
 Route::get("/declaracion-de-aduanas", function(){ return view('customsDeclaration'); });
 Route::get("/proceso-de-pago", function(){ return view('paymentProcess'); });

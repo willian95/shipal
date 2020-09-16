@@ -14,7 +14,7 @@
 </div>
 <div class="main-wrapper-content main-wrapper-content-none">
    <div class="main-packageinformation">
-     <div class="section-grid section-gridtwo grid-60">
+     <div class="section-grid section-gridtwo grid-70">
        <div class="section-form">
          <form class="custom-form session-form w-100">
             <div class="form-group">
@@ -125,6 +125,42 @@
              </div>
            </div>
            <div class="section-card-content">
+             <p><strong>Chila Bags SAS</strong></p>
+             <ul class="section-card-list">
+                <li>65467 Calle 60 #78-145</li>
+                <li>
+                  Bogotá 
+                </li>
+                <li>
+                  <img src="assets/img/icons/colombia.png" alt="">
+                  Colombia</li>
+                <li>
+                  <img src="assets/img/icons/email.png" alt="">
+                  pepita.maria@sigma3ds.com</li>
+                <li>
+                  <img src="assets/img/icons/phone.png" alt="">
+                  24357667889</li>
+             </ul>
+           </div>
+         </div>
+         <div class="section-card-item">
+           <div class="section-card-header">
+             <div class="d-flex justify-content-between">
+               <p><strong>Dirección del remitente</strong></p>
+               <a href="#" class="section-card-links">
+                 Editar
+               </a>
+             </div>
+           </div>
+           <div class="section-card-content">
+             <form action="" class="mt-2 mb-2">
+              <div class="form-check accept-packaging">
+                <input type="checkbox" class="form-check-input">
+                <label class="form-check-label font-13" for="acceptPackaging"><strong>
+                  Usar mi dirección de retorno
+                </strong></label>
+              </div>
+             </form>
              <p><strong>Chila Bags SAS</strong></p>
              <ul class="section-card-list">
                 <li>65467 Calle 60 #78-145</li>
