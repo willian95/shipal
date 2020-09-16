@@ -128,6 +128,12 @@ class RecipientController extends Controller
 
             }//else
 
+            $Shipping=Session::get('Shipping');
+
+            $Shipping['sender']=$sender;
+            $Shipping['receiver']=$receiver;
+
+            Session::put('Shipping',$Shipping);
 
             $recipients=Recipient::orderBy('name','asc')->where('is_international',$request->opt)->get();
 
@@ -150,6 +156,7 @@ class RecipientController extends Controller
             if($sender["email"] == $receiver["email"]){
                 return response()->json(["success" => false, "msg" => "El correo de remitente y receptor no pueden ser iguales"]);
             }
+            
 
             //sender
             if($sender['id']!=null){
@@ -193,6 +200,13 @@ class RecipientController extends Controller
 
             }//else
 
+
+            $Shipping=Session::get('Shipping');
+
+            $Shipping['sender']=$sender;
+            $Shipping['receiver']=$receiver;
+
+            Session::put('Shipping',$Shipping);
 
             $recipients=Recipient::orderBy('name','asc')->where('is_international',$request->opt)->get();
 

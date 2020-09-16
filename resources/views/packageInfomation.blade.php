@@ -27,7 +27,7 @@
    </span>
    </button>
 </div>
-<div class="main-wrapper-content main-wrapper-content-none">
+<div class="main-wrapper-content main-wrapper-content-none" id="packageInfomation">
    <div class="main-packageinformation">
      <div class="section-grid section-gridtwo grid-60">
        <div class="section-form">
@@ -142,17 +142,16 @@
              </div>
            </div>
            <div class="section-card-content">
-             <p><strong>Pepita Maria</strong></p>
+             <p><strong>@{{receiver.name}}</strong></p>
              <ul class="section-card-list">
-                <li>Sigma</li>
-                <li>65467 Calle 60 #78-145</li>
-                <li>Medellín </li>
-                <li>Colombia</li>
-                <li>pepita.maria@sigma3ds.com</li>
-                <li>24357667889</li>
+                <li>@{{receiver.business_name}}</li>
+                <li>@{{receiver.address}}</li>
+                <li v-if="receiver.address2!=null">@{{receiver.address}}</li>
+                <li>@{{receiver.city}}</li>
+                <li><img src="assets/img/icons/colombia.png" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="assets/img/icons/email.png" alt="email">&nbsp;@{{receiver.email}}</li>
+                <li><img src="assets/img/icons/phone.png" alt="phone">&nbsp;@{{receiver.phone}}</li>
              </ul>
-
-         
 
            </div>
          </div>
@@ -161,18 +160,19 @@
              <div class="d-flex justify-content-between">
                <p><strong>Dirección del remitente</strong></p>
                <a href="#" class="section-card-links">
-                 <img src="assets/img/icons/agenda.png" alt="">
+                 <img src="assets/img/icons/agenda.png" alt="agenda">
                </a>
              </div>
            </div>
            <div class="section-card-content">
-             <p><strong>Chila Bags SAS</strong></p>
+             <p><strong>@{{sender.name}}</strong></p>
              <ul class="section-card-list">
-                <li>65467 Calle 60 #78-145</li>
-                <li>Bogotá </li>
-                <li>Colombia</li>
-                <li>pepita.maria@sigma3ds.com</li>
-                <li>24357667889</li>
+                <li>@{{sender.address}}</li>
+                <li v-if="sender.address2!=null">@{{sender.address}}</li>
+                <li>@{{sender.city}}</li>
+                <li><img src="assets/img/icons/colombia.png" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="assets/img/icons/email.png" alt="email">&nbsp;@{{sender.email}}</li>
+                <li><img src="assets/img/icons/phone.png" alt="phone">&nbsp;@{{sender.phone}}</li>
              </ul>
            </div>
          </div>
@@ -181,3 +181,56 @@
    </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+   const app = new Vue({
+       el: '#packageInfomation',
+       data: {
+         sender:'',
+         receiver:'',
+       },
+       mounted(){
+              
+            this.getSesionShipping();
+
+       },//mounted()
+       methods: {
+
+          async getSesionShipping(){
+
+           let self = this;
+
+            axios.get('{{ url("SesionShipping") }}', {}).then(function (response) {
+
+               if(response.data.success==true){
+
+                    self.sender=response.data.Shipping['sender'];
+
+                    self.receiver=response.data.Shipping['receiver'];
+
+               }//if(response.data.success==true)
+               else if(response.data.success==false){   
+
+                    swal({
+                      "icon": "error",
+                      "text": response.data.msg
+                    }).then((value) => {
+                      window.location.href="{{ url('dashboard') }}"
+                    });
+                    
+
+               }//else if(response.data.success==false)
+
+            }).catch(function (error) {
+
+               iziToast.error({title: 'Mensaje',position:'topRight',message: 'Por favor comuniquese con el administrador del sistema',});
+
+               console.log(error);
+               
+            });  
+         }//SesionShipping
+       },//methods
+   }); //const app= new Vue
+   
+</script> 
+@endpush
