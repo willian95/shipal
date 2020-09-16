@@ -130,6 +130,7 @@ class RecipientController extends Controller
 
             $Shipping=Session::get('Shipping');
 
+            $Shipping['step']=1;
             $Shipping['sender']=$sender;
             $Shipping['receiver']=$receiver;
 
@@ -253,7 +254,7 @@ class RecipientController extends Controller
 
                 $Shipping=Session::get('Shipping');
 
-                if($Shipping['sender']==[]){
+                if($Shipping['step']==0){
 
                     return response()->json(["success" => false, "msg" =>"No tienes un envio en proceso"]);
 
@@ -267,7 +268,7 @@ class RecipientController extends Controller
             }else{
 
                 Session::put('Shipping',[
-
+                                            'step' => 0,
                                             'sender' => [],
                                             'receiver'=>[],
                                             'typePackaging'=>'',
