@@ -216,6 +216,11 @@
 .session-form {
   .form-group {
     margin-bottom: 18px;
+    small{
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
 
     .form-group-flexrow{
       display: flex;
@@ -247,6 +252,15 @@
 
   .link-login {
     margin-bottom: 0;
+  }
+}
+
+.form-group{
+  small{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
   }
 }
 
