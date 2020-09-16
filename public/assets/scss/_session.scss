@@ -485,6 +485,11 @@ label.color-gray{
       @include respond-to(xs){
         font-size: 12px;
       }
+      strong{
+        @include respond-to(xs){
+          font-size: 16px;
+        }
+      }
     }
   }
   &-textprimary{
@@ -507,6 +512,22 @@ label.color-gray{
       color: $gray;
       letter-spacing: 0.35px;
       font-weight: $medium;
+    }
+    span{
+      font-size: 14px;
+      font-family: $font;
+      color: $gray;
+      letter-spacing: 0.35px;
+      font-weight: $regular;
+    }
+    ul{
+      list-style: none;
+      padding-left: 0;
+      li {
+        strong{
+          font-size: 15px;
+        }
+      }
     }
   }
   &-list{

@@ -52,4 +52,9 @@ Route::get("/tarifas-de-envios", function(){ return view('shipingRates'); });
 Route::get("/descargas", function(){ return view('download'); });
 Route::get("/declaracion-de-aduanas", function(){ return view('customsDeclaration'); });
 Route::get("/proceso-de-pago", function(){ return view('paymentProcess'); });
+
+
+Route::get("/plan-pro", function(){ return view('planPro'); });
+Route::get("/plan-standar", function(){ return view('planStandar'); });
 Route::get("/mi-libreta", function(){ return view('myNotebook'); });
+Route::get("/notificaciones", function(){ return view('notifications'); });

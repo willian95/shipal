@@ -137,10 +137,16 @@
     padding: .5rem 2rem;
     align-items: center;
     border-bottom: 1px solid $shadowColor;
+    @include respond-to(xs){
+      padding: .5rem 1rem;
+    }
+    span{
+      color: $primary;
+    }
   }
   &-cardtitle{
     font-family: Roboto;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -153,11 +159,64 @@
     padding:  2rem;
     display: grid;
     grid-template-columns: 15% 85%;
+    @include respond-to(xs){
+      grid-template-columns: 1fr;
+      padding: 1rem 1rem;
+    }
+    @include respond-to(sm){
+      grid-template-columns: 25% 75%;;
+      padding: 1rem 1rem;
+    }
+    @include respond-to(md){
+      grid-template-columns: 25% 75%;;
+      padding: 1rem 1rem;
+    }
+    @include respond-to(lg){
+      grid-template-columns: 20% 80%;;
+      padding: 1rem 1rem;
+    }
+    &.navtabs-plan-cardcontent-grid100{
+      grid-template-columns: 100%;
+      padding: 1rem 2rem;
+      ul{
+        padding-left: 0;
+        margin-bottom: 0;
+        li{
+          align-items: center;
+          .circle{
+            display: flex;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: $secondary;
+            justify-content: center;
+            align-items: center;
+            p{
+              margin-bottom: 0;
+              color: $white;
+              font-weight: $medium;
+              font-family: $font;
+              text-transform: uppercase;
+            }
+          }
+          span{
+            color: #aeb5bd;
+            font-weight: $medium;
+            font-family: $font;
+            font-size: 12px;
+          }
+        }
+      }
+    }
   }
   &-cardtext{
     p{
       margin-bottom: 0;
       font-size: 14px;
+      a{
+        font-size: 14px;
+        color: $black;
+      }
     }
   }
 }

@@ -299,6 +299,9 @@ a.link-custom {
 
   &.small {
     font-size: 13px;
+    @include respond-to(xs){
+      padding: 12px 10px;
+    }
   }
   &.extrasmall{
     font-size: 12px;

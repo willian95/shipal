@@ -4,7 +4,7 @@
 <div class="main-wrapper-boxheader">
    <div class="main-wrapper-header main-wrapper-header-transparent">
       <h2>Mi libreta</h2>
-      <hr class="d-none d-sm-block d-md-block d-lg-block d-xlblock">
+      <hr class="d-none d-sm-none d-md-block d-lg-block d-xlblock">
    </div>
    <button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="offcanvas" type="button">
    <span class="hamburger-box">
