@@ -5,7 +5,7 @@
 <section class="main-session" id="resetPassword">
     <div class="session-grid">
       <div class="session-form-div">
-        <img src="assets/img/logos/logo1.svg" alt="Shipal Logo">
+        <img src="{{ asset('assets/img/logos/logo1.svg') }}" alt="Shipal Logo">
         <h4 class="mb-4">¿Resetear Contraseña?</h4>
         <p class="forgot-password-description mb-5"><strong>¡Sucede!</strong> Simplemente coloca tu nueva contraseña y guarda.</p>
         <form class="custom-form session-form w-100">
