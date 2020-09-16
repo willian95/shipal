@@ -31,6 +31,7 @@ Route::get("/internacional",  "RecipientController@international")->name("intern
 Route::get("/nacional", "RecipientController@national")->name("nacional");
 
 Route::post('/recipients', "RecipientController@recipients")->name("recipients");
+Route::get("/SesionShipping","RecipientController@SesionShipping")->name("SesionShipping");
 Route::post('/createOrUpdateRecipients', "RecipientController@createOrUpdateRecipients")->name("createOrUpdateRecipients");
 Route::post('/createOrUpdateRecipientsInternational', "RecipientController@createOrUpdateRecipientsInternational")->name("createOrUpdateRecipientsInternational");
 Route::post('/getRecipients', "RecipientController@getRecipients")->name("getRecipients");
@@ -48,3 +49,6 @@ Route::get("/forgotPassword/reset/{forgotPasswordHash}", "ForgotPasswordControll
 Route::post("/reset-password", "ForgotPasswordController@resetPassword")->name("reset-password");
 
 Route::get("/informacion-de-paquete","PackageInformationController@index")->name("informacion-de-paquete");
+
+
+
