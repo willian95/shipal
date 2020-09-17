@@ -340,17 +340,26 @@
          },//getRecipient(opt)
          getSesionShipping(){
            let self = this;
+
             axios.get('{{ url("SesionShipping") }}', {}).then(function (response) {
 
                if(response.data.success==true){
+
                   console.log(response.data);
+
                }//if(response.data.success==true)
-               else if(response.data.success==false){                     
+               else if(response.data.success==false){   
+
                   console.log(response.data);
+
                }//else if(response.data.success==false)
+
             }).catch(function (error) {
+
                iziToast.error({title: 'Mensaje',position:'topRight',message: 'Por favor comuniquese con el administrador del sistema',});
+
                console.log(error);
+               
             });  
          }//SesionShipping
        },//methods

@@ -49,6 +49,8 @@ Route::get("/forgotPassword/reset/{forgotPasswordHash}", "ForgotPasswordControll
 Route::post("/reset-password", "ForgotPasswordController@resetPassword")->name("reset-password");
 
 Route::get("/informacion-de-paquete","PackageInformationController@index")->name("informacion-de-paquete");
+Route::post("/packageInformation","PackageInformationController@packageInformation")->name("packageInformation");
+Route::post("/findTypesPackaging","TypePackagingController@findTypesPackaging")->name("findTypesPackaging");
 
 
 

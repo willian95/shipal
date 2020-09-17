@@ -271,15 +271,8 @@ class RecipientController extends Controller
                                             'step' => 0,
                                             'sender' => [],
                                             'receiver'=>[],
-                                            'typePackaging'=>'',
-                                            'declaredValue'=>'',
-                                            'shippingDate'=>'',
-                                            'secureYourPackage'=>'',
-                                            'scheduleShipmentPickup'=>'',
-                                            'dateOfCollection'=>'',
-                                            'collectionTime'=>'',
-                                            'proformaInvoice'=>'',
-                                            'returnGuide'=>'',
+                                            'typePackaging'=>[],
+                                            'packageInformation'=>[],
 
                                         ]);
 
