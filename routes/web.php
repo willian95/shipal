@@ -41,8 +41,6 @@ Route::get('/countries', "CountryController@countries")->name("countries");
 Route::get("/cuenta", "AccountController@index");
 Route::post("/cuenta/actualizar", "AccountController@update");
 
-Route::get("/plan", function(){ return view('plan'); });
-
 Route::get("/forgot-password", "ForgotPasswordController@index")->name("forgot-password");
 Route::post("/forgotPasswordReset", "ForgotPasswordController@forgotPasswordReset")->name("forgotPasswordReset");
 Route::get("/forgotPassword/reset/{forgotPasswordHash}", "ForgotPasswordController@reset");
@@ -52,5 +50,18 @@ Route::get("/informacion-de-paquete","PackageInformationController@index")->name
 Route::post("/packageInformation","PackageInformationController@packageInformation")->name("packageInformation");
 Route::post("/findTypesPackaging","TypePackagingController@findTypesPackaging")->name("findTypesPackaging");
 
+Route::get("/tarifas-de-envios", function(){ return view('shipingRates'); });
+Route::get("/proceso-de-pago", function(){ return view('paymentProcess'); });
+Route::get("/descargas", function(){ return view('download'); });
+
+Route::get("/plan", function(){ return view('plan'); });
+
+Route::get("/declaracion-de-aduanas", function(){ return view('customsDeclaration'); });
 
 
+Route::get("/plan-pro", function(){ return view('planPro'); });
+Route::get("/plan-standar", function(){ return view('planStandar'); });
+Route::get("/mi-libreta", function(){ return view('myNotebook'); });
+Route::get("/notificaciones", function(){ return view('notifications'); });
+Route::get("/mi-billetera", function(){ return view('myWallet'); });
+Route::get("/empaque", function(){ return view('packaging'); });

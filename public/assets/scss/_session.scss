@@ -216,6 +216,11 @@
 .session-form {
   .form-group {
     margin-bottom: 18px;
+    small{
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
 
     .form-group-flexrow{
       display: flex;
@@ -250,6 +255,15 @@
   }
 }
 
+.form-group{
+  small{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+  }
+}
+
 .forgot-password-description {
   font-size: 13px !important;
 }
@@ -258,11 +272,17 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 13px;
+  @include respond-to(xs){
+    grid-template-columns: 1fr;
+  }
 }
 .session-form-three-columns {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0 13px;
+  @include respond-to(xs){
+    grid-template-columns: 1fr;
+  }
 }
 
 .accept-terms label {
@@ -304,6 +324,9 @@ label.color-gray{
   &.underline{
     text-decoration: underline;
   }
+  &.font-14{
+    font-size: 14px;
+  }
 }
 
 .section-grid{
@@ -320,8 +343,29 @@ label.color-gray{
     @include respond-to(md){
       grid-template-columns: 1fr;
     }
-    &.grid-60{
-      grid-template-columns: 60% 40%;
+    &.grid-70{
+      grid-template-columns: 70% 30%;
+      @include respond-to(xs){
+        grid-template-columns: 1fr;
+      }
+      @include respond-to(sm){
+        grid-template-columns: 1fr;
+      }
+      @include respond-to(md){
+        grid-template-columns: 1fr;
+      }
+    }
+    &.grid-50{
+      grid-template-columns: 50% 50%;
+      @include respond-to(xs){
+        grid-template-columns: 1fr;
+      }
+      @include respond-to(sm){
+        grid-template-columns: 1fr;
+      }
+      @include respond-to(md){
+        grid-template-columns: 1fr;
+      }
     }
   }
 }
@@ -383,39 +427,133 @@ label.color-gray{
   font-size: 15px;
   font-weight:$regular;
   color: $gray;
+  &.font-14{
+    font-size: 14px;
+  }
 }
 
+.section-form{
+  @include respond-to(xs){
+    overflow: hidden;
+  }
+}
 .section-card{
   &-item{
     border: 1px solid $shadowColor;
     border-radius: 10px;
     margin-bottom: 2rem;
+
+    &.card-w25{
+      width: 25%;
+      @include respond-to(xs){
+        width: 90%;
+      }
+      @include respond-to(sm){
+        width: 40%;
+      }
+      @include respond-to(md){
+        width: 45%;
+      }
+      &:nth-child(1){
+        margin-right: 1rem;
+        @include respond-to(xs){
+          margin-right: 0;
+        }
+      }
+    }
   }
+ 
   &-paddings{
     padding-right: 2rem;
+    @include respond-to(xs){
+      padding-right: 0;
+    }
+    @include respond-to(sm){
+      padding-right: 0;
+    }
+    @include respond-to(md){
+      padding-right: 0;
+    }
   }
   &-header{
     background-color:$lightgray ;
     border-radius: 10px 10px 0 0;
     padding: .5rem 1rem;
+    font-size: 15px;
+  
     p{
       margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      @include respond-to(xs){
+        font-size: 12px;
+      }
+      strong{
+        @include respond-to(xs){
+          font-size: 16px;
+        }
+      }
     }
+  }
+  &-textprimary{
+    color: #9d3399;
+    font-size: 14px;
+    font-weight: $medium;
+    margin-top: 1rem;
   }
   &-links{
     font-size: 16px;
     font-weight: 700;
     color: #9d3399;
+    &.underline{
+      text-decoration: underline;;
+    }
   }
   &-content{
     border-radius: 0px 0px 10px 10px;
     padding: .5rem 1rem;
+    &-nopadd{
+      padding: 0;
+    }
     p{
       font-size: 12px;
       font-family: $font;
       color: $gray;
       letter-spacing: 0.35px;
       font-weight: $medium;
+    }
+    a{
+      &:hover{
+        text-decoration: none;
+      }
+    }
+    span{
+      font-size: 14px;
+      font-family: $font;
+      color: $gray;
+      letter-spacing: 0.35px;
+      font-weight: $regular;
+    }
+    ul{
+      list-style: none;
+      padding-left: 0;
+      li {
+        strong{
+          font-size: 15px;
+        }
+        p{
+          &:nth-last-child(1){
+            margin-bottom: 0;
+          }
+        }
+        &.main-text-sub{
+          p{
+            color: $primary;
+            margin-bottom: 0;
+          }
+        }
+      }
+      
     }
   }
   &-list{
@@ -426,6 +564,133 @@ label.color-gray{
       font-family: $font;
       color: $gray;
       letter-spacing: 0.35px;
+    }
+  }
+}
+
+.section-btns{
+  @include respond-to(xs){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &-items{
+    margin-right: 1rem;
+    @include respond-to(xs){
+      margin-bottom: 1rem;
+    
+    }
+  }
+}
+
+.section-table{
+  padding: 3rem 0 0 0;
+  &-nopadd{
+    padding: 0;
+  }
+  &-content{
+    padding: 1rem 0 0 0;
+
+    table{
+      width: 100%;
+      margin-bottom: 0;
+      th, td{
+        font-family: $font;
+        font-weight: $medium;
+        color: $gray;
+        font-size: 15px;
+        text-align: center;
+        padding: .75rem .5rem;
+      }
+      th{
+        border-top: 1px solid $shadowColor;
+        border-bottom: 1px solid $shadowColor;
+      }
+      td{
+        text-align: center;
+        span{
+          color: $gray;
+        }
+      }
+    }
+    &.section-table-tabscontent{
+      border: 1px solid $shadowColor;
+      border-top: 1px solid transparent;
+      border-radius: 0 0 10px 10px;
+      table{
+        th, td{
+          font-size: 13px;
+        }
+        th{
+          border-top: 1px solid transparent;
+          border-bottom: 1px solid transparent;
+        }
+        td{
+          text-align: left;
+        }
+      }
+    }
+    &.section-table-contentbg{
+      padding: 0;
+      border-radius: 10px;
+      border: 1px solid $shadowColor;
+    
+      thead{
+        background-color:$lightgray ;
+      }
+      th, td{
+        font-size: 13px;
+      }
+      th{
+        border-top: 1px solid $white;
+        border-bottom: 1px solid $lightgray;
+        &:nth-child(1){
+          border-top-left-radius: 10px;
+        }
+        &:nth-last-child(1){
+          border-top-right-radius: 10px;
+        }
+      }
+      td{
+        text-align: left;
+      }
+    }
+
+    &.section-table-contentcard{
+      
+      td{
+        text-align: center;
+        color: $black;
+        &:nth-child(1), &:nth-child(2){
+          text-align: left;
+        }
+        
+      }
+      img{
+        width: 8%;
+        margin-left: 2rem;
+        @include respond-to(xs){
+          width: 80%;
+          margin-left: 0rem;
+        }
+        @include respond-to(sm){
+          width: 20%;
+          margin-left: 1rem;
+        }
+        @include respond-to(md){
+          width: 30%;
+          margin-left: 1rem;
+        }
+        @include respond-to(lg){
+          width: 20%;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+  &-img{
+    img{
+      width: 60%;
     }
   }
 }

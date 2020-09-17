@@ -277,6 +277,17 @@ a.link-custom {
       transition: all ease-in-out 0.3s;
     }
   }
+  &.outline-gray {
+    background-color: $shadowColor;
+    border: 1px solid $shadowColor;
+    color:$gray;
+    box-shadow: 0px 8px 10px 0px rgba($primary, 0);
+    &:hover {
+      background-color: $shadowColor;
+      color:$gray;
+      transition: all ease-in-out 0.3s;
+    }
+  }
 
   &.extralarge {
     padding: 20px 50px;
@@ -288,6 +299,9 @@ a.link-custom {
 
   &.small {
     font-size: 13px;
+    @include respond-to(xs){
+      padding: 12px 10px;
+    }
   }
   &.extrasmall{
     font-size: 12px;

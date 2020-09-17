@@ -26,7 +26,7 @@
    </span>
    </button>
 </div>
-<div class="main-wrapper-content main-wrapper-content-none" id="packageInformation">
+<div class="main-wrapper-content main-wrapper-content-none pt-0" id="packageInformation">
 
       <div class="main-loader" v-if="loading == true">
          <div class="fulfilling-bouncing-circle-spinner">
@@ -36,7 +36,7 @@
       </div>
 
    <div class="main-packageinformation">
-     <div class="section-grid section-gridtwo grid-60">
+     <div class="section-grid section-gridtwo grid-70">
        <div class="section-form">
          <form class="custom-form session-form w-100">
            <div class="session-form-two-columns">
@@ -137,11 +137,8 @@
                <div class="form-group ">
                 <label class="color-gray">Fecha de recolección</label>
                 <div class="d-flex align-items-center">
-                <label class="btn btn-default active">
-                  <input type="radio" name="options" checked="">
-                  <div>Word</div>
-                </label>
-                
+                  <a href="#" class="btn-custom no-shadow extrasmall outline-light mr-2">Mañana</a>
+                  <a href="#" class="btn-custom no-shadow extrasmall outline-light">Noche</a>
                 </div>
                </div>
              </div>
@@ -177,9 +174,9 @@
                 <li>@{{receiver.address}}</li>
                 <li v-if="receiver.address2!=null">@{{receiver.address}}</li>
                 <li>@{{receiver.city}}</li>
-                <li><img src="assets/img/icons/colombia.png" alt="colombia">&nbsp;Colombia</li>
-                <li><img src="assets/img/icons/email.png" alt="email">&nbsp;@{{receiver.email}}</li>
-                <li><img src="assets/img/icons/phone.png" alt="phone">&nbsp;@{{receiver.phone}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{receiver.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{receiver.phone}}</li>
              </ul>
 
            </div>
@@ -189,7 +186,7 @@
              <div class="d-flex justify-content-between">
                <p><strong>Dirección del remitente</strong></p>
                <a href="#" class="section-card-links">
-                 <img src="assets/img/icons/agenda.png" alt="agenda">
+                 <img src="{{ asset('assets/img/icons/agenda.png') }}" alt="agenda">
                </a>
              </div>
            </div>
@@ -199,9 +196,9 @@
                 <li>@{{sender.address}}</li>
                 <li v-if="sender.address2!=null">@{{sender.address}}</li>
                 <li>@{{sender.city}}</li>
-                <li><img src="assets/img/icons/colombia.png" alt="colombia">&nbsp;Colombia</li>
-                <li><img src="assets/img/icons/email.png" alt="email">&nbsp;@{{sender.email}}</li>
-                <li><img src="assets/img/icons/phone.png" alt="phone">&nbsp;@{{sender.phone}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{sender.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{sender.phone}}</li>
              </ul>
            </div>
          </div>
