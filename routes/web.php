@@ -50,7 +50,7 @@ Route::get("/informacion-de-paquete","PackageInformationController@index")->name
 Route::post("/packageInformation","PackageInformationController@packageInformation")->name("packageInformation");
 Route::post("/findTypesPackaging","TypePackagingController@findTypesPackaging")->name("findTypesPackaging");
 
-Route::get("/tarifas-de-envios", function(){ return view('shipingRates'); });
+Route::get("/tarifas-de-envios", "ShipingRatesController@index")->name("tarifas-de-envios");
 Route::get("/proceso-de-pago", function(){ return view('paymentProcess'); });
 Route::get("/descargas", function(){ return view('download'); });
 

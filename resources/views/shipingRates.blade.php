@@ -27,7 +27,7 @@
    </span>
    </button>
 </div>
-<div class="main-wrapper-content main-wrapper-content-none pt-0">
+<div class="main-wrapper-content main-wrapper-content-none pt-0" id="shipingRates">
    <div class="main-packageinformation">
      <div class="section-grid section-gridtwo grid-70">
        <div class="section-form">
@@ -44,28 +44,18 @@
               <div class="section-table-content section-table-tabscontent table-responsive pt-0">
                 <table class="table">
                   <tbody>
-                    <tr>
+                    <tr v-for="service in CourierService">
                       <td>
-                        <div class="section-table-img">
-                          <img src="assets/img/logos/fedex.png" alt="">
+                        <div class="text-center align-middle" >
+                        {{--section-table-img--}}
+                          <img :src="'{{url('/')}}/'+service.logo" :alt="service.name" class="img-fluid" width="40" height="40" v-if="service.name=='UPS'">
+                          <img :src="'{{url('/')}}/'+service.logo" :alt="service.name" class="img-fluid" width="120" height="120" v-else>
+
                         </div>
                       </td>
-                      <td>Fedex Express documento lorem ipsum</td>
-                      <td>3 días</td>
-                      <td>$320.000</td>
-                      <td>
-                        <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="section-table-img">
-                          <img src="assets/img/logos/fedex.png" alt="">
-                        </div>
-                      </td>
-                      <td>Fedex Express documento lorem ipsum</td>
-                      <td>3 días</td>
-                      <td>$320.000</td>
+                      <td class="align-middle">@{{service.service_name}}</td>
+                      <td class="align-middle">@{{service.shipping_time}}</td>
+                      <td class="align-middle">$320.000</td>
                       <td>
                         <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
                       </td>
@@ -87,20 +77,15 @@
              </div>
            </div>
            <div class="section-card-content">
-             <p><strong>Pepita Maria</strong></p>
+             <p><strong>@{{receiver.name}}</strong></p>
              <ul class="section-card-list">
-                <li>Sigma</li>
-                <li>65467 Calle 60 #78-145</li>
-                <li>Medellín </li>
-                <li>
-                  <img src="assets/img/icons/colombia.png" alt="">
-                  Colombia</li>
-                <li>
-                  <img src="assets/img/icons/email.png" alt="">
-                  pepita.maria@sigma3ds.com</li>
-                <li>
-                  <img src="assets/img/icons/phone.png" alt="">
-                  24357667889</li>
+                <li>@{{receiver.business_name}}</li>
+                <li>@{{receiver.address}}</li>
+                <li v-if="receiver.address2!=null">@{{receiver.address}}</li>
+                <li>@{{receiver.city}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{receiver.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{receiver.phone}}</li>
              </ul>
 
          
@@ -117,21 +102,14 @@
              </div>
            </div>
            <div class="section-card-content">
-             <p><strong>Chila Bags SAS</strong></p>
+             <p><strong>@{{sender.name}}</strong></p>
              <ul class="section-card-list">
-                <li>65467 Calle 60 #78-145</li>
-                <li>
-                  Bogotá 
-                </li>
-                <li>
-                  <img src="assets/img/icons/colombia.png" alt="">
-                  Colombia</li>
-                <li>
-                  <img src="assets/img/icons/email.png" alt="">
-                  pepita.maria@sigma3ds.com</li>
-                <li>
-                  <img src="assets/img/icons/phone.png" alt="">
-                  24357667889</li>
+                <li>@{{sender.address}}</li>
+                <li v-if="sender.address2!=null">@{{sender.address}}</li>
+                <li>@{{sender.city}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{sender.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{sender.phone}}</li>
              </ul>
            </div>
          </div>
@@ -153,21 +131,14 @@
                 </strong></label>
               </div>
              </form>
-             <p><strong>Chila Bags SAS</strong></p>
+             <p><strong>@{{sender.name}}</strong></p>
              <ul class="section-card-list">
-                <li>65467 Calle 60 #78-145</li>
-                <li>
-                  Bogotá 
-                </li>
-                <li>
-                  <img src="assets/img/icons/colombia.png" alt="">
-                  Colombia</li>
-                <li>
-                  <img src="assets/img/icons/email.png" alt="">
-                  pepita.maria@sigma3ds.com</li>
-                <li>
-                  <img src="assets/img/icons/phone.png" alt="">
-                  24357667889</li>
+                <li>@{{sender.address}}</li>
+                <li v-if="sender.address2!=null">@{{sender.address}}</li>
+                <li>@{{sender.city}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{sender.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{sender.phone}}</li>
              </ul>
            </div>
          </div>
@@ -176,3 +147,107 @@
    </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+   const app = new Vue({
+       el: '#shipingRates',
+       data: {
+         errors:[],
+         sender:'',
+         receiver:'',
+         CourierService:{!! $CourierService ? $CourierService : "''"!!},
+         loading:false,
+
+       },
+       mounted(){
+              
+            this.getSesionShipping();
+
+       },//mounted()
+       methods: {
+
+          async getSesionShipping(){
+
+           let self = this;
+
+            axios.get('{{ url("SesionShipping") }}', {}).then(function (response) {
+
+               if(response.data.success==true){
+
+                    self.sender=response.data.Shipping['sender'];
+
+                    self.receiver=response.data.Shipping['receiver'];
+
+               }//if(response.data.success==true)
+               else if(response.data.success==false){   
+
+                    swal({
+                      "icon": "error",
+                      "text": response.data.msg
+                    }).then((value) => {
+                      window.location.href="{{ url('dashboard') }}"
+                    });
+                    
+
+               }//else if(response.data.success==false)
+
+            }).catch(function (error) {
+
+               iziToast.error({title: 'Mensaje',position:'topRight',message: 'Por favor comuniquese con el administrador del sistema',});
+
+               console.log(error);
+               
+            });  
+         },//SesionShipping
+
+         clear(){
+
+            this.errors=[];
+
+         },//clear()
+
+         async addPackageInformation(){
+
+           let self = this;
+
+            self.loading = true
+            axios.post('{{ url("packageInformation") }}', {
+
+              typesPackaging:self.typesPackaging,
+
+              packageInformation:self.packageInformation,
+
+            }).then(function (response) {
+               self.loading = false
+               if(response.data.success==true){
+                  self.typesPackagingSelect=response.data.TypesPackaging;
+                  self.clear();
+                  self.errors = []
+                  swal({
+                        title: "Información",
+                        text: "Registro Satisfactorio",
+                        icon: "success",
+                  });
+                  //window.location.href="{{ url('informacion-de-paquete') }}";
+               }//if(response.data.success==true)
+               else{                     
+                  iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
+               }//else if(response.data.success==false)
+            }).catch(err => {
+               self.loading = false
+               self.errors = err.response.data.errors
+               if(self.errors){
+                  iziToast.error({title: 'Error',position:'topRight',message: "Hay algunos campos que debes revisar"});  
+               }else{
+                  iziToast.error({title: 'Error',position:'topRight',message: "Ha ocurrido un problema"});  
+               }
+               
+            });  
+
+         },//packageInformation
+       
+       },//methods
+   }); //const app= new Vue
+   
+</script> 
+@endpush

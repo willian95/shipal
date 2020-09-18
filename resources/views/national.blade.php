@@ -256,12 +256,15 @@
                   self.recipients=response.data.recipients;
                   self.clear();
                   self.errors = []
-                  swal({
-                        title: "Información",
-                        text: "Registro Satisfactorio",
-                        icon: "success",
-                  });
-                  window.location.href="{{ url('informacion-de-paquete') }}";
+
+                    swal({
+                      "title": "Información",
+                      "icon": "success",
+                      "text": "Registro Satisfactorio",
+                    }).then((value) => {
+                      window.location.href="{{ url('informacion-de-paquete') }}"
+                    });
+
                }//if(response.data.success==true)
                else{                     
                   iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   

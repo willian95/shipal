@@ -13,4 +13,19 @@ class CourierUser extends Model
         'courier_id',
     ];
 
+    public function users()
+    {
+        return $this->hasMany('App\User','users_id');
+    }
+
+    public function couriers()
+    {
+        return $this->belongsTo('App\Courier','courier_id');
+    }
+
+    public function CourierService()
+    {
+        return $this->hasMany('App\CourierService','courier_id');
+    }
+
 }

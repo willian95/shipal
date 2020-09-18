@@ -12,4 +12,15 @@ class Courier extends Model
         'name',
         'logo',
     ];
+
+
+    public function CourierService()
+    {
+        return $this->belongsTo('App\CourierService','courier_id');
+    }
+
+    public function CourierUser()
+    {
+        return $this->belongsTo('App\CourierUser','courier_id');
+    }
 }

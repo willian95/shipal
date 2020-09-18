@@ -14,5 +14,10 @@ class CourierService extends Model
         'shipping_time',
     ];
 
+    public function couriers()
+    {
+        return $this->belongsTo('App\Courier','courier_id');
+    }
+
 }
 

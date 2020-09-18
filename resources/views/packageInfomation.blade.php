@@ -322,11 +322,14 @@
                   self.typesPackagingSelect=response.data.TypesPackaging;
                   self.clear();
                   self.errors = []
-                  swal({
-                        title: "Información",
-                        text: "Registro Satisfactorio",
-                        icon: "success",
-                  });
+                    swal({
+                      "title": "Información",
+                      "icon": "success",
+                      "text": "Registro Satisfactorio",
+                    }).then((value) => {
+                      window.location.href="{{ url('tarifas-de-envios') }}"
+                    });
+                    
                   //window.location.href="{{ url('informacion-de-paquete') }}";
                }//if(response.data.success==true)
                else{                     
