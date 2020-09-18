@@ -12,7 +12,15 @@
    </span>
    </button>
 </div>
-<div class="main-wrapper-content main-wrapper-content-none">
+<div class="main-wrapper-content main-wrapper-content-none" id="paymentProcess">
+
+      <div class="main-loader" v-if="loading == true">
+         <div class="fulfilling-bouncing-circle-spinner">
+            <div class="circle"></div>
+            <div class="orbit"></div>
+         </div>
+      </div>
+
    <div class="main-packageinformation">
      <div class="section-grid section-gridtwo grid-70">
         <div class="section-form">
@@ -33,14 +41,16 @@
                 <tbody>
                   <tr>
                     <td>
-                      <div class="section-table-img">
-                        <img src="assets/img/logos/fedex.png" alt="">
+                      <div class="text-center">
+                          {{--section-table-img--}}
+                          <img :src="'{{url('/')}}/'+shipingRates.courierService.logo" :alt="shipingRates.courierService.name" class="img-fluid" width="40" height="40" v-if="shipingRates.courierService.name=='UPS'">
+                          <img :src="'{{url('/')}}/'+shipingRates.courierService.logo" :alt="shipingRates.courierService.name" class="img-fluid" width="120" height="120" v-else>
                       </div>
                     </td>
-                    <td>Jackie Risher, Empresa pepito <br> x Orden #56879</td>
-                    <td>Merce Risher, Empresa <br> pepita Orden #56879</td>
-                    <td>80 kgs</td>
-                    <td>$80.000</td>
+                    <td class="text-justify">@{{sender.name}}, Empresa @{{sender.business_name}} <br> x Orden #56879</td>
+                    <td class="text-justify">@{{receiver.name}}, Empresa <br> @{{receiver.business_name}} Orden #56879</td>
+                    <td class="text-center">@{{typePackaging.weight}} kgs</td>
+                    <td class="text-center">@{{shipingRates.courierService.price}}</td>
                   </tr>
               
                 </tbody>
@@ -60,7 +70,7 @@
                       <img src="assets/img/logos/bitmap.png" alt="">
                       <form action="" class="mt-2">
                         <div class="form-check accept-packaging">
-                          <input type="checkbox" class="form-check-input">
+                          <input type="checkbox" class="form-check-input" v-model="pse" @change="payment_method(1)">
                           <label class="form-check-label font-13" for="acceptPackaging"><strong>Pse</strong> </label>
                         </div>
                       </form>
@@ -74,7 +84,7 @@
                       <img src="assets/img/logos/wallet.png" alt="">
                       <form action="" class="mt-2">
                         <div class="form-check accept-packaging">
-                          <input type="checkbox" class="form-check-input">
+                          <input type="checkbox" class="form-check-input"  v-model="shipal" @change="payment_method(2)">
                           <label class="form-check-label font-13" for="acceptPackaging"><strong>Usar saldo de mi billetera Shipal</strong> </label>
                         </div>
                       </form>
@@ -84,10 +94,9 @@
               </div>
             </div>
           </div>
-          <center>
-          <a href="#" class="btn-custom no-shadow medium mt-4">Pagar</a>
-          </center>
-        
+            <div class="btn-formtwo text-center pt-3">
+              <button type="button" class="btn-custom no-shadow medium mt-4" @click="addPaymentProcess()">Pagar</button>
+          </div>
        </div>
        <div class="section-card section-card-paddings">
          <div class="section-card-item">
@@ -98,24 +107,16 @@
              </div>
            </div>
            <div class="section-card-content">
-             <p><strong>Pepita Maria</strong></p>
+             <p><strong>@{{receiver.name}}</strong></p>
              <ul class="section-card-list">
-                <li>Sigma</li>
-                <li>65467 Calle 60 #78-145</li>
-                <li>Medellín </li>
-                <li>
-                  <img src="assets/img/icons/colombia.png" alt="">
-                  Colombia</li>
-                <li>
-                  <img src="assets/img/icons/email.png" alt="">
-                  pepita.maria@sigma3ds.com</li>
-                <li>
-                  <img src="assets/img/icons/phone.png" alt="">
-                  24357667889</li>
+                <li>@{{receiver.business_name}}</li>
+                <li>@{{receiver.address}}</li>
+                <li v-if="receiver.address2!=null">@{{receiver.address}}</li>
+                <li>@{{receiver.city}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{receiver.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{receiver.phone}}</li>
              </ul>
-
-         
-
            </div>
          </div>
          <div class="section-card-item">
@@ -128,21 +129,14 @@
              </div>
            </div>
            <div class="section-card-content">
-             <p><strong>Chila Bags SAS</strong></p>
+             <p><strong>@{{sender.name}}</strong></p>
              <ul class="section-card-list">
-                <li>65467 Calle 60 #78-145</li>
-                <li>
-                  Bogotá 
-                </li>
-                <li>
-                  <img src="assets/img/icons/colombia.png" alt="">
-                  Colombia</li>
-                <li>
-                  <img src="assets/img/icons/email.png" alt="">
-                  pepita.maria@sigma3ds.com</li>
-                <li>
-                  <img src="assets/img/icons/phone.png" alt="">
-                  24357667889</li>
+                <li>@{{sender.address}}</li>
+                <li v-if="sender.address2!=null">@{{sender.address}}</li>
+                <li>@{{sender.city}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{sender.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{sender.phone}}</li>
              </ul>
            </div>
          </div>
@@ -158,27 +152,20 @@
            <div class="section-card-content">
              <form action="" class="mt-2 mb-2">
               <div class="form-check accept-packaging">
-                <input type="checkbox" class="form-check-input">
+                <input type="checkbox" class="form-check-input"  v-model="shipingRates.useMyAddress">
                 <label class="form-check-label font-13" for="acceptPackaging"><strong>
                   Usar mi dirección de retorno
                 </strong></label>
               </div>
              </form>
-             <p><strong>Chila Bags SAS</strong></p>
+             <p><strong>@{{sender.name}}</strong></p>
              <ul class="section-card-list">
-                <li>65467 Calle 60 #78-145</li>
-                <li>
-                  Bogotá 
-                </li>
-                <li>
-                  <img src="assets/img/icons/colombia.png" alt="">
-                  Colombia</li>
-                <li>
-                  <img src="assets/img/icons/email.png" alt="">
-                  pepita.maria@sigma3ds.com</li>
-                <li>
-                  <img src="assets/img/icons/phone.png" alt="">
-                  24357667889</li>
+                <li>@{{sender.address}}</li>
+                <li v-if="sender.address2!=null">@{{sender.address}}</li>
+                <li>@{{sender.city}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{sender.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{sender.phone}}</li>
              </ul>
            </div>
          </div>
@@ -189,3 +176,146 @@
 </div>
 @include('partials.modals')
 @endsection
+@push('scripts')
+<script>
+   const app = new Vue({
+       el: '#paymentProcess',
+       data: {
+         errors:[],
+         sender:'',
+         receiver:'',
+         shipingRates:{
+              courierService:'',
+              useMyAddress:false,
+         },
+         paymentProcess:{
+            payment_method:'',
+         },
+         typePackaging:'',
+         pse:false,
+         shipal:false,
+         loading:false,
+       },
+       mounted(){
+              
+            this.getSesionShipping();
+
+       },//mounted()
+       methods: {
+
+          async getSesionShipping(){
+
+           let self = this;
+
+            axios.get('{{ url("SesionShipping") }}', {}).then(function (response) {
+
+               if(response.data.success==true){
+
+                    self.sender=response.data.Shipping['sender'];
+
+                    self.receiver=response.data.Shipping['receiver'];
+
+                    self.shipingRates=response.data.Shipping['shipingRates'];
+
+                    self.typePackaging=response.data.Shipping['typePackaging'];
+
+
+               }//if(response.data.success==true)
+               else if(response.data.success==false){   
+
+                    swal({
+                      "icon": "error",
+                      "text": response.data.msg
+                    }).then((value) => {
+                      window.location.href="{{ url('dashboard') }}"
+                    });
+                    
+
+               }//else if(response.data.success==false)
+
+            }).catch(function (error) {
+
+               iziToast.error({title: 'Mensaje',position:'topRight',message: 'Por favor comuniquese con el administrador del sistema',});
+
+               console.log(error);
+               
+            });  
+         },//SesionShipping
+
+         clear(){
+
+            this.errors=[];
+
+         },//clear()
+
+         async addPaymentProcess(){
+
+           let self = this;
+
+            if(self.pse=="" && self.shipal==""){
+              iziToast.error({title: 'Error',position:'topRight',message: "Se debe seleccionar una forma de pago"});  
+              return -1;
+            }//if(this.shipingRates.courierService=="")
+            else if(self.pse!=""){
+                self.paymentProcess.payment_method="pse";
+            }else {
+                self.paymentProcess.payment_method="shipal";
+            }//else
+
+            self.loading = true
+            axios.post('{{ url("paymentProcess") }}', {
+
+              shipingRates:self.shipingRates,
+              paymentProcess:self.paymentProcess,
+
+            }).then(function (response) {
+               self.loading = false
+               if(response.data.success==true){
+                  self.clear();
+                  self.errors = []
+                    swal({
+                      "title": "Información",
+                      "icon": "success",
+                      "text": "Registro Satisfactorio",
+                    }).then((value) => {
+                      window.location.href="{{ url('descargas') }}"
+                    });
+                  //window.location.href="{{ url('informacion-de-paquete') }}";
+               }//if(response.data.success==true)
+               else{                     
+                  iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
+               }//else if(response.data.success==false)
+            }).catch(err => {
+               self.loading = false
+               self.errors = err.response.data.errors
+               if(self.errors){
+                  iziToast.error({title: 'Error',position:'topRight',message: "Hay algunos campos que debes revisar"});  
+               }else{
+                  iziToast.error({title: 'Error',position:'topRight',message: "Ha ocurrido un problema"});  
+               }
+               
+            });  
+
+         },//packageInformation
+         
+         payment_method(opt){
+
+            let self = this;
+
+            if(opt==1 && (self.pse==true || self.pse==1)){
+
+               self.shipal=false;
+
+            }else if(opt==2 && (self.shipal==true || self.shipal==1)){
+
+               self.pse=false;
+
+            }//else
+
+         },//payment_method
+
+       },//methods
+   }); //const app= new Vue
+   
+</script> 
+@endpush

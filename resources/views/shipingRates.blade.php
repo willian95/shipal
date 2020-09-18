@@ -28,6 +28,14 @@
    </button>
 </div>
 <div class="main-wrapper-content main-wrapper-content-none pt-0" id="shipingRates">
+
+      <div class="main-loader" v-if="loading == true">
+         <div class="fulfilling-bouncing-circle-spinner">
+            <div class="circle"></div>
+            <div class="orbit"></div>
+         </div>
+      </div>
+      
    <div class="main-packageinformation">
      <div class="section-grid section-gridtwo grid-70">
        <div class="section-form">
@@ -68,8 +76,8 @@
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
           </div>
           <div class="btn-formtwo text-center pt-3">
-              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates">Continuar el pago</button>
-              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates">Guardar para más tarde</button>
+              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates(2)">Continuar el pago</button>
+              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates(1)">Guardar para más tarde</button>
           </div>
        </div>
        
@@ -229,7 +237,7 @@
 
          },//addCourierService()
 
-         async addShipingRates(){
+         async addShipingRates(opt){
 
            let self = this;
 
@@ -247,12 +255,23 @@
                self.loading = false
                if(response.data.success==true){
                   self.clear();
-                  self.errors = []
-                  swal({
+                  self.errors = [];
+                  if(opt==1){
+                      swal({
                         title: "Información",
                         text: "Registro Satisfactorio",
                         icon: "success",
-                  });
+                      });
+                  }//if(opt==1)
+                  else{
+                    swal({
+                      "title": "Información",
+                      "icon": "success",
+                      "text": "Registro Satisfactorio",
+                    }).then((value) => {
+                      window.location.href="{{ url('proceso-de-pago') }}"
+                    });
+                  }//else
                   //window.location.href="{{ url('informacion-de-paquete') }}";
                }//if(response.data.success==true)
                else{                     
