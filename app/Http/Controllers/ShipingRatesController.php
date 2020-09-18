@@ -47,8 +47,7 @@ class ShipingRatesController extends Controller
 
 
         ])->get(['id','user_id','courier_id']);
-        
-        
+
         return view('shipingRates')->with(['CourierService'=>json_encode($this->organizeDataCourierService($CourierUsers))]);
 
     }//function index()

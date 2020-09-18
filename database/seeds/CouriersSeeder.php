@@ -15,7 +15,7 @@ class CouriersSeeder extends Seeder
 
         if($couriers==0){
             
-            DB::table('couriers')->truncate();
+            //DB::table('couriers')->truncate();
 
             $couriers = [
                 ['name' => 'DHL', 'logo' => 'assets/img/logosCourier/CF2F0F59-4919-4249-BB37-D12411C80CA3.png'],

@@ -11,12 +11,12 @@ class CourierServicesSeeder extends Seeder
      */
     public function run()
     {
-        $courier_services = DB::table('couriers')->count();
+        $courier_services = DB::table('courier_services')->count();
 
         if($courier_services==0){
 
 
-            DB::table('courier_services')->truncate();
+            //DB::table('courier_services')->truncate();
 
             $courier_services = [
                 ['courier_id' => '1', 'service_name' => 'Express', 'shipping_time' => '1 día'],
