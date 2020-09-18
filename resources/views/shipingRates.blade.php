@@ -55,9 +55,9 @@
                       </td>
                       <td class="align-middle">@{{service.service_name}}</td>
                       <td class="align-middle">@{{service.shipping_time}}</td>
-                      <td class="align-middle">$320.000</td>
+                      <td class="align-middle">$@{{service.price}}</td>
                       <td>
-                        <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
+                        <button type="button" class="btn-custom no-shadow extrasmall" @click="addCourierService(service)">Comprar Etiqueta</button>
                       </td>
                     </tr>
                 
@@ -67,7 +67,12 @@
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
           </div>
+          <div class="btn-formtwo text-center pt-3">
+              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates">Continuar el pago</button>
+              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates">Guardar para más tarde</button>
+          </div>
        </div>
+       
        <div class="section-card section-card-paddings">
          <div class="section-card-item">
            <div class="section-card-header">
@@ -87,9 +92,6 @@
                 <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{receiver.email}}</li>
                 <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{receiver.phone}}</li>
              </ul>
-
-         
-
            </div>
          </div>
          <div class="section-card-item">
@@ -125,7 +127,7 @@
            <div class="section-card-content">
              <form action="" class="mt-2 mb-2">
               <div class="form-check accept-packaging">
-                <input type="checkbox" class="form-check-input">
+                <input type="checkbox" class="form-check-input"  value="si" v-model="shipingRates.useMyAddress">
                 <label class="form-check-label font-13" for="acceptPackaging"><strong>
                   Usar mi dirección de retorno
                 </strong></label>
@@ -156,6 +158,10 @@
          sender:'',
          receiver:'',
          CourierService:{!! $CourierService ? $CourierService : "''"!!},
+         shipingRates:{
+              courierService:'',
+              useMyAddress:'',
+         },
          loading:false,
 
        },
@@ -204,23 +210,42 @@
 
             this.errors=[];
 
+            this.shipingRates={
+              courierService:'',
+              useMyAddress:'',
+             };
+
          },//clear()
 
-         async addPackageInformation(){
+         addCourierService(CourierService){
+
+           this.shipingRates.courierService=CourierService;
+
+            swal({
+              title: "Información",
+              text: "Eiqueta "+CourierService.name+" "+CourierService.service_name,
+              icon: "success",
+            });
+
+         },//addCourierService()
+
+         async addShipingRates(){
 
            let self = this;
 
+            if(this.shipingRates.courierService==""){
+              iziToast.error({title: 'Error',position:'topRight',message: "Se debe comprar una etiqueta"});  
+              return -1;
+            }//if(this.shipingRates.courierService=="")
+
             self.loading = true
-            axios.post('{{ url("packageInformation") }}', {
+            axios.post('{{ url("shipingRates") }}', {
 
-              typesPackaging:self.typesPackaging,
-
-              packageInformation:self.packageInformation,
+              shipingRates:self.shipingRates,
 
             }).then(function (response) {
                self.loading = false
                if(response.data.success==true){
-                  self.typesPackagingSelect=response.data.TypesPackaging;
                   self.clear();
                   self.errors = []
                   swal({

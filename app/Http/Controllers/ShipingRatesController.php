@@ -70,6 +70,7 @@ class ShipingRatesController extends Controller
                     'logo'=>$CourierService->couriers->logo,
                     'service_name'=>$CourierService->service_name,
                     'shipping_time'=>$CourierService->shipping_time,
+                    'price'=>number_format((rand(200000, 500000)),2,",","."),
                 ];
 
               }//foreach($CourierUser->CourierService as $CourierService)
@@ -81,5 +82,25 @@ class ShipingRatesController extends Controller
         return $data;
 
     }//function organizeData()
+
+    function shipingRates(Request $request){
+
+        try{
+            
+            $Shipping=Session::get('Shipping');
+
+            $Shipping['step']=3;
+
+            $Shipping['shipingRates']=$request->shipingRates;
+
+            Session::put('Shipping',$Shipping);
+
+            return response()->json(["success" => true, "msg" => "Obtención de datos exitosa!"]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }//catch(\Exception $e)
+
+    }//function shipingRates(Request $request)
 
 }
