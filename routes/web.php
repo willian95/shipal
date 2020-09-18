@@ -52,7 +52,9 @@ Route::post("/findTypesPackaging","TypePackagingController@findTypesPackaging")-
 
 Route::get("/tarifas-de-envios", "ShipingRatesController@index")->name("tarifas-de-envios");
 Route::post("/shipingRates","ShipingRatesController@shipingRates")->name("shipingRates");
-Route::get("/proceso-de-pago", function(){ return view('paymentProcess'); });
+Route::get("/proceso-de-pago", "PaymentProcessController@index")->name("proceso-de-pago");
+Route::post("/paymentProcess", "PaymentProcessController@paymentProcess")->name("paymentProcess");
+
 Route::get("/descargas", function(){ return view('download'); });
 
 Route::get("/plan", function(){ return view('plan'); });

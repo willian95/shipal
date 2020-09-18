@@ -274,6 +274,7 @@ class RecipientController extends Controller
                                             'typePackaging'=>[],
                                             'packageInformation'=>[],
                                             'shipingRates'=>[],
+                                            'payments'=>[],
 
                                         ]);
 
