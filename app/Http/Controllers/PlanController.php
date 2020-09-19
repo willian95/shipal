@@ -60,10 +60,9 @@ class PlanController extends Controller
             $planUser = array_merge($planUser, ['expiration_date'=>$expiration_date]);
 
 
-            $search = PlanUser::where('user_id',auth()->id())->where('expiration_date','<',$now)->first();
+            $search = PlanUser::where('user_id',auth()->id())->where('expiration_date','>',$now)->first();
 
-
-            if (empty($search)) {
+            if (!empty($search)) {
 
                 return response()->json(["success" => false, "msg" => "Estimado cliente, ya posee un plan activo!"]);
 
