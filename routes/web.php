@@ -57,7 +57,9 @@ Route::post("/paymentProcess", "PaymentProcessController@paymentProcess")->name(
 
 Route::get("/descargas", function(){ return view('download'); });
 
-Route::get("/plan", function(){ return view('plan'); });
+Route::get("/plan","PlanController@index")->name("plan");
+Route::post("/addPlan","PlanController@addPlan")->name("addPlan");
+
 
 Route::get("/declaracion-de-aduanas", function(){ return view('customsDeclaration'); });
 
