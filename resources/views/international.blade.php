@@ -228,6 +228,9 @@
         loading:false
        },
        mounted(){
+
+          this.getSesionShippingInternational();
+
        },
        methods: {
          getRecipients(){
@@ -292,11 +295,15 @@
                   self.recipients=response.data.recipients;
                   self.clear();
                   self.errors = []
-                  swal({
-                        title: "Información",
-                        text: "Registro Satisfactorio",
-                        icon: "success",
-                  });
+
+                    swal({
+                      "title": "Información",
+                      "icon": "success",
+                      "text": "Registro Satisfactorio",
+                    }).then((value) => {
+                      window.location.href="{{ url('internacional/informacion-de-paquete') }}"
+                    });
+
                }//if(response.data.success==true)
                else{                     
                   iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
@@ -372,8 +379,32 @@
                       }; 
                }//else
             }//else
-
          },//getRecipient(opt)
+         getSesionShippingInternational(){
+
+           let self = this;
+
+            axios.get('{{ url("SesionShippingInternational") }}', {}).then(function (response) {
+
+               if(response.data.success==true){
+
+                  console.log(response.data);
+
+               }//if(response.data.success==true)
+               else if(response.data.success==false){   
+
+                  console.log(response.data);
+
+               }//else if(response.data.success==false)
+
+            }).catch(function (error) {
+
+               iziToast.error({title: 'Mensaje',position:'topRight',message: 'Por favor comuniquese con el administrador del sistema',});
+
+               console.log(error);
+               
+            });  
+         }//SesionShippingInternational
        },//methods
    }); //const app= new Vue
 </script> 

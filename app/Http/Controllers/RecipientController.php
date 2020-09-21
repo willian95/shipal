@@ -201,13 +201,15 @@ class RecipientController extends Controller
 
             }//else
 
+            $ShippingInternational=Session::get('ShippingInternational');
 
-            $Shipping=Session::get('Shipping');
+            $ShippingInternational['step']=1;
 
-            $Shipping['sender']=$sender;
-            $Shipping['receiver']=$receiver;
+            $ShippingInternational['sender']=$sender;
 
-            Session::put('Shipping',$Shipping);
+            $ShippingInternational['receiver']=$receiver;
+
+            Session::put('ShippingInternational',$ShippingInternational);
 
             $recipients=Recipient::orderBy('name','asc')->where('is_international',$request->opt)->get();
 
@@ -287,5 +289,47 @@ class RecipientController extends Controller
             
         }//catch(\Exception $e)
     }//public function SesionShipping()
+
+    public function SesionShippingInternational(){
+
+      try{
+
+            if(session()->has('ShippingInternational')){
+
+                $ShippingInternational=Session::get('ShippingInternational');
+
+                if($ShippingInternational['step']==0){
+
+                    return response()->json(["success" => false, "msg" =>"No tienes un envio en proceso"]);
+
+                }else{
+
+                    return response()->json(["success" => true, "msg" => "Tienes un envio en proceso","ShippingInternational"=>$ShippingInternational]);
+
+
+                }//else
+
+            }else{
+
+                Session::put('ShippingInternational',[
+                                            'step' => 0,
+                                            'sender' => [],
+                                            'receiver'=>[],
+                                            'typePackaging'=>[],
+                                            'packageInformation'=>[],
+                                            'shipingRates'=>[],
+                                            'payments'=>[],
+
+                                        ]);
+
+                return response()->json(["success" => false, "msg" =>"No tienes un envio en proceso"]);
+
+            }//else
+        }catch(\Exception $e){
+
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+            
+        }//catch(\Exception $e)
+    }//public function SesionShippingInternational()
 
 }

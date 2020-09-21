@@ -30,19 +30,41 @@ class PaymentProcessController extends Controller
 
     }//function index()
 
+    function indexInternational(){ 
+
+        return view('paymentProcessInternational'); 
+
+    }//function indexInternational()
+
     function paymentProcess(Request $request){
       
         try{
             
-            $Shipping=Session::get('Shipping');
+            if($request->international==0){
 
-            $Shipping['step']=4;
+                $Shipping=Session::get('Shipping');
 
-            $Shipping['shipingRates']=$request->shipingRates;
+                $Shipping['step']=4;
 
-            $Shipping['payments']=$request->paymentProcess;
+                $Shipping['shipingRates']=$request->shipingRates;
 
-            Session::put('Shipping',$Shipping);
+                $Shipping['payments']=$request->paymentProcess;
+
+                Session::put('Shipping',$Shipping);
+
+            }else{
+
+                $ShippingInternational=Session::get('ShippingInternational');
+
+                $ShippingInternational['step']=4;
+
+                $ShippingInternational['shipingRates']=$request->shipingRates;
+
+                $ShippingInternational['payments']=$request->paymentProcess;
+
+                Session::put('ShippingInternational',$ShippingInternational);
+
+            }//else
 
             return response()->json(["success" => true, "msg" => "Obtención de datos exitosa!"]);
 

@@ -251,6 +251,8 @@
 
               shipingRates:self.shipingRates,
 
+              international:0,
+
             }).then(function (response) {
                self.loading = false
                if(response.data.success==true){

@@ -3,7 +3,7 @@
 @section("content")
 <div class="main-wrapper-boxheader">
    <div class="main-wrapper-header main-wrapper-header-transparent">
-      <h2>Nacional</h2>
+      <h2>Internacional</h2>
     
    </div>
    <button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="offcanvas" type="button">
@@ -62,7 +62,7 @@
           <div class="section-card section-card-paddings">
             <p class="mt-4"><strong>Pagos</strong></p>
             <div class="section-card-item ">
-              <p class="section-card-textprimary text-center">Nacional</p>
+              <p class="section-card-textprimary text-center">Internacional</p>
               <div class="d-flex justify-content-center flex-column flex-sm-row flex-md-row flex-lg-row flex-xl-row align-items-center">
                 <div class="card-w25 section-card-item ">
                   <div class="section-card-content">
@@ -198,26 +198,26 @@
        },
        mounted(){
               
-            this.getSesionShipping();
+            this.getSesionShippingInternational();
 
        },//mounted()
        methods: {
 
-          async getSesionShipping(){
+          async getSesionShippingInternational(){
 
            let self = this;
 
-            axios.get('{{ url("SesionShipping") }}', {}).then(function (response) {
+            axios.get('{{ url("SesionShippingInternational") }}', {}).then(function (response) {
 
                if(response.data.success==true){
 
-                    self.sender=response.data.Shipping['sender'];
+                    self.sender=response.data.ShippingInternational['sender'];
 
-                    self.receiver=response.data.Shipping['receiver'];
+                    self.receiver=response.data.ShippingInternational['receiver'];
 
-                    self.shipingRates=response.data.Shipping['shipingRates'];
+                    self.shipingRates=response.data.ShippingInternational['shipingRates'];
 
-                    self.typePackaging=response.data.Shipping['typePackaging'];
+                    self.typePackaging=response.data.ShippingInternational['typePackaging'];
 
 
                }//if(response.data.success==true)
@@ -266,10 +266,10 @@
             axios.post('{{ url("paymentProcess") }}', {
 
               shipingRates:self.shipingRates,
-              
+
               paymentProcess:self.paymentProcess,
 
-              international:0,
+              international:1,
 
             }).then(function (response) {
                self.loading = false
@@ -281,9 +281,8 @@
                       "icon": "success",
                       "text": "Registro Satisfactorio",
                     }).then((value) => {
-                      window.location.href="{{ url('nacional/descargas') }}"
+                      window.location.href="{{ url('internacional/descargas') }}"
                     });
-                  //window.location.href="{{ url('informacion-de-paquete') }}";
                }//if(response.data.success==true)
                else{                     
                   iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   

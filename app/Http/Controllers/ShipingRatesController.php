@@ -52,6 +52,33 @@ class ShipingRatesController extends Controller
 
     }//function index()
 
+    function indexInternational(){ 
+
+        $CourierUsers=CourierUser::query()->where('user_id',auth()->id())->select(['id','user_id','courier_id'])->orderBy('id','ASC');
+
+        $CourierUsers= $CourierUsers->with([
+
+              'CourierService.couriers' => function($query){
+
+                  $query->select('id','name','logo')->orderBy('id','ASC');
+
+              },
+
+              'CourierService' => function($query){
+
+                  $query->select('id','courier_id','service_name','shipping_time')->orderBy('id','ASC');
+
+              },
+
+
+        ])->get(['id','user_id','courier_id']);
+
+        return view('shipingRatesInternational')->with(['CourierService'=>json_encode($this->organizeDataCourierService($CourierUsers))]);
+
+    }//function indexInternational()
+
+    
+
     public function organizeDataCourierService($CourierUsers){
 
         $data=array();
@@ -85,15 +112,28 @@ class ShipingRatesController extends Controller
     function shipingRates(Request $request){
 
         try{
+
+            if($request->international==0){
             
-            $Shipping=Session::get('Shipping');
+                $Shipping=Session::get('Shipping');
 
-            $Shipping['step']=3;
+                $Shipping['step']=3;
 
-            $Shipping['shipingRates']=$request->shipingRates;
+                $Shipping['shipingRates']=$request->shipingRates;
 
-            Session::put('Shipping',$Shipping);
+                Session::put('Shipping',$Shipping);
 
+            }else{
+
+                $ShippingInternational=Session::get('ShippingInternational');
+
+                $ShippingInternational['step']=3;
+
+                $ShippingInternational['shipingRates']=$request->shipingRates;
+
+                Session::put('ShippingInternational',$ShippingInternational);
+
+            }//else
             return response()->json(["success" => true, "msg" => "Obtención de datos exitosa!"]);
 
         }catch(\Exception $e){

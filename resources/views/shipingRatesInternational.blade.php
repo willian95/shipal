@@ -3,8 +3,23 @@
 @section("content")
 <div class="main-wrapper-boxheader">
    <div class="main-wrapper-header main-wrapper-header-transparent">
-      <h2>Nacional</h2>
-    
+      <h2>Internacional</h2>
+      <div class="main-steps-header">
+        <p class="main-steps-text">
+          Paso 
+          <span>2</span>
+          de 
+          <span>3</span>
+        </p>
+        <div class="main-steps-active">
+          <div class="main-steps-icon">
+            <img src="assets/img/icons/arrow-up.png" alt="">
+          </div>
+          <p>
+            <strong>Información del paquete</strong>
+          </p>
+        </div>
+      </div>
    </div>
    <button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="offcanvas" type="button">
    <span class="hamburger-box">
@@ -12,7 +27,7 @@
    </span>
    </button>
 </div>
-<div class="main-wrapper-content main-wrapper-content-none" id="paymentProcess">
+<div class="main-wrapper-content main-wrapper-content-none pt-0" id="shipingRates">
 
       <div class="main-loader" v-if="loading == true">
          <div class="fulfilling-bouncing-circle-spinner">
@@ -20,84 +35,52 @@
             <div class="orbit"></div>
          </div>
       </div>
-
+      
    <div class="main-packageinformation">
      <div class="section-grid section-gridtwo grid-70">
-        <div class="section-form">
-  
-          <div class="section-table section-table-nopadd">
-            <div class="section-table-content section-table-contentbg table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Transportadora</th>
-                    <th scope="col">Origen</th>
-                    <th scope="col">Destino</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Valor del envío</th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="text-center">
-                          {{--section-table-img--}}
-                          <img :src="'{{url('/')}}/'+shipingRates.courierService.logo" :alt="shipingRates.courierService.name" class="img-fluid" width="40" height="40" v-if="shipingRates.courierService.name=='UPS'">
-                          <img :src="'{{url('/')}}/'+shipingRates.courierService.logo" :alt="shipingRates.courierService.name" class="img-fluid" width="120" height="120" v-else>
-                      </div>
-                    </td>
-                    <td class="text-justify">@{{sender.name}}, Empresa @{{sender.business_name}} <br> x Orden #56879</td>
-                    <td class="text-justify">@{{receiver.name}}, Empresa <br> @{{receiver.business_name}} Orden #56879</td>
-                    <td class="text-center">@{{typePackaging.weight}} kgs</td>
-                    <td class="text-center">@{{shipingRates.courierService.price}}</td>
-                  </tr>
-              
-                </tbody>
-              </table>
-              
-            </div>
-          </div>
+       <div class="section-form">
+          <ul class="nav nav-tabs nav-tabs-nopadd" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Shipal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Otra (en caso de que esté integrado)</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="section-table-content section-table-tabscontent table-responsive pt-0">
+                <table class="table">
+                  <tbody>
+                    <tr v-for="service in CourierService">
+                      <td>
+                        <div class="text-center align-middle" >
+                        {{--section-table-img--}}
+                          <img :src="'{{url('/')}}/'+service.logo" :alt="service.name" class="img-fluid" width="40" height="40" v-if="service.name=='UPS'">
+                          <img :src="'{{url('/')}}/'+service.logo" :alt="service.name" class="img-fluid" width="120" height="120" v-else>
 
-          <div class="section-card section-card-paddings">
-            <p class="mt-4"><strong>Pagos</strong></p>
-            <div class="section-card-item ">
-              <p class="section-card-textprimary text-center">Nacional</p>
-              <div class="d-flex justify-content-center flex-column flex-sm-row flex-md-row flex-lg-row flex-xl-row align-items-center">
-                <div class="card-w25 section-card-item ">
-                  <div class="section-card-content">
-                    <div class="text-center">
-                      <img src="{{ asset('assets/img/logos/bitmap.png') }}" alt="">
-                      <form action="" class="mt-2">
-                        <div class="form-check accept-packaging">
-                          <input type="checkbox" class="form-check-input" v-model="pse" @change="payment_method(1)">
-                          <label class="form-check-label font-13" for="acceptPackaging"><strong>Pse</strong> </label>
                         </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-w25 section-card-item">
-                  
-                  <div class="section-card-content">
-                    <div class="text-center">
-                      <img src="{{ asset('assets/img/logos/wallet.png') }}" alt="wallet.png">
-                      <form action="" class="mt-2">
-                        <div class="form-check accept-packaging">
-                          <input type="checkbox" class="form-check-input"  v-model="shipal" @change="payment_method(2)">
-                          <label class="form-check-label font-13" for="acceptPackaging"><strong>Usar saldo de mi billetera Shipal</strong> </label>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+                      </td>
+                      <td class="align-middle">@{{service.service_name}}</td>
+                      <td class="align-middle">@{{service.shipping_time}}</td>
+                      <td class="align-middle">$@{{service.price}}</td>
+                      <td>
+                        <button type="button" class="btn-custom no-shadow extrasmall" @click="addCourierService(service)">Comprar Etiqueta</button>
+                      </td>
+                    </tr>
+                
+                  </tbody>
+                </table>
               </div>
             </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
           </div>
-            <div class="btn-formtwo text-center pt-3">
-              <button type="button" class="btn-custom no-shadow medium mt-4" @click="addPaymentProcess()">Pagar</button>
+          <div class="btn-formtwo text-center pt-3">
+              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates(2)">Continuar el pago</button>
+              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates(1)">Guardar para más tarde</button>
           </div>
        </div>
+       
        <div class="section-card section-card-paddings">
          <div class="section-card-item">
            <div class="section-card-header">
@@ -152,7 +135,7 @@
            <div class="section-card-content">
              <form action="" class="mt-2 mb-2">
               <div class="form-check accept-packaging">
-                <input type="checkbox" class="form-check-input"  v-model="shipingRates.useMyAddress">
+                <input type="checkbox" class="form-check-input"  value="si" v-model="shipingRates.useMyAddress">
                 <label class="form-check-label font-13" for="acceptPackaging"><strong>
                   Usar mi dirección de retorno
                 </strong></label>
@@ -169,56 +152,45 @@
              </ul>
            </div>
          </div>
-         
        </div>
      </div>
    </div>
 </div>
-@include('partials.modals')
 @endsection
 @push('scripts')
 <script>
    const app = new Vue({
-       el: '#paymentProcess',
+       el: '#shipingRates',
        data: {
          errors:[],
          sender:'',
          receiver:'',
+         CourierService:{!! $CourierService ? $CourierService : "''"!!},
          shipingRates:{
               courierService:'',
-              useMyAddress:false,
+              useMyAddress:'',
          },
-         paymentProcess:{
-            payment_method:'',
-         },
-         typePackaging:'',
-         pse:false,
-         shipal:false,
          loading:false,
+
        },
        mounted(){
               
-            this.getSesionShipping();
+            this.getSesionShippingInternational();
 
        },//mounted()
        methods: {
 
-          async getSesionShipping(){
+          async getSesionShippingInternational(){
 
            let self = this;
 
-            axios.get('{{ url("SesionShipping") }}', {}).then(function (response) {
+            axios.get('{{ url("SesionShippingInternational") }}', {}).then(function (response) {
 
                if(response.data.success==true){
 
-                    self.sender=response.data.Shipping['sender'];
+                    self.sender=response.data.ShippingInternational['sender'];
 
-                    self.receiver=response.data.Shipping['receiver'];
-
-                    self.shipingRates=response.data.Shipping['shipingRates'];
-
-                    self.typePackaging=response.data.Shipping['typePackaging'];
-
+                    self.receiver=response.data.ShippingInternational['receiver'];
 
                }//if(response.data.success==true)
                else if(response.data.success==false){   
@@ -246,44 +218,62 @@
 
             this.errors=[];
 
+            this.shipingRates={
+              courierService:'',
+              useMyAddress:'',
+             };
+
          },//clear()
 
-         async addPaymentProcess(){
+         addCourierService(CourierService){
+
+           this.shipingRates.courierService=CourierService;
+
+            swal({
+              title: "Información",
+              text: "Eiqueta "+CourierService.name+" "+CourierService.service_name,
+              icon: "success",
+            });
+
+         },//addCourierService()
+
+         async addShipingRates(opt){
 
            let self = this;
 
-            if(self.pse=="" && self.shipal==""){
-              iziToast.error({title: 'Error',position:'topRight',message: "Se debe seleccionar una forma de pago"});  
+            if(this.shipingRates.courierService==""){
+              iziToast.error({title: 'Error',position:'topRight',message: "Se debe comprar una etiqueta"});  
               return -1;
             }//if(this.shipingRates.courierService=="")
-            else if(self.pse!=""){
-                self.paymentProcess.payment_method="pse";
-            }else {
-                self.paymentProcess.payment_method="shipal";
-            }//else
 
             self.loading = true
-            axios.post('{{ url("paymentProcess") }}', {
+            axios.post('{{ url("shipingRates") }}', {
 
               shipingRates:self.shipingRates,
               
-              paymentProcess:self.paymentProcess,
-
-              international:0,
+              international:1,
 
             }).then(function (response) {
                self.loading = false
                if(response.data.success==true){
                   self.clear();
-                  self.errors = []
+                  self.errors = [];
+                  if(opt==1){
+                      swal({
+                        title: "Información",
+                        text: "Registro Satisfactorio",
+                        icon: "success",
+                      });
+                  }//if(opt==1)
+                  else{
                     swal({
                       "title": "Información",
                       "icon": "success",
                       "text": "Registro Satisfactorio",
                     }).then((value) => {
-                      window.location.href="{{ url('nacional/descargas') }}"
+                      window.location.href="{{ url('internacional/proceso-de-pago') }}"
                     });
-                  //window.location.href="{{ url('informacion-de-paquete') }}";
+                  }//else
                }//if(response.data.success==true)
                else{                     
                   iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
@@ -300,23 +290,7 @@
             });  
 
          },//packageInformation
-         
-         payment_method(opt){
-
-            let self = this;
-
-            if(opt==1 && (self.pse==true || self.pse==1)){
-
-               self.shipal=false;
-
-            }else if(opt==2 && (self.shipal==true || self.shipal==1)){
-
-               self.pse=false;
-
-            }//else
-
-         },//payment_method
-
+       
        },//methods
    }); //const app= new Vue
    
