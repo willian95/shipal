@@ -262,7 +262,7 @@
                       "icon": "success",
                       "text": "Registro Satisfactorio",
                     }).then((value) => {
-                      window.location.href="{{ url('informacion-de-paquete') }}"
+                      window.location.href="{{ url('nacional/informacion-de-paquete') }}"
                     });
 
                }//if(response.data.success==true)

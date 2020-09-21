@@ -67,7 +67,7 @@
                 <div class="card-w25 section-card-item ">
                   <div class="section-card-content">
                     <div class="text-center">
-                      <img src="assets/img/logos/bitmap.png" alt="">
+                      <img src="{{ asset('assets/img/logos/bitmap.png') }}" alt="">
                       <form action="" class="mt-2">
                         <div class="form-check accept-packaging">
                           <input type="checkbox" class="form-check-input" v-model="pse" @change="payment_method(1)">
@@ -81,7 +81,7 @@
                   
                   <div class="section-card-content">
                     <div class="text-center">
-                      <img src="assets/img/logos/wallet.png" alt="">
+                      <img src="{{ asset('assets/img/logos/wallet.png') }}" alt="wallet.png">
                       <form action="" class="mt-2">
                         <div class="form-check accept-packaging">
                           <input type="checkbox" class="form-check-input"  v-model="shipal" @change="payment_method(2)">
@@ -278,7 +278,7 @@
                       "icon": "success",
                       "text": "Registro Satisfactorio",
                     }).then((value) => {
-                      window.location.href="{{ url('descargas') }}"
+                      window.location.href="{{ url('nacional/descargas') }}"
                     });
                   //window.location.href="{{ url('informacion-de-paquete') }}";
                }//if(response.data.success==true)

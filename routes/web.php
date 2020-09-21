@@ -46,16 +46,16 @@ Route::post("/forgotPasswordReset", "ForgotPasswordController@forgotPasswordRese
 Route::get("/forgotPassword/reset/{forgotPasswordHash}", "ForgotPasswordController@reset");
 Route::post("/reset-password", "ForgotPasswordController@resetPassword")->name("reset-password");
 
-Route::get("/informacion-de-paquete","PackageInformationController@index")->name("informacion-de-paquete");
+Route::get("/nacional/informacion-de-paquete","PackageInformationController@index");
 Route::post("/packageInformation","PackageInformationController@packageInformation")->name("packageInformation");
 Route::post("/findTypesPackaging","TypePackagingController@findTypesPackaging")->name("findTypesPackaging");
 
-Route::get("/tarifas-de-envios", "ShipingRatesController@index")->name("tarifas-de-envios");
+Route::get("/nacional/tarifas-de-envios", "ShipingRatesController@index");
 Route::post("/shipingRates","ShipingRatesController@shipingRates")->name("shipingRates");
-Route::get("/proceso-de-pago", "PaymentProcessController@index")->name("proceso-de-pago");
+Route::get("/nacional/proceso-de-pago", "PaymentProcessController@index");
 Route::post("/paymentProcess", "PaymentProcessController@paymentProcess")->name("paymentProcess");
 
-Route::get("/descargas", function(){ return view('download'); });
+Route::get("nacional/descargas", function(){ return view('download'); });
 
 Route::get("/plan","PlanController@index")->name("plan");
 Route::post("/addPlan","PlanController@addPlan")->name("addPlan");

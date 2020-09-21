@@ -327,7 +327,7 @@
                       "icon": "success",
                       "text": "Registro Satisfactorio",
                     }).then((value) => {
-                      window.location.href="{{ url('tarifas-de-envios') }}"
+                      window.location.href="{{ url('nacional/tarifas-de-envios') }}"
                     });
                     
                   //window.location.href="{{ url('informacion-de-paquete') }}";
