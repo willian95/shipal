@@ -7,6 +7,8 @@ use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\User;
+use App\Courier;
+use App\CourierUser;
 
 class RegisterController extends Controller
 {
@@ -30,6 +32,9 @@ class RegisterController extends Controller
             $user->register_hash = $registerHash;
             $user->save();
             
+            //AssignCouriers
+            $this->AssignCouriers($user);
+
             $data = ["messageMail" => "Hola ".$user->name.", haz click en el siguiente enlace para validar tu cuenta", "registerHash" => $registerHash];
             $to_name = $user->name;
             $to_email = $user->email;
@@ -64,5 +69,25 @@ class RegisterController extends Controller
         }
 
     }
+
+    function AssignCouriers($User){
+        
+            $Couriers=Courier::orderBy('id','asc')->get();
+            
+            foreach($Couriers as $Courier){
+
+
+                if (!CourierUser::where("user_id", $User->id)->where("courier_id", $Courier->id)->first()){
+
+                    $create=CourierUser::create([
+                        'user_id'=>$User->id,
+                        'courier_id'=>$Courier->id
+                    ]);
+
+                }//if (count($CourierUser)==0)
+
+            }//foreach($Couriers as $Courier)
+
+    }//function AssignCouriers($User)
 
 }

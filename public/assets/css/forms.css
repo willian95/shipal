@@ -99,6 +99,14 @@ label,.frm_primary_label{
     line-height: 1.42857143;
 }
 
+.custom-select.is-invalid,
+.form-control.is-invalid,
+.was-validated .custom-select:invalid,
+.was-validated .form-control:invalid {
+    border-color: #dc3545;
+}
+
+
 @media (min-width: 0px) and (max-width: 767px) {
   #form_contact-form .frm_form_field.frm6,#form_contact-form  .frm_submit.frm6,#form_contact-form  .frm_form_field.frm_left_half, #form_contact-form .frm_form_field.frm_right_half,#form_contact-form  .frm_form_field.frm_first_half, .frm_form_field.frm_last_half, #form_contact-form .frm_form_field.frm_half, #form_contact-form .frm_submit.frm_half {
       width: 100%;

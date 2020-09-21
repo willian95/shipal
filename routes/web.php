@@ -31,6 +31,7 @@ Route::get("/internacional",  "RecipientController@international")->name("intern
 Route::get("/nacional", "RecipientController@national")->name("nacional");
 
 Route::post('/recipients', "RecipientController@recipients")->name("recipients");
+Route::get("/SesionShipping","RecipientController@SesionShipping")->name("SesionShipping");
 Route::post('/createOrUpdateRecipients', "RecipientController@createOrUpdateRecipients")->name("createOrUpdateRecipients");
 Route::post('/createOrUpdateRecipientsInternational', "RecipientController@createOrUpdateRecipientsInternational")->name("createOrUpdateRecipientsInternational");
 Route::post('/getRecipients', "RecipientController@getRecipients")->name("getRecipients");
@@ -40,18 +41,27 @@ Route::get('/countries', "CountryController@countries")->name("countries");
 Route::get("/cuenta", "AccountController@index");
 Route::post("/cuenta/actualizar", "AccountController@update");
 
-Route::get("/plan", function(){ return view('plan'); });
-
 Route::get("/forgot-password", "ForgotPasswordController@index")->name("forgot-password");
 Route::post("/forgotPasswordReset", "ForgotPasswordController@forgotPasswordReset")->name("forgotPasswordReset");
 Route::get("/forgotPassword/reset/{forgotPasswordHash}", "ForgotPasswordController@reset");
-Route::post("/reset-password", "ForgotPasswordController@resetPassword")->name("reset-password");;
+Route::post("/reset-password", "ForgotPasswordController@resetPassword")->name("reset-password");
 
-Route::get("/informacion-de-paquete", function(){ return view('packageInfomation'); });
-Route::get("/tarifas-de-envios", function(){ return view('shipingRates'); });
+Route::get("/informacion-de-paquete","PackageInformationController@index")->name("informacion-de-paquete");
+Route::post("/packageInformation","PackageInformationController@packageInformation")->name("packageInformation");
+Route::post("/findTypesPackaging","TypePackagingController@findTypesPackaging")->name("findTypesPackaging");
+
+Route::get("/tarifas-de-envios", "ShipingRatesController@index")->name("tarifas-de-envios");
+Route::post("/shipingRates","ShipingRatesController@shipingRates")->name("shipingRates");
+Route::get("/proceso-de-pago", "PaymentProcessController@index")->name("proceso-de-pago");
+Route::post("/paymentProcess", "PaymentProcessController@paymentProcess")->name("paymentProcess");
+
 Route::get("/descargas", function(){ return view('download'); });
+
+Route::get("/plan","PlanController@index")->name("plan");
+Route::post("/addPlan","PlanController@addPlan")->name("addPlan");
+
+
 Route::get("/declaracion-de-aduanas", function(){ return view('customsDeclaration'); });
-Route::get("/proceso-de-pago", function(){ return view('paymentProcess'); });
 
 
 Route::get("/plan-pro", function(){ return view('planPro'); });

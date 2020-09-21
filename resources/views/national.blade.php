@@ -190,6 +190,11 @@
         },
         loading:false
        },
+       mounted(){
+              
+            this.getSesionShipping();
+
+       },//mounted()
        methods: {
          getRecipients(){
             let self = this;
@@ -238,6 +243,7 @@
                       };            
          },//clear()
          createOrUpdateRecipients(){
+
             let self = this;
             self.loading = true
             axios.post('{{ url("createOrUpdateRecipients") }}', {
@@ -250,11 +256,15 @@
                   self.recipients=response.data.recipients;
                   self.clear();
                   self.errors = []
-                  swal({
-                        title: "Información",
-                        text: "Registro Satisfactorio",
-                        icon: "success",
-                  });
+
+                    swal({
+                      "title": "Información",
+                      "icon": "success",
+                      "text": "Registro Satisfactorio",
+                    }).then((value) => {
+                      window.location.href="{{ url('informacion-de-paquete') }}"
+                    });
+
                }//if(response.data.success==true)
                else{                     
                   iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
@@ -270,8 +280,6 @@
                
             });  
 
-         
-            
          },//createOrUpdateRecipients()
          getRecipient(opt){
             let self = this;
@@ -333,6 +341,30 @@
                }//else
             }//else
          },//getRecipient(opt)
+         getSesionShipping(){
+           let self = this;
+
+            axios.get('{{ url("SesionShipping") }}', {}).then(function (response) {
+
+               if(response.data.success==true){
+
+                  console.log(response.data);
+
+               }//if(response.data.success==true)
+               else if(response.data.success==false){   
+
+                  console.log(response.data);
+
+               }//else if(response.data.success==false)
+
+            }).catch(function (error) {
+
+               iziToast.error({title: 'Mensaje',position:'topRight',message: 'Por favor comuniquese con el administrador del sistema',});
+
+               console.log(error);
+               
+            });  
+         }//SesionShipping
        },//methods
    }); //const app= new Vue
    

@@ -11,6 +11,8 @@ use App\Recipient;
 
 use App\Country;
 
+use Session;
+
 use Validator;
 
 class RecipientController extends Controller
@@ -126,6 +128,13 @@ class RecipientController extends Controller
 
             }//else
 
+            $Shipping=Session::get('Shipping');
+
+            $Shipping['step']=1;
+            $Shipping['sender']=$sender;
+            $Shipping['receiver']=$receiver;
+
+            Session::put('Shipping',$Shipping);
 
             $recipients=Recipient::orderBy('name','asc')->where('is_international',$request->opt)->get();
 
@@ -148,6 +157,7 @@ class RecipientController extends Controller
             if($sender["email"] == $receiver["email"]){
                 return response()->json(["success" => false, "msg" => "El correo de remitente y receptor no pueden ser iguales"]);
             }
+            
 
             //sender
             if($sender['id']!=null){
@@ -192,6 +202,13 @@ class RecipientController extends Controller
             }//else
 
 
+            $Shipping=Session::get('Shipping');
+
+            $Shipping['sender']=$sender;
+            $Shipping['receiver']=$receiver;
+
+            Session::put('Shipping',$Shipping);
+
             $recipients=Recipient::orderBy('name','asc')->where('is_international',$request->opt)->get();
 
             return response()->json(["success" => true, "msg" => "Obtención de datos exitosa!","recipients"=>$recipients]);
@@ -228,5 +245,47 @@ class RecipientController extends Controller
         }//catch(\Exception $e)
 
     }//public function getRecipients(Request $request)
+
+    public function SesionShipping(){
+
+      try{
+
+            if(session()->has('Shipping')){
+
+                $Shipping=Session::get('Shipping');
+
+                if($Shipping['step']==0){
+
+                    return response()->json(["success" => false, "msg" =>"No tienes un envio en proceso"]);
+
+                }else{
+
+                    return response()->json(["success" => true, "msg" => "Tienes un envio en proceso","Shipping"=>$Shipping]);
+
+
+                }//else
+
+            }else{
+
+                Session::put('Shipping',[
+                                            'step' => 0,
+                                            'sender' => [],
+                                            'receiver'=>[],
+                                            'typePackaging'=>[],
+                                            'packageInformation'=>[],
+                                            'shipingRates'=>[],
+                                            'payments'=>[],
+
+                                        ]);
+
+                return response()->json(["success" => false, "msg" =>"No tienes un envio en proceso"]);
+
+            }//else
+        }catch(\Exception $e){
+
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+            
+        }//catch(\Exception $e)
+    }//public function SesionShipping()
 
 }

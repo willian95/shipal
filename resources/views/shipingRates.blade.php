@@ -27,7 +27,15 @@
    </span>
    </button>
 </div>
-<div class="main-wrapper-content main-wrapper-content-none pt-0">
+<div class="main-wrapper-content main-wrapper-content-none pt-0" id="shipingRates">
+
+      <div class="main-loader" v-if="loading == true">
+         <div class="fulfilling-bouncing-circle-spinner">
+            <div class="circle"></div>
+            <div class="orbit"></div>
+         </div>
+      </div>
+      
    <div class="main-packageinformation">
      <div class="section-grid section-gridtwo grid-70">
        <div class="section-form">
@@ -44,30 +52,20 @@
               <div class="section-table-content section-table-tabscontent table-responsive pt-0">
                 <table class="table">
                   <tbody>
-                    <tr>
+                    <tr v-for="service in CourierService">
                       <td>
-                        <div class="section-table-img">
-                          <img src="assets/img/logos/fedex.png" alt="">
+                        <div class="text-center align-middle" >
+                        {{--section-table-img--}}
+                          <img :src="'{{url('/')}}/'+service.logo" :alt="service.name" class="img-fluid" width="40" height="40" v-if="service.name=='UPS'">
+                          <img :src="'{{url('/')}}/'+service.logo" :alt="service.name" class="img-fluid" width="120" height="120" v-else>
+
                         </div>
                       </td>
-                      <td>Fedex Express documento lorem ipsum</td>
-                      <td>3 días</td>
-                      <td>$320.000</td>
+                      <td class="align-middle">@{{service.service_name}}</td>
+                      <td class="align-middle">@{{service.shipping_time}}</td>
+                      <td class="align-middle">$@{{service.price}}</td>
                       <td>
-                        <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="section-table-img">
-                          <img src="assets/img/logos/fedex.png" alt="">
-                        </div>
-                      </td>
-                      <td>Fedex Express documento lorem ipsum</td>
-                      <td>3 días</td>
-                      <td>$320.000</td>
-                      <td>
-                        <a href="#" class="btn-custom no-shadow extrasmall">Comprar Etiqueta</a>
+                        <button type="button" class="btn-custom no-shadow extrasmall" @click="addCourierService(service)">Comprar Etiqueta</button>
                       </td>
                     </tr>
                 
@@ -77,7 +75,12 @@
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
           </div>
+          <div class="btn-formtwo text-center pt-3">
+              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates(2)">Continuar el pago</button>
+              <button type="button" class="btn-custom no-shadow medium" @click="addShipingRates(1)">Guardar para más tarde</button>
+          </div>
        </div>
+       
        <div class="section-card section-card-paddings">
          <div class="section-card-item">
            <div class="section-card-header">
@@ -87,24 +90,16 @@
              </div>
            </div>
            <div class="section-card-content">
-             <p><strong>Pepita Maria</strong></p>
+             <p><strong>@{{receiver.name}}</strong></p>
              <ul class="section-card-list">
-                <li>Sigma</li>
-                <li>65467 Calle 60 #78-145</li>
-                <li>Medellín </li>
-                <li>
-                  <img src="assets/img/icons/colombia.png" alt="">
-                  Colombia</li>
-                <li>
-                  <img src="assets/img/icons/email.png" alt="">
-                  pepita.maria@sigma3ds.com</li>
-                <li>
-                  <img src="assets/img/icons/phone.png" alt="">
-                  24357667889</li>
+                <li>@{{receiver.business_name}}</li>
+                <li>@{{receiver.address}}</li>
+                <li v-if="receiver.address2!=null">@{{receiver.address}}</li>
+                <li>@{{receiver.city}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{receiver.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{receiver.phone}}</li>
              </ul>
-
-         
-
            </div>
          </div>
          <div class="section-card-item">
@@ -117,21 +112,14 @@
              </div>
            </div>
            <div class="section-card-content">
-             <p><strong>Chila Bags SAS</strong></p>
+             <p><strong>@{{sender.name}}</strong></p>
              <ul class="section-card-list">
-                <li>65467 Calle 60 #78-145</li>
-                <li>
-                  Bogotá 
-                </li>
-                <li>
-                  <img src="assets/img/icons/colombia.png" alt="">
-                  Colombia</li>
-                <li>
-                  <img src="assets/img/icons/email.png" alt="">
-                  pepita.maria@sigma3ds.com</li>
-                <li>
-                  <img src="assets/img/icons/phone.png" alt="">
-                  24357667889</li>
+                <li>@{{sender.address}}</li>
+                <li v-if="sender.address2!=null">@{{sender.address}}</li>
+                <li>@{{sender.city}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{sender.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{sender.phone}}</li>
              </ul>
            </div>
          </div>
@@ -147,27 +135,20 @@
            <div class="section-card-content">
              <form action="" class="mt-2 mb-2">
               <div class="form-check accept-packaging">
-                <input type="checkbox" class="form-check-input">
+                <input type="checkbox" class="form-check-input"  value="si" v-model="shipingRates.useMyAddress">
                 <label class="form-check-label font-13" for="acceptPackaging"><strong>
                   Usar mi dirección de retorno
                 </strong></label>
               </div>
              </form>
-             <p><strong>Chila Bags SAS</strong></p>
+             <p><strong>@{{sender.name}}</strong></p>
              <ul class="section-card-list">
-                <li>65467 Calle 60 #78-145</li>
-                <li>
-                  Bogotá 
-                </li>
-                <li>
-                  <img src="assets/img/icons/colombia.png" alt="">
-                  Colombia</li>
-                <li>
-                  <img src="assets/img/icons/email.png" alt="">
-                  pepita.maria@sigma3ds.com</li>
-                <li>
-                  <img src="assets/img/icons/phone.png" alt="">
-                  24357667889</li>
+                <li>@{{sender.address}}</li>
+                <li v-if="sender.address2!=null">@{{sender.address}}</li>
+                <li>@{{sender.city}}</li>
+                <li><img src="{{ asset('assets/img/icons/colombia.png') }}" alt="colombia">&nbsp;Colombia</li>
+                <li><img src="{{ asset('assets/img/icons/email.png') }}" alt="email">&nbsp;@{{sender.email}}</li>
+                <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{sender.phone}}</li>
              </ul>
            </div>
          </div>
@@ -176,3 +157,141 @@
    </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+   const app = new Vue({
+       el: '#shipingRates',
+       data: {
+         errors:[],
+         sender:'',
+         receiver:'',
+         CourierService:{!! $CourierService ? $CourierService : "''"!!},
+         shipingRates:{
+              courierService:'',
+              useMyAddress:'',
+         },
+         loading:false,
+
+       },
+       mounted(){
+              
+            this.getSesionShipping();
+
+       },//mounted()
+       methods: {
+
+          async getSesionShipping(){
+
+           let self = this;
+
+            axios.get('{{ url("SesionShipping") }}', {}).then(function (response) {
+
+               if(response.data.success==true){
+
+                    self.sender=response.data.Shipping['sender'];
+
+                    self.receiver=response.data.Shipping['receiver'];
+
+               }//if(response.data.success==true)
+               else if(response.data.success==false){   
+
+                    swal({
+                      "icon": "error",
+                      "text": response.data.msg
+                    }).then((value) => {
+                      window.location.href="{{ url('dashboard') }}"
+                    });
+                    
+
+               }//else if(response.data.success==false)
+
+            }).catch(function (error) {
+
+               iziToast.error({title: 'Mensaje',position:'topRight',message: 'Por favor comuniquese con el administrador del sistema',});
+
+               console.log(error);
+               
+            });  
+         },//SesionShipping
+
+         clear(){
+
+            this.errors=[];
+
+            this.shipingRates={
+              courierService:'',
+              useMyAddress:'',
+             };
+
+         },//clear()
+
+         addCourierService(CourierService){
+
+           this.shipingRates.courierService=CourierService;
+
+            swal({
+              title: "Información",
+              text: "Eiqueta "+CourierService.name+" "+CourierService.service_name,
+              icon: "success",
+            });
+
+         },//addCourierService()
+
+         async addShipingRates(opt){
+
+           let self = this;
+
+            if(this.shipingRates.courierService==""){
+              iziToast.error({title: 'Error',position:'topRight',message: "Se debe comprar una etiqueta"});  
+              return -1;
+            }//if(this.shipingRates.courierService=="")
+
+            self.loading = true
+            axios.post('{{ url("shipingRates") }}', {
+
+              shipingRates:self.shipingRates,
+
+            }).then(function (response) {
+               self.loading = false
+               if(response.data.success==true){
+                  self.clear();
+                  self.errors = [];
+                  if(opt==1){
+                      swal({
+                        title: "Información",
+                        text: "Registro Satisfactorio",
+                        icon: "success",
+                      });
+                  }//if(opt==1)
+                  else{
+                    swal({
+                      "title": "Información",
+                      "icon": "success",
+                      "text": "Registro Satisfactorio",
+                    }).then((value) => {
+                      window.location.href="{{ url('proceso-de-pago') }}"
+                    });
+                  }//else
+                  //window.location.href="{{ url('informacion-de-paquete') }}";
+               }//if(response.data.success==true)
+               else{                     
+                  iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
+               }//else if(response.data.success==false)
+            }).catch(err => {
+               self.loading = false
+               self.errors = err.response.data.errors
+               if(self.errors){
+                  iziToast.error({title: 'Error',position:'topRight',message: "Hay algunos campos que debes revisar"});  
+               }else{
+                  iziToast.error({title: 'Error',position:'topRight',message: "Ha ocurrido un problema"});  
+               }
+               
+            });  
+
+         },//packageInformation
+       
+       },//methods
+   }); //const app= new Vue
+   
+</script> 
+@endpush
