@@ -21,6 +21,7 @@
            <div class="section-card-header">
              <div class="d-flex justify-content-between">
                <p><strong>Información de la dirección</strong></p>
+               <a href="#" class="section-card-links" data-toggle="modal" data-target="#NewAddress">Editar</a>
              </div>
            </div>
            <div class="section-card-content">
@@ -50,4 +51,5 @@
      </div>
    </div>
 </div>
+@include('partials.modals')
 @endsection

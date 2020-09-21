@@ -250,7 +250,12 @@
       }
     }
   }
-
+  &-boxfilter{
+    padding: 20px 40px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 65% 20% 15%;
+  }
   &-content {
     padding: 60px 40px;
     position: relative;
