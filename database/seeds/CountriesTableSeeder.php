@@ -16,7 +16,7 @@ class CountriesTableSeeder extends Seeder
 
         if($countries==0){
 
-            DB::table('countries')->truncate();
+            //DB::table('countries')->truncate();
   
             $countries = [
                 ['name' => 'Afghanistan', 'code' => 'AF'],
