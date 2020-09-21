@@ -314,6 +314,22 @@ label.color-gray{
 
 .custom-select{
   background: $white url(../img/icons/arrowDown.png) no-repeat right .75rem center;
+  &.form-control-select{
+    background: none;  
+    display: block;
+    width: 100%;
+    height: calc(2rem + 2px);
+    padding: 0 .5rem;
+    font-size: .9rem;
+    line-height: 1.5;
+    color: #aeb5bd;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-bottom: 0;
+  }
 }
 
 .custom-links{

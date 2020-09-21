@@ -45,7 +45,15 @@
             <a href="#" class="custom-links underline">Leer más</a>
             <div class="d-flex align-items-center mt-2 mb-2">
               <p class="text-light-general mr-2 mb-0">Ciclo de facturación</p>
-              <a href="#" class="btn-custom no-shadow extrasmall outline-light">Mensual</a>
+
+              <form action="">
+
+                <select class="form-control custom-select form-control-select" >
+                  <option>Mensual</option>
+                  <option>Anual</option>
+                </select>
+              
+              </form>
             </div>
             <div class="d-flex justify-content-between flex-column flex-xl-row flex-lg-row flex-md-row">
               <div class="d-flex align-items-center mt-2 mb-2">
