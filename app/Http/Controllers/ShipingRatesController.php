@@ -35,7 +35,7 @@ class ShipingRatesController extends Controller
 
               'CourierService.couriers' => function($query){
 
-                  $query->select('id','name','logo',)->orderBy('id','ASC');
+                  $query->select('id','name','logo')->orderBy('id','ASC');
 
               },
 
