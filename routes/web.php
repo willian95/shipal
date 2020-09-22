@@ -55,11 +55,11 @@ Route::post("/shipingRates","ShipingRatesController@shipingRates")->name("shipin
 Route::get("/proceso-de-pago", "PaymentProcessController@index")->name("proceso-de-pago");
 Route::post("/paymentProcess", "PaymentProcessController@paymentProcess")->name("paymentProcess");
 
-Route::get("/descargas", function(){ return view('download'); });
-
 Route::get("/plan","PlanController@index")->name("plan");
 Route::post("/addPlan","PlanController@addPlan")->name("addPlan");
 
+
+Route::get("/descargas", function(){ return view('download'); });
 
 Route::get("/declaracion-de-aduanas", function(){ return view('customsDeclaration'); });
 
