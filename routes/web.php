@@ -67,7 +67,7 @@ Route::get("internacional/descargas", function(){ return view('downloadInternati
 
 Route::get("/plan","PlanController@index")->name("plan");
 Route::post("/addPlan","PlanController@addPlan")->name("addPlan");
-
+//
 
 Route::get("/descargas", function(){ return view('download'); });
 
