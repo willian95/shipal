@@ -251,6 +251,8 @@
 
               shipingRates:self.shipingRates,
 
+              international:0,
+
             }).then(function (response) {
                self.loading = false
                if(response.data.success==true){
@@ -269,7 +271,7 @@
                       "icon": "success",
                       "text": "Registro Satisfactorio",
                     }).then((value) => {
-                      window.location.href="{{ url('proceso-de-pago') }}"
+                      window.location.href="{{ url('nacional/proceso-de-pago') }}"
                     });
                   }//else
                   //window.location.href="{{ url('informacion-de-paquete') }}";

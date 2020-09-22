@@ -33,6 +33,14 @@ class PackageInformationController extends Controller
 
     }//function index()
 
+    function indexInternational(){
+
+        $TypesPackaging=TypePackaging::orderBy('id','asc')->get();
+
+        return view("packageInfomationInternational")->with(['TypesPackaging'=>json_encode($TypesPackaging)]);
+
+    }//function index()
+
     function packageInformation(PackageInformationRequest $request){
 
         try{
@@ -59,15 +67,33 @@ class PackageInformationController extends Controller
                 
             }//else
 
-            $Shipping=Session::get('Shipping');
+            if($request->international==0){
 
-            $Shipping['step']=2;
+                $Shipping=Session::get('Shipping');
 
-            $Shipping['typePackaging']=$typesPackagingResult;
+                $Shipping['step']=2;
 
-            $Shipping['packageInformation']=$request->packageInformation;
+                $Shipping['typePackaging']=$typesPackagingResult;
 
-            Session::put('Shipping',$Shipping);
+                $Shipping['packageInformation']=$request->packageInformation;
+
+                Session::put('Shipping',$Shipping);
+    
+            }else{
+
+                $ShippingInternational=Session::get('ShippingInternational');
+
+                $ShippingInternational['step']=2;
+
+                $ShippingInternational['typePackaging']=$typesPackagingResult;
+
+                $ShippingInternational['packageInformation']=$request->packageInformation;
+
+                Session::put('ShippingInternational',$ShippingInternational);
+
+            }//else
+
+
 
             
            $TypesPackaging=TypePackaging::orderBy('id','asc')->get();

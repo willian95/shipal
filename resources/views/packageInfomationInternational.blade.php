@@ -2,7 +2,7 @@
 @section("content")
 <div class="main-wrapper-boxheader">
    <div class="main-wrapper-header main-wrapper-header-transparent">
-      <h2>Nacional</h2>
+      <h2>Internacional</h2>
       <div class="main-steps-header">
         <p class="main-steps-text">
           Paso 
@@ -241,22 +241,22 @@
        },
        mounted(){
               
-            this.getSesionShipping();
+            this.getSesionShippingInternational();
 
        },//mounted()
        methods: {
 
-          async getSesionShipping(){
+          async getSesionShippingInternational(){
 
            let self = this;
 
-            axios.get('{{ url("SesionShipping") }}', {}).then(function (response) {
+            axios.get('{{ url("SesionShippingInternational") }}', {}).then(function (response) {
 
                if(response.data.success==true){
 
-                    self.sender=response.data.Shipping['sender'];
+                    self.sender=response.data.ShippingInternational['sender'];
 
-                    self.receiver=response.data.Shipping['receiver'];
+                    self.receiver=response.data.ShippingInternational['receiver'];
 
                }//if(response.data.success==true)
                else if(response.data.success==false){   
@@ -278,7 +278,7 @@
                console.log(error);
                
             });  
-         },//SesionShipping
+         },//SesionShippingInternational
 
          clear(){
 
@@ -315,8 +315,8 @@
               typesPackaging:self.typesPackaging,
 
               packageInformation:self.packageInformation,
- 
-              international:0,
+
+              international:1,
 
             }).then(function (response) {
                self.loading = false
@@ -324,15 +324,15 @@
                   self.typesPackagingSelect=response.data.TypesPackaging;
                   self.clear();
                   self.errors = []
+                  
                     swal({
                       "title": "Información",
                       "icon": "success",
                       "text": "Registro Satisfactorio",
                     }).then((value) => {
-                      window.location.href="{{ url('nacional/tarifas-de-envios') }}"
+                      window.location.href="{{ url('internacional/tarifas-de-envios') }}"
                     });
                     
-                  //window.location.href="{{ url('informacion-de-paquete') }}";
                }//if(response.data.success==true)
                else{                     
                   iziToast.error({title: 'Error',position:'topRight',message: response.data.msg});   
