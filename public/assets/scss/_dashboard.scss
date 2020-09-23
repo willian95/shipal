@@ -254,7 +254,14 @@
     padding: 20px 40px;
     width: 100%;
     display: grid;
-    grid-template-columns: 65% 20% 15%;
+    grid-template-columns: 65% 35%;
+
+    .main-shippings__btns{
+      a{
+        height: 38px;
+        padding: 7px 24px;
+      }
+    }
   }
   &-content {
     padding: 60px 40px;

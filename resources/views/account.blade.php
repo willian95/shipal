@@ -118,7 +118,71 @@
         </div>
 
         <!-- COMPANY-->
-        <div class="tab-pane fade" id="nav-company" role="tabpanel" aria-labelledby="nav-company-tab">...</div>
+        <div class="tab-pane fade" id="nav-company" role="tabpanel" aria-labelledby="nav-company-tab">
+          <div class="navtabs-header">
+            <h3>Compañía</h3>
+          </div>
+          <br>
+          <p>Los datos de su empresa se utilizarán en sus facturas, páginas de seguimiento y correos electrónicos para sus clientes.</p>
+          <div class="section-grid section-gridtwo grid-50">
+          <div class="section-card section-card-paddings">
+            <div class="section-card-item">
+              <div class="section-card-header">
+                <div class="d-flex justify-content-start">
+                  <p><strong>información de la compañía</strong></p>
+                
+                </div>
+              </div>
+              <div class="section-card-content">
+                <form class="custom-form session-form w-100">
+                  <div class="form-group">
+                    <label>Nombre de la compañía</label>
+                    <input type="text" class="form-control" placeholder="Chila Bags S.A.S" >
+                  </div>
+                  <div class="form-group">
+                    <label>Dirección del sitio web</label>
+                    <input type="text" class="form-control" placeholder="Gerencia Marcus del Libano">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>Correo electrónico de la empresa</label>
+                    <input type="email" class="form-control" placeholder="">
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="section-card-item">
+              <div class="section-card-header">
+                <div class="d-flex justify-content-start">
+                  <p><strong>información de redes sociales</strong></p>
+                
+                </div>
+              </div>
+              <div class="section-card-content">
+                <p>Sus enlaces de medios sociales permiten a sus clientes conectarse con usted desde sus páginas de seguimiento.</p>
+                <form class="custom-form session-form w-100">
+                  <div class="form-group">
+                    <label>Instagram</label>
+                    <input type="text" class="form-control" placeholder="@chilabags" >
+                  </div>
+                  <div class="form-group">
+                    <label>Facebook</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label>Twitter</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                </form>
+              </div>
+            </div>
+            <a href="#" class="btn-custom small no-shadow outline">Descargar Documento</a>
+            <br>
+            <br>
+            <a href="#" class="btn-custom no-shadow small">Continuar</a>
+          </div>
+          </div>
+        </div>
       </div>
       
     </div>

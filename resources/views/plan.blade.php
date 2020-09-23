@@ -21,11 +21,45 @@
               <p><strong>Plan actual</strong></p>
               <p>Paga a medida que avanzas</p>
               <p>Esto es perfecto para el negocio que no tiene una cantidad fija de envíos por mes.</p>
+
+              <div class="main-plan__infoPlan">
+                <div class="d-flex align-items-center mt-2 mb-2">
+                  <p class="text-light-general mr-2 mb-0">Ciclo de facturación</p>
+
+                  <form action="">
+
+                    <select class="form-control custom-select form-control-select" >
+                      <option>Mensual</option>
+                      <option>Anual</option>
+                    </select>
+                  
+                  </form>
+                </div>
+                <div class="d-flex justify-content-between flex-column flex-xl-row flex-lg-row flex-md-row">
+                  <div class="main-plan__formbox d-flex align-items-center mt-2 mb-2">
+                    <form class="main-plan__formCalculate">
+                      <div class=" d-flex flex-column">
+                        <input type="range" class="form-control-range mb-3 " v-model="planUser.label_amount" :min="Config.min_label_amount" :max="Config.max_label_amount" step="5" id="formControlRange">
+                        <span class="ml-4 mb-2"><strong>$@{{calculatePrice | MONEYVAMZ}}/mes</strong></span>
+                      </div>
+                      <p class="text-light-general">Imprimir <strong>@{{planUser.label_amount}}</strong> etiquetas al mes</p>
+                    </form>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <!-- {{--<a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#CustomsInformation">Prueba gratuita</a>--}} -->
+                  <button type="button" class="btn-custom no-shadow small" >Actualizar Plan</button>
+
+                </div>
+              </div>
+
               <hr>
               <p>Sin cuotas mensuales.</p>
               <p>$0 pesos por envío adicional.</p>
             </div>
           </div>
+
+          
         
           <div class="section-quetions text-center">
             <p><strong>¿Tienes preguntas?</strong></p>
@@ -43,34 +77,38 @@
             <p class="text-bold-general">Profesional</p>
             <p class="text-light-general">Creando etiquetas de envío a granel? El plan profesional se adaptará a las necesidades de envío de su empresa.</p>
             <a href="#" class="custom-links underline">Leer más</a>
-            <div class="d-flex align-items-center mt-2 mb-2">
-              <p class="text-light-general mr-2 mb-0">Ciclo de facturación</p>
 
-              <form action="">
-
-                <select class="form-control custom-select form-control-select" >
-                  <option>Mensual</option>
-                  <option>Anual</option>
-                </select>
-              
-              </form>
-            </div>
-            <div class="d-flex justify-content-between flex-column flex-xl-row flex-lg-row flex-md-row">
+            <div class="main-plan__info">
               <div class="d-flex align-items-center mt-2 mb-2">
-                <form >
-                  <div class=" d-flex ">
-                    <input type="range" class="form-control-range " v-model="planUser.label_amount" :min="Config.min_label_amount" :max="Config.max_label_amount" step="5" id="formControlRange">
-                    <span class="ml-4"><strong>$@{{calculatePrice | MONEYVAMZ}}/mes</strong></span>
-                  </div>
-                  <p class="text-light-general">Imprimir <strong>@{{planUser.label_amount}}</strong> etiquetas al mes</p>
+                <p class="text-light-general mr-2 mb-0">Ciclo de facturación</p>
+
+                <form action="">
+
+                  <select class="form-control custom-select form-control-select" >
+                    <option>Mensual</option>
+                    <option>Anual</option>
+                  </select>
+                
                 </form>
               </div>
-              <div class="text-right">
-                {{--<a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#CustomsInformation">Prueba gratuita</a>--}}
-                <button type="button" class="btn-custom no-shadow small" @click="addPlan()">Prueba gratuita</button>
+              <div class="d-flex justify-content-between flex-column flex-xl-row flex-lg-row flex-md-row">
+                <div class="d-flex align-items-center mt-2 mb-2">
+                  <form >
+                    <div class=" d-flex ">
+                      <input type="range" class="form-control-range " v-model="planUser.label_amount" :min="Config.min_label_amount" :max="Config.max_label_amount" step="5" id="formControlRange">
+                      <span class="ml-4"><strong>$@{{calculatePrice | MONEYVAMZ}}/mes</strong></span>
+                    </div>
+                    <p class="text-light-general">Imprimir <strong>@{{planUser.label_amount}}</strong> etiquetas al mes</p>
+                  </form>
+                </div>
+                <div class="text-right">
+                  {{--<a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#CustomsInformation">Prueba gratuita</a>--}}
+                  <button type="button" class="btn-custom no-shadow small" @click="addPlan()">Prueba gratuita</button>
 
+                </div>
               </div>
             </div>
+
           </div>
           <hr>
           <div class="section-grid-settingcard">
