@@ -7,7 +7,7 @@
       <hr class="d-none d-sm-none d-md-block d-lg-block d-xlblock">
       <div class="d-flex justify-content-between">
         <p>Utilice sus contratos existentes o las tarifas de descuento de los buques</p>
-        <a href="#" class="btn-custom no-shadow small">Conectar Transportadoras</a>
+        <a href="#" class="btn-custom no-shadow small" data-toggle="modal" data-target="#ConnectConveyors">Conectar Transportadoras</a>
       </div>
     </div>
     <button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="offcanvas" type="button">
@@ -91,4 +91,5 @@
     </div>
 
   </div>
+  @include("partials.modals")
 @endsection
