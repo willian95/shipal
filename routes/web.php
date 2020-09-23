@@ -76,7 +76,8 @@ Route::get("/declaracion-de-aduanas", function(){ return view('customsDeclaratio
 
 Route::get("/plan-pro", function(){ return view('planPro'); });
 Route::get("/plan-standar", function(){ return view('planStandar'); });
-Route::get("/mi-libreta", function(){ return view('myNotebook'); });
+Route::get("/mi-libreta", "MyNotebookController@index");
+Route::post("/UpdateRecipientsNotebook", "MyNotebookController@UpdateRecipientsNotebook")->name("UpdateRecipientsNotebook");
 Route::get("/notificaciones", function(){ return view('notifications'); });
 Route::get("/mi-billetera", function(){ return view('myWallet'); });
 Route::get("/empaque", function(){ return view('packaging'); });

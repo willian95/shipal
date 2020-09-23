@@ -30,7 +30,7 @@ class RecipientController extends Controller
 
     function national(){
 
-        $recipients=Recipient::orderBy('name','asc')->where('is_international',0)->get();
+        $recipients=Recipient::orderBy('name','asc')->where('user_id',auth()->id())->where('is_international',0)->get();
         
         return view('national')->with(['recipients'=>json_encode($recipients)]);
 
@@ -38,7 +38,7 @@ class RecipientController extends Controller
 
     function international(){
 
-        $recipients=Recipient::orderBy('name','asc')->where('is_international',1)->get();
+        $recipients=Recipient::orderBy('name','asc')->where('user_id',auth()->id())->where('is_international',1)->get();
                             
         $countries=Country::orderBy('name','asc')->get();
 
