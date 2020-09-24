@@ -175,6 +175,9 @@
       grid-template-columns: 20% 80%;;
       padding: 1rem 1rem;
     }
+    &.cardcontent-heigthmin{
+      min-height: 155px;
+    }
     &.navtabs-plan-cardcontent-grid100{
       grid-template-columns: 100%;
       padding: 1rem 2rem;
