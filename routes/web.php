@@ -86,3 +86,8 @@ Route::post("/updateTypesPackaging", "TypePackagingController@update")->name("up
 Route::get("/mis-tiendas", function(){ return view('myStores'); });
 Route::get("/envios", function(){ return view('shipments'); });
 
+
+
+Route::get("/mis-proveedores", function(){ return view('courier'); });
+Route::get("/mis-ordenes", function(){ return view('myOrders'); });
+
