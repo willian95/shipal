@@ -65,7 +65,7 @@
                 <th style="border-top: 1px solid #fff;">Cliente</th>
                 <th style="border-top: 1px solid #fff;">Artículos</th>
                 <th style="border-top: 1px solid #fff;">Envios</th>
-                <th style="border-top: 1px solid #fff;opacity:0">Enviado</th>
+                <th style="border-top: 1px solid #fff;opacity:0">Forma Enviado</th>
                 <th style="border-top: 1px solid #fff;" >Label</th>
                 <th style="border-top: 1px solid #fff;" >
                   <img src="assets/img/icons/open-menu.png" alt="">
@@ -89,11 +89,11 @@
                 <td>06/24/2020</td>
                 <td class="text-left">
                   Maria Pepita de 
-                  los Rios
-                  Tehuacan PUE
-                  34567 MX
+                  los Rios <br>
+                  Tehuacan PUE <br>
+                  34567 MX <br>
                 </td>
-                <td >
+                <td class="text-left">
                   1 x Tokyo Gold Medium Bag <br>
                   ($ 48.000 total)
                 </td>
@@ -104,7 +104,7 @@
                   <img src="assets/img/icons/truck.png" alt="">
                 </td>
                 <td>
-                  <a href="#" class="btn-custom small no-shadow outline">
+                  <a href="#" class="btn-custom extrasmall no-shadow outline">
                     Crear Label
                   </a>
                 </td>
@@ -125,11 +125,11 @@
                 <td>06/24/2020</td>
                 <td class="text-left">
                   Maria Pepita de 
-                  los Rios
-                  Tehuacan PUE
-                  34567 MX
+                  los Rios <br>
+                  Tehuacan PUE <br>
+                  34567 MX <br>
                 </td>
-                <td >
+                <td class="text-left">
                   1 x Tokyo Gold Medium Bag <br>
                   ($ 48.000 total)
                 </td>
@@ -140,7 +140,7 @@
                   <img src="assets/img/icons/truck.png" alt="">
                 </td>
                 <td>
-                  <a href="#" class="btn-custom small no-shadow outline">
+                  <a href="#" class="btn-custom extrasmall no-shadow outline">
                     <!-- <img src="assets/img/icons/" alt=""> -->
                     Crear Label
                   </a>
@@ -153,11 +153,11 @@
       </div>
 
       <!-- CARDS -->
-      <div class="section-grid section-gridtwo grid-50">
-        <div class="main-cards">
+      <div class="section-flex">
+        <div class="section-flex-main-cards50">
           <div class="navtabs-plan-card">
             
-              <div class="navtabs-plan-cardcontent">
+              <div class="navtabs-plan-cardcontent cardcontent-heigthmin">
                 <div class="navtabs-plan-cardimg">
                   <img src="assets/img/icons/icon-porcent.png" alt="">
                 </div>
@@ -169,12 +169,12 @@
               </div>
             </div>
         </div>
-        <div class="main-cards">
+        <div class="section-flex-main-cards50">
           <div class="navtabs-plan-card">
             
-              <div class="navtabs-plan-cardcontent">
+              <div class="navtabs-plan-cardcontent cardcontent-heigthmin">
                 <div class="navtabs-plan-cardimg">
-                  <img src="assets/img/icons/icon-porcent.png" alt="">
+                  <img src="assets/img/icons/docs.png" alt="">
                 </div>
                 <div class="navtabs-plan-cardtext">
                   <p><strong>Crear label</strong></p>
