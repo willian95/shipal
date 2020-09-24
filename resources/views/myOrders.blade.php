@@ -65,7 +65,7 @@
                 <th style="border-top: 1px solid #fff;">Cliente</th>
                 <th style="border-top: 1px solid #fff;">Artículos</th>
                 <th style="border-top: 1px solid #fff;">Envios</th>
-                <th style="border-top: 1px solid #fff;"></th>
+                <th style="border-top: 1px solid #fff;opacity:0">Enviado</th>
                 <th style="border-top: 1px solid #fff;" >Label</th>
                 <th style="border-top: 1px solid #fff;" >
                   <img src="assets/img/icons/open-menu.png" alt="">
@@ -87,12 +87,11 @@
                   #5678
                 </td>
                 <td>06/24/2020</td>
-                <td >
-                  <ul>
-                    <li>Accede a descuentos de hasta el 90%</li>
-                    <li>Programar la recogida de paquetes</li>
-                    <li>crear manifiestos</li>
-                  </ul>
+                <td class="text-left">
+                  Maria Pepita de 
+                  los Rios
+                  Tehuacan PUE
+                  34567 MX
                 </td>
                 <td >
                   1 x Tokyo Gold Medium Bag <br>
@@ -106,7 +105,6 @@
                 </td>
                 <td>
                   <a href="#" class="btn-custom small no-shadow outline">
-                    <!-- <img src="assets/img/icons/" alt=""> -->
                     Crear Label
                   </a>
                 </td>
@@ -125,12 +123,11 @@
                   #5678
                 </td>
                 <td>06/24/2020</td>
-                <td >
-                  <ul>
-                    <li>Accede a descuentos de hasta el 90%</li>
-                    <li>Programar la recogida de paquetes</li>
-                    <li>crear manifiestos</li>
-                  </ul>
+                <td class="text-left">
+                  Maria Pepita de 
+                  los Rios
+                  Tehuacan PUE
+                  34567 MX
                 </td>
                 <td >
                   1 x Tokyo Gold Medium Bag <br>

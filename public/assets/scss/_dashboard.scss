@@ -190,6 +190,10 @@
   }
   &-boxbtns{
     padding: 10px 35px;
+    @include respond-to(xs){
+      margin-top: 2rem;
+      padding: 0px 25px;
+    }
     a.link-sincronations{
       font-family: Roboto;
       font-size: 12px;
@@ -199,6 +203,9 @@
       line-height: normal;
       letter-spacing: normal;
       color: #000000;
+      @include respond-to(xs){
+        margin-bottom: 1rem;
+      }
     }
   }
   &-header {
@@ -270,7 +277,14 @@
     grid-template-columns: 65% 35%;
     &.main-wrapper-boxfilter-90w{
       grid-template-columns: 90% 10%;
-
+      @include respond-to(xs){
+        grid-template-columns: 100%;
+      }
+      form{
+        @include respond-to(xs){
+          margin-right: 0 !important;
+        }
+      }
     }
 
     
