@@ -17,9 +17,9 @@
     <div class="main-sidebar-menu">
     <ul>
         <li><a href="{{ url('/cuenta') }}">Cuenta</a></li>
-        <li><a href="#">Envíos</a></li>
-        <li><a href="#">Mis ordenes</a></li>
-        <li><a href="#">Mi billetera</a></li>
+        <li><a href="{{ url('/envios') }}">Envíos</a></li>
+        <li><a href="{{ url('/mis-ordenes') }}">Mis ordenes</a></li>
+        <li><a href="{{ url('/mi-billetera') }}">Mi billetera</a></li>
         <li><a href="#">Analíticos</a></li>
         <li><a href="#">Ajustes</a></li>
     </ul>
