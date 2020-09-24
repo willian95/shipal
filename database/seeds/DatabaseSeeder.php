@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AssignCouriersSeeder::class);
         $this->call(ConfigsSeeder::class);
         $this->call(PlansSeeder::class);
+        $this->call(AssignTypePackagingSeeder::class);
     }
 }

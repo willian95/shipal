@@ -16,6 +16,13 @@
 <hr class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
 <div class="main-wrapper-content main-wrapper-content-none pt-2 ">
 
+      <div class="main-loader" v-if="loading == true">
+         <div class="fulfilling-bouncing-circle-spinner">
+            <div class="circle"></div>
+            <div class="orbit"></div>
+         </div>
+      </div>
+
    <div class="main-packageinformation">
      <div class="section-grid section-gridtwo grid-50">
        <div class="section-card section-card-paddings" v-for="value in recipients">
@@ -58,7 +65,7 @@
      </div>
    </div>
 </div>
-@include('partials.modals')
+@include('partials.modals.myNotebook')
 </section>
 @endsection
 @push('scripts')

@@ -80,7 +80,9 @@ Route::get("/mi-libreta", "MyNotebookController@index");
 Route::post("/UpdateRecipientsNotebook", "MyNotebookController@UpdateRecipientsNotebook")->name("UpdateRecipientsNotebook");
 Route::get("/notificaciones", function(){ return view('notifications'); });
 Route::get("/mi-billetera", function(){ return view('myWallet'); });
-Route::get("/empaque", function(){ return view('packaging'); });
+Route::get("/empaque", "TypePackagingController@index");
+Route::post("/addTypesPackaging", "TypePackagingController@store")->name("addTypesPackaging");
+Route::post("/updateTypesPackaging", "TypePackagingController@update")->name("updateTypesPackaging");
 Route::get("/mis-tiendas", function(){ return view('myStores'); });
 Route::get("/envios", function(){ return view('shipments'); });
 

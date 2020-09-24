@@ -45,7 +45,7 @@
                <select class="form-control custom-select" v-model="typesPackaging.id" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('typesPackaging.id') }" @change="findTypesPackaging">
                   <option value="null">Seleccione</option>
                   <option v-for="option in typesPackagingSelect" v-bind:value="option.id">
-                     @{{ option.length }} x  @{{ option.width }} x  @{{ option.height }}
+                     @{{ option.name }}
                   </option>
                </select>
              </div>
@@ -219,10 +219,12 @@
          typesPackaging:{
 
                           id:null,
+                          name:'',
                           length:'', 
                           width:'',
                           height:'',
                           weight:'',
+                          predetermined:false
          },
 
          packageInformation:{
@@ -287,10 +289,12 @@
 
             this.typesPackaging={
                           id:null,
+                          name:'',
                           length:'', 
                           width:'',
                           height:'',
                           weight:'',
+                          predetermined:false
             };
 
             this.packageInformation={
@@ -376,10 +380,12 @@
             }else{
                 this.typesPackaging={
                           id:null,
+                          name:'',
                           length:'', 
                           width:'',
                           height:'',
                           weight:'',
+                          predetermined:false
                 };
             }//else
 
