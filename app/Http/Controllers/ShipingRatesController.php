@@ -9,6 +9,8 @@ use Session;
 use Validator;
 
 use App\CourierUser;
+use App\Shipping;
+use App\Recipient;
 
 
 class ShipingRatesController extends Controller
@@ -111,6 +113,8 @@ class ShipingRatesController extends Controller
 
     function shipingRates(Request $request){
 
+        
+
         try{
 
             if($request->international==0){
@@ -123,6 +127,20 @@ class ShipingRatesController extends Controller
 
                 Session::put('Shipping',$Shipping);
 
+                $shippingSession = Session::get("Shipping");
+
+                if($request->opt == 1){
+                    $shipping = new Shipping;
+                    $shipping->courier_service_id = $request->shipingRates["courierService"]["CourierServiceId"];
+                    $shipping->courier_id = $request->shipingRates["courierService"]["courier_id"];
+                    $shipping->recipient_id = Recipient::where("email", $shippingSession["receiver"]["email"])->first()->id;
+                    $shipping->user_id = \Auth::user()->id;
+                    $shipping->save();
+
+                    return response()->json(["success" => true, "msg" => "Envío guardado exitosamente!"]);
+
+                }
+
             }else{
 
                 $ShippingInternational=Session::get('ShippingInternational');
@@ -134,7 +152,7 @@ class ShipingRatesController extends Controller
                 Session::put('ShippingInternational',$ShippingInternational);
 
             }//else
-            return response()->json(["success" => true, "msg" => "Obtención de datos exitosa!"]);
+            
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);

@@ -123,7 +123,7 @@
              </ul>
            </div>
          </div>
-         <div class="section-card-item">
+         {{--<div class="section-card-item">
            <div class="section-card-header">
              <div class="d-flex justify-content-between">
                <p><strong>Dirección del remitente</strong></p>
@@ -151,7 +151,7 @@
                 <li><img src="{{ asset('assets/img/icons/phone.png') }}" alt="phone">&nbsp;@{{sender.phone}}</li>
              </ul>
            </div>
-         </div>
+         </div>--}}
        </div>
      </div>
    </div>
@@ -250,8 +250,8 @@
             axios.post('{{ url("shipingRates") }}', {
 
               shipingRates:self.shipingRates,
-
               international:0,
+              opt:opt
 
             }).then(function (response) {
                self.loading = false
@@ -261,8 +261,12 @@
                   if(opt==1){
                       swal({
                         title: "Información",
-                        text: "Registro Satisfactorio",
+                        text: response.data.msg,
                         icon: "success",
+                      }).then(res => {
+
+                        window.location.href="{{ url('/dashboard') }}"
+
                       });
                   }//if(opt==1)
                   else{

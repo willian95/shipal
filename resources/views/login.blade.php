@@ -92,8 +92,14 @@
                     swal({
                       "icon": "success",
                       "text": res.data.msg
-                    }).then(res => {
-                      window.location.href="{{ url('/dashboard') }}"
+                    }).then(confirm => {
+                      
+                      if(res.data.role_id == 1){
+                        window.location.href="{{ url('/admin/dashboard') }}"
+                      }else{
+                        window.location.href="{{ url('/dashboard') }}"
+                      }
+                      
                     })
                   }else{
                     swal({

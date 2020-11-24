@@ -20,7 +20,11 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             //return redirect(RouteServiceProvider::HOME);
-            return redirect()->to("dashboard");
+            if(\Auth::user()->role_id == 1){
+                return redirect()->to("admin/dashboard");
+            }else if(\Auth::user()->role_id == 2){
+                return redirect()->to("dashboard");
+            }
         }
 
         return $next($request);

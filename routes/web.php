@@ -21,7 +21,7 @@ Route::get('/', "LoginController@index")->name("/")->middleware('guest');
 Route::get("/logout", "LoginController@logout");
 Route::post("/login", "LoginController@login");
 
-Route::get('/register', "RegisterController@index");
+Route::get('/register', "RegisterController@index")->middleware('guest');
 Route::post("/register", "RegisterController@register");
 Route::get("/register/validate/{registerHash}", "RegisterController@verify");
 
@@ -67,16 +67,28 @@ Route::get("internacional/descargas", function(){ return view('downloadInternati
 
 Route::get("/plan","PlanController@index")->name("plan");
 Route::post("/addPlan","PlanController@addPlan")->name("addPlan");
-//
+
+Route::get("/mi-libreta", "MyNotebookController@index");
+
 
 Route::get("/descargas", function(){ return view('download'); });
 
 Route::get("/declaracion-de-aduanas", function(){ return view('customsDeclaration'); });
 
+/* ADMIN  */
+Route::get("/admin/dashboard", "Admin\DashboardController@index");
+Route::get("/admin/news/create", "Admin\NewsController@create")->name("admin.news.create");
+Route::get("/admin/news/list", "Admin\NewsController@list")->name("admin.news.list");
+Route::get("/admin/news/fetch/{page}", "Admin\NewsController@fetch");
+Route::get("/admin/news/edit/{id}", "Admin\NewsController@edit");
+Route::post("/admin/news/store", "Admin\NewsController@store");
+Route::post("/admin/news/update", "Admin\NewsController@update");
+Route::post("/admin/news/delete", "Admin\NewsController@delete");
+/* ADMIN  */
 
 Route::get("/plan-pro", function(){ return view('planPro'); });
 Route::get("/plan-standar", function(){ return view('planStandar'); });
-Route::get("/mi-libreta", "MyNotebookController@index");
+
 Route::post("/UpdateRecipientsNotebook", "MyNotebookController@UpdateRecipientsNotebook")->name("UpdateRecipientsNotebook");
 Route::get("/notificaciones", function(){ return view('notifications'); });
 Route::get("/mi-billetera", function(){ return view('myWallet'); });
@@ -84,7 +96,9 @@ Route::get("/empaque", "TypePackagingController@index");
 Route::post("/addTypesPackaging", "TypePackagingController@store")->name("addTypesPackaging");
 Route::post("/updateTypesPackaging", "TypePackagingController@update")->name("updateTypesPackaging");
 Route::get("/mis-tiendas", function(){ return view('myStores'); });
+
 Route::get("/envios", function(){ return view('shipments'); });
+Route::get("/envios/pendientes", "ShippingController@pendingShippings");
 
 
 

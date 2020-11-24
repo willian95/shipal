@@ -123,7 +123,7 @@
              </div>
            </div>
            <div class="form-check accept-packaging">
-             <input type="checkbox" class="form-check-input" value="si" v-model="packageInformation.scheduleShipmentPickup" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('packageInformation.scheduleShipmentPickup') }">
+             <input type="checkbox" class="form-check-input" value="si" v-model="packageInformation.scheduleShipmentPickup" @change="onPackageInformationChange()" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('packageInformation.scheduleShipmentPickup') }">
              <label class="form-check-label font-13" for="acceptPackaging">Programar recolección del envío</label><br>
              <small v-if="errors.hasOwnProperty('packageInformation.scheduleShipmentPickup')">@{{ errors['packageInformation.scheduleShipmentPickup'][0] }}</small>
            </div>
@@ -137,8 +137,8 @@
                <div class="form-group ">
                 <label class="color-gray">Fecha de recolección</label>
                 <div class="d-flex align-items-center">
-                  <a href="#" class="btn-custom no-shadow extrasmall outline-light mr-2">Mañana</a>
-                  <a href="#" class="btn-custom no-shadow extrasmall outline-light">Noche</a>
+                  <button type="button" :disabled="currentDate == packageInformation.dateOfCollection && time >= 11" class="btn-custom no-shadow extrasmall outline-light mr-2" @click="setCollectionTime('morning')">Mañana</button>
+                  <button type="button" class="btn-custom no-shadow extrasmall outline-light" @click="setCollectionTime('afternoon')">Tarde</button>
                 </div>
                </div>
              </div>
@@ -185,9 +185,9 @@
            <div class="section-card-header">
              <div class="d-flex justify-content-between">
                <p><strong>Dirección del remitente</strong></p>
-               <a href="#" class="section-card-links">
+               {{--<a href="#" class="section-card-links">
                  <img src="{{ asset('assets/img/icons/agenda.png') }}" alt="agenda">
-               </a>
+               </a>--}}
              </div>
            </div>
            <div class="section-card-content">
@@ -215,6 +215,8 @@
          errors:[],
          sender:'',
          receiver:'',
+         time:"{{ $time }}",
+         currentDate:"{{ $date }}",
          typesPackagingSelect:{!! $TypesPackaging ? $TypesPackaging : "''"!!},
          typesPackaging:{
 
@@ -231,11 +233,12 @@
                             declaredValue:'', 
                             shippingDate:'', 
                             secureYourPackage:'', 
-                            scheduleShipmentPickup:'', 
-                            dateOfCollection:'', 
+                            scheduleShipmentPickup:'',
+                            dateOfCollection:"{{ $date }}", 
                             collectionTime:'', 
                             proformaInvoice:'', 
                             returnGuide:'', 
+
          },
 
          loading:false,
@@ -308,7 +311,6 @@
                             returnGuide:'', 
             };
          },//clear()
-
          async addPackageInformation(){
 
            let self = this;
@@ -390,6 +392,21 @@
             }//else
 
          },//getRecipient(opt)
+
+         setCollectionTime(time){
+
+          this.packageInformation.collectionTime = time
+
+         },
+
+         onPackageInformationChange(){
+
+          if(this.packageInformation.scheduleShipmentPickup == false){
+            this.packageInformation.collectionTime = ""
+            this.packageInformation.dateOfCollection = ""
+          }
+
+         }
 
        },//methods
    }); //const app= new Vue

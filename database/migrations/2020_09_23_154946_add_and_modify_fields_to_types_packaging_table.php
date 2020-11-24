@@ -19,12 +19,16 @@ class AddAndModifyFieldsToTypesPackagingTable extends Migration
 
             $table->string('name',100)->nullable(true)->after('user_id');
             
-            $table->float('weight', 10, 2)->nullable(true)->change();
+            
 
             $table->boolean('predetermined')->default(false)->after('weight');//(true para prederterminado, false para no predeterminado)
 
             //relations
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            //$table->float('weight', 10, 2)->nullable(true)->change();
+            $table->dropColumn("weight");
+
         });
     }
 

@@ -12,6 +12,8 @@ use Session;
 
 use Validator;
 
+use Carbon\Carbon;
+
 class PackageInformationController extends Controller
 {
 
@@ -28,8 +30,10 @@ class PackageInformationController extends Controller
     function index(){
 
         $TypesPackaging=TypePackaging::orderBy('id','asc')->get();
+        $time = Carbon::now()->format("H");
+        $date = Carbon::now()->format("Y-m-d");
 
-        return view("packageInfomation")->with(['TypesPackaging'=>json_encode($TypesPackaging)]);
+        return view("packageInfomation")->with(['TypesPackaging'=>json_encode($TypesPackaging), "time" => intval($time), "date" => $date]);
 
     }//function index()
 

@@ -123,7 +123,7 @@
              </div>
            </div>
            <div class="form-check accept-packaging">
-             <input type="checkbox" class="form-check-input" value="si" v-model="packageInformation.scheduleShipmentPickup" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('packageInformation.scheduleShipmentPickup') }">
+             <input type="checkbox" class="form-check-input" value="si" v-model="packageInformation.scheduleShipmentPickup" v-bind:class="{ 'is-invalid': errors.hasOwnProperty('packageInformation.scheduleShipmentPickup') }" @change="onPackageInformationChange()">
              <label class="form-check-label font-13" for="acceptPackaging">Programar recolección del envío</label><br>
              <small v-if="errors.hasOwnProperty('packageInformation.scheduleShipmentPickup')">@{{ errors['packageInformation.scheduleShipmentPickup'][0] }}</small>
            </div>
@@ -389,6 +389,21 @@
             }//else
 
          },//getRecipient(opt)
+
+          setCollectionTime(time){
+
+            this.packageInformation.collectionTime = time
+
+          },
+
+          onPackageInformationChange(){
+
+            if(this.packageInformation.scheduleShipmentPickup == false){
+              this.packageInformation.collectionTime = ""
+              this.packageInformation.dateOfCollection = ""
+            }
+
+          }
 
        },//methods
    }); //const app= new Vue
