@@ -23,4 +23,9 @@ class Courier extends Model
     {
         return $this->belongsTo('App\CourierUser','courier_id');
     }
+
+    public function CourierPrice(){
+        return $this->hasMany(CourierPrice::class);
+    }
+
 }

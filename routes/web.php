@@ -100,8 +100,24 @@ Route::get("/mis-tiendas", function(){ return view('myStores'); });
 Route::get("/envios", function(){ return view('shipments'); });
 Route::get("/envios/pendientes", "ShippingController@pendingShippings");
 
-
-
 Route::get("/mis-proveedores", function(){ return view('courier'); });
 Route::get("/mis-ordenes", function(){ return view('myOrders'); });
+
+Route::get("/admin/couriers", "Admin\CourierController@index");
+Route::get("/admin/couriers/fetch/{page}", "Admin\CourierController@fetch");
+Route::get("/admin/couriers/all/fetch", "Admin\CourierController@all");
+Route::post("/admin/couriers/store", "Admin\CourierController@store");
+Route::post("/admin/couriers/update", "Admin\CourierController@update");
+
+Route::get("/admin/zones/index", "Admin\ZoneController@index");
+Route::get("/admin/zones/fetch/{page}", "Admin\ZoneController@fetch");
+Route::post("/admin/zones/store", "Admin\ZoneController@store");
+
+Route::get("/admin/courier-prices/index", "Admin\CourierPriceController@index");
+Route::get("/admin/courier-prices/fetch/{page}", "Admin\CourierPriceController@fetch");
+Route::post("/admin/courier-prices/store", "Admin\CourierPriceController@store");
+
+Route::get("/admin/packages/index", "Admin\TypePackageController@index");
+Route::get("/admin/packages/fetch/{page}", "Admin\TypePackageController@fetch");
+Route::post("/admin/packages/store", "Admin\TypePackageController@store");
 

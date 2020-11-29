@@ -9,7 +9,7 @@ class Country extends Model
      public $table='countries';
 
     protected $fillable=[
-        'code',
         'name',
+        'zone_id'
     ];
 }

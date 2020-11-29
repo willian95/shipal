@@ -2,7 +2,10 @@
 
 @section("content")
     
-    <div id="dev-news">
+    <div id="dev-zones">
+        <div class="loader-cover-custom" v-if="loading == true">
+            <div class="loader-custom"></div>
+        </div>
         <div class="content d-flex flex-column flex-column-fluid" id="kt_content" v-cloak>
             <div class="d-flex flex-column-fluid">
 
@@ -11,14 +14,14 @@
                     <div class="card card-custom gutter-b">
                         <div class="card-header flex-wrap py-3">
                             <div class="card-title">
-                                <h3 class="card-label">Noticias
+                                <h3 class="card-label">Zonas
                             </div>
 
                             <div class="card-toolbar">
 
                                 <!--begin::Button-->
-                                <a class="btn btn-primary" href="{{ url('/admin/news/create') }}">
-                                    Crear noticia
+                                <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#zoneModal" @click="create()">
+                                    Cargar zonas
                                 </a>
                                 <!--end::Button-->
                             </div>
@@ -31,23 +34,16 @@
                             <table class="table table-bordered table-checkable" id="kt_datatable" style="margin-top: 15px;">
                                 <thead>
                                     <tr>
-                                        <th>Titulo</th>
-                                        <th>Fecha</th>
-                                        <th>Acciones</th>
+                                        <th>País</th>
+                                        <th>Zona</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(notice, index) in news">
+                                    <tr v-for="(zone, index) in zones">
                                         
-                                        <td>@{{ notice.title }}</td>
-                                        <td>@{{ notice.created_at.substring(0, 10) }}</td>
+                                        <td>@{{ zone.name }}</td>
                                         <td>
-                                            <a class="btn btn-success" :href="'{{ url('/admin/news/edit/') }}'+'/'+notice.id">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <button class="btn btn-secondary" @click="erase(notice.id)">
-                                                <i class="fas fa-times"></i>
-                                            </button>
+                                            @{{ zone.zone_id }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -61,16 +57,16 @@
                                     <div class="dataTables_paginate paging_full_numbers" id="kt_datatable_paginate">
                                         <ul class="pagination">
                                             <li class="paginate_button page-item previous" id="kt_datatable_previous" v-if="page > 1">
-                                                <a href="#" aria-controls="kt_datatable" data-dt-idx="1" tabindex="0" class="page-link" @click="fetch(1)">
+                                                <a style="cursor:pointer" aria-controls="kt_datatable" data-dt-idx="1" tabindex="0" class="page-link" @click="fetch(index)">
                                                     <i class="ki ki-arrow-back"></i>
                                                 </a>
                                             </li>
                                             <li class="paginate_button page-item active" v-for="index in pages">
-                                                <a href="#" aria-controls="kt_datatable" tabindex="0" class="page-link":key="index" @click="fetch(index)" >@{{ index }}</a>
+                                                <a style="cursor:pointer" aria-controls="kt_datatable" tabindex="0" class="page-link":key="index" @click="fetch(index)" >@{{ index }}</a>
                                             </li>
                                             
                                             <li class="paginate_button page-item next" id="kt_datatable_next" v-if="page < pages" href="#">
-                                                <a href="#" aria-controls="kt_datatable" data-dt-idx="7" tabindex="0" class="page-link" @click="fetch(pages)">
+                                                <a style="cursor:pointer" aria-controls="kt_datatable" data-dt-idx="7" tabindex="0" class="page-link" @click="fetch(pages)">
                                                     <i class="ki ki-arrow-next"></i>
                                                 </a>
                                             </li>
@@ -90,6 +86,32 @@
 
         </div>
 
+        <!-- Modal-->
+        <div class="modal fade" id="zoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cargar zonas</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="image">Excel de zonas</label>
+                            <input type="file" class="form-control" id="image" @change="onFileChange">
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary font-weight-bold"  @click="store()">Cargar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 @endsection
@@ -99,26 +121,75 @@
     <script>
         
         const app = new Vue({
-            el: '#dev-news',
+            el: '#dev-zones',
             data(){
                 return{
-                    news:[],
+                    zones:[],
                     pages:0,
                     page:1,
+                    file:"",
+                    loading:false
                 }
             },
             methods:{
-            
+                
+                onFileChange(e){
+                    this.file = e.target.files[0];
+                    let files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+                
+                    this.createFile(files[0]);
+                },
+                createFile(file) {
+                    let reader = new FileReader();
+                    let vm = this;
+                    reader.onload = (e) => {
+                        vm.file = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                },
+                store(){
+
+                    this.loading = true
+                    axios.post("{{ url('/admin/zones/store') }}", {file: this.file})
+                    .then(res => {
+                        this.loading = false
+                        if(res.data.success == true){
+
+                            swal({
+                                title: "Perfecto!",
+                                text: res.data.msg,
+                                icon: "success"
+                            });
+                            this.fetch()
+                        }else{
+
+                            swal({
+                                title: "Lo sentimos!",
+                                text: res.data.msg,
+                                icon: "error"
+                            });
+
+                        }
+
+                    })
+                    .catch(err => {
+                        this.loading = false
+                        this.errors = err.response.data.errors
+                    })
+
+                },
                 fetch(page = 1){
 
                     this.page = page
-                    axios.get("{{ url('/admin/news/fetch') }}"+"/"+this.page)
+                    axios.get("{{ url('/admin/zones/fetch') }}"+"/"+this.page)
                     .then(res => {
 
                         if(res.data.success == true){
 
-                            this.news = res.data.news
-                            this.pages = Math.ceil(res.data.newsCount / res.data.dataAmount)
+                            this.zones = res.data.countries
+                            this.pages = Math.ceil(res.data.countriesCount / res.data.dataAmount)
                             
                         }else{
 

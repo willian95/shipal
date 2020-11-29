@@ -11,11 +11,16 @@ class TypePackaging extends Model
     protected $fillable=[
         'user_id',
         'name',
+        'courier_id',
         'length', 
         'width',
         'height',
         'weight',
         'predetermined',
     ];
+
+    public function courier(){
+        return $this->belongsTo(Courier::class);
+    }
 
 }

@@ -128,6 +128,34 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
 							<!--begin::Menu Nav-->
 							<ul class="menu-nav">
+
+								<li class="menu-item" aria-haspopup="true">
+									<a href="{{ url('/admin/couriers') }}" class="menu-link">
+										<i class="menu-icon fas fa-letter"></i>
+										<span class="menu-text">Couriers</span>
+									</a>
+								</li>
+
+								<li class="menu-item" aria-haspopup="true">
+									<a href="{{ url('/admin/zones/index') }}" class="menu-link">
+										<i class="menu-icon fas fa-letter"></i>
+										<span class="menu-text">Zonas</span>
+									</a>
+								</li>
+
+								<li class="menu-item" aria-haspopup="true">
+									<a href="{{ url('/admin/packages/index') }}" class="menu-link">
+										<i class="menu-icon fas fa-letter"></i>
+										<span class="menu-text">Paquetes</span>
+									</a>
+								</li>
+
+								<li class="menu-item" aria-haspopup="true">
+									<a href="{{ url('/admin/courier-prices/index') }}" class="menu-link">
+										<i class="menu-icon fas fa-letter"></i>
+										<span class="menu-text">Tarifas Courier</span>
+									</a>
+								</li>
 								
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">

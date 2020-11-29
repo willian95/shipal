@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCountriesTable extends Migration
+class DropCodeFromCountries extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('code', 2)->index();
-            $table->string('name', 75);
-            $table->timestamps();
+        Schema::table('countries', function (Blueprint $table) {
+            $table->dropColumn("code");
         });
     }
 
@@ -28,6 +25,8 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::table('countries', function (Blueprint $table) {
+            //
+        });
     }
 }
