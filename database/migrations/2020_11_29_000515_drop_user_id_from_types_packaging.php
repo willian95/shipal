@@ -14,8 +14,9 @@ class DropUserIdFromTypesPackaging extends Migration
     public function up()
     {
         Schema::table('types_packaging', function (Blueprint $table) {
-            $table->dropColumn("user_id");
             $table->dropForeign(["user_id"]);
+            $table->dropColumn("user_id");
+            
         });
     }
 
